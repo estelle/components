@@ -1,0 +1,1 @@
+Components enabled us to use HTML, CSS and JavaScript to extend the DOM with reusable components. Discover how to combine Templates, Shadow DOM, Custom Elements, and HTML Imports to semantically and accessibly expand the DOM.  With Web Components, we can revolutionize the way we develop the web.
