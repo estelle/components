@@ -1,0 +1,521 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Web Components</title>
+<!--
+Made by: Estelle Weyl
+Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
+-->
+<link rel="stylesheet" href="css/index.css"/>
+</head>
+
+<body>
+  <div id="presentation">
+   <div id="slides">
+<!-- SLIDES -->
+
+
+<div class="slide intro">
+  <header>
+    <h1 style="font-size: 4rem;">Web Components</h1>
+  </header>
+  <h1>Estelle Weyl</h1>
+  <h4>@estellevw</h3>
+  <h4>estelle.github.io/components</h4>
+</div>
+
+<div class="slide">
+    <section class="content">
+<h1 class="textmask">Estelle Weyl</h1>
+<h2><a href="http://www.standardista.com">www.standardista.com</a></h2>
+<h2><a href="http://www.twitter.com/estellevw">@estellevw</a></h2>
+<h2><a href="http://www.twitter.com/standardista">@standardista</a></h2>
+<div class="floatright">
+  <img src="http://akamaicovers.oreilly.com/images/9780980846904/cat.gif" alt="HTML5 and CSS3 for the Real World">
+  <img src="http://akamaicovers.oreilly.com/images/0636920018063/cat.gif" alt="HTML5: The Definitive Guide"/>
+  <img src="http://akamaicovers.oreilly.com/images/0636920021711/cat.gif" alt="MObile HTML5" />
+  \<img src="http://akamaicovers.oreilly.com/images/0636920025955/cat.gif" alt="Web Performance Daybook"/></div>
+    </section>
+</div>
+
+
+
+<div class="slide title">
+<h1>Web Components</h1>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>Web Components</h1></header>
+    <section class="content"><strong>Web Components:</strong> Encapsulated and reusable components for the web.
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Browser Support</h1></header>
+    <figure><object data="http://caniuse.com/#search=components"></object></figure>
+  <a href="http://caniuse.com/#search=components" target="play" title="open resource in new window">↪</a>
+</div>
+
+<div class="slide">
+  <header><h1>Libraries &amp; Polyfills</h1></header>
+    <section class="content icon-images">
+      <ul>
+        <li><img src="assets/icons/icon-polymer.png" alt=""/> Polymer</li>
+        <li><img src="assets/icons/icon-xtags.png" alt=""/>x-tag</li>
+        <li><img src="assets/icons/icon-bosonic.png" alt=""/>Bosonic</li>
+      </ul>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Web Components</h1></header>
+    <section class="content">
+      <h2>Components of Web Components</h2>
+      <h3>a.k.a. Table of Contents </h3>
+      <ul>
+        <li>&lt;template&gt;</li>
+        <li>Shadow DOM</li>
+        <li>HTML imports</li>
+        <li>Custom Elements</li>
+    </section>
+</div>
+
+
+
+<div class="slide opposite" style="background: url(assets/images/divitis.gif) center no-repeat;">
+  <header><h1>The problem</h1></header>
+    <section class="content">
+
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Static Code</h1></header>
+    <section class="content">
+      <pre contenteditable>&lt;div class=&quot;my-nametag&quot;&gt;
+  &lt;div class=&quot;outer&quot;&gt;
+    &lt;div class=&quot;boilerplate&quot;&gt;
+      Hi! My name is
+    &lt;/div&gt;
+    &lt;div class=&quot;name&quot;&gt;
+      Estelle
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>Backend Frameworks</h1></header>
+    <section class="content">
+      <pre contenteditable>&lt;div class=&quot;my-nametag&quot;&gt;
+  &lt;div class=&quot;outer&quot;&gt;
+    &lt;div class=&quot;boilerplate&quot;&gt;
+      Hi! My name is
+    &lt;/div&gt;
+    &lt;div class=&quot;name&quot;&gt;
+      Jean Phillippe
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;my-nametag&quot;&gt;
+  &lt;div class=&quot;outer&quot;&gt;
+    &lt;div class=&quot;boilerplate&quot;&gt;
+      Hi! My name is
+    &lt;/div&gt;
+    &lt;div class=&quot;name&quot;&gt;
+      Estelle
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;my-nametag&quot;&gt;
+  &lt;div class=&quot;outer&quot;&gt;
+    &lt;div class=&quot;boilerplate&quot;&gt;
+      Hi! My name is
+    &lt;/div&gt;
+    &lt;div class=&quot;name&quot;&gt;
+      Miriam
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>Front End Frameworks</h1></header>
+    <section class="content">
+<pre contenteditable>
+<strong>&lt;script id=&quot;myNametag&quot; type=&quot;text/x-handlebars-template&quot;&gt;</strong>
+  &lt;div class=&quot;my-nametag&quot;&gt;
+    &lt;div class=&quot;outer&quot;&gt;
+      &lt;div class=&quot;boilerplate&quot;&gt;
+        Hi! My name is
+      &lt;/div&gt;
+      &lt;div class=&quot;name&quot;&gt;
+        <strong>{{name.first}}</strong>
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+<strong>&lt;/script&gt;</strong></pre>
+</section>
+</div>
+
+
+<div class="slide">
+  <header><h1>No Frameworks</h1></header>
+    <section class="content">
+      <ol>
+        <li><a href="files/oldstyle.hmtl">DOM Manipulation</a></li>
+        <li><a href="files/oldstyle_multiple.hmtl">DOM Programming</a></li>
+    </section>
+</div>
+
+
+<div class="slide title">
+<h1>Templates</h1>
+</div>
+
+<div class="slide">
+  <header><h1>Definition</h1></header>
+    <section class="content">
+      <p><strong>template (n)</strong> - A document or file having a preset format, used as a starting point for a particular application so that the format does not have to be recreated each time it is used.</p>
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>&lt;template&gt; specification</h1></header>
+    <section class="content">
+      <p><strong>&lt;template&gt;</strong>: A standard DOM-based approach for client-side templating.</p>
+      <p><strong>specification:</strong> method for declaring inert DOM subtrees in HTML and manipulating them to instantiate document fragments with identical content.</p>
+
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>&lt;template&gt; specification</h1></header>
+    <section class="content">
+<blockquote><p>The <strong>template</strong> element is used to declare fragments of HTML that can be cloned and inserted in the document by script.</p>
+<p>In a rendering, the template element <strong>represents nothing</strong></p></blockquote>
+
+<cite>-- <a href="https://html.spec.whatwg.org/multipage/scripting.html#the-template-element">WHATWG Specification</a></cite>
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>&lt;template&gt; content</h1></header>
+    <section class="content">
+      <ul>
+          <li><strong title="non-rendered hidden DOM">Inert until activated:</strong>  content available only at runtime</li>
+          <li><strong>No side effects:</strong> scripts don't run, images don't load, video doesn't play until template is used.</li>
+          <li><strong>Outside of DOM:</strong> child nodes don't exist in DOM. Can't <code>querySelector()</code> content</li>
+          <li><strong title="even where parser doesn't allow content">Placable anywhere:</strong> head, body, iframe.</li>
+      </ul>
+
+      <p>Designers can create rich web user interaction (UI) using CSS and HTML markup only. Developers can focus on integrating the design elements.
+    </section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>How do you do it?</h1></header>
+    <section class="content">
+      <ol>
+        <li>Feature detect</li>
+        <li>Declare template content</li>
+        <li>Activate content</li>
+      </ol>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Browser Support</h1></header>
+    <figure><object data="http://caniuse.com/#search=template"></object></figure>
+  <a href="http://caniuse.com/#search=template" target="play" title="open resource in new window">↪</a>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>Feature Detect</h1></header>
+    <section class="content">
+      <pre contenteditable>if(<strong>'content' in document.createElement('template')</strong>) {
+  // put template code here
+} else {
+  //polyfill
+}</pre>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Include &lt;template&gt;</h1></header>
+    <section class="content">
+      <p>Clonable DOM that does nothing until activated</p>
+      <ul>
+        <li>&lt;template&gt;</li>
+        <li>&lt;style&gt;</li>
+        <li>content</li>
+        <li>&lt;content&gt;</li>
+      </ul>
+    </section>
+</div>
+
+<div class="slide">
+  <pre contenteditable><strong>&lt;template id=&quot;foo&quot;&gt;</strong>
+   <em>&lt;style&gt;
+      /* styles scoped to template only
+   &lt;/style&gt;</em>
+  &lt;div class=&quot;someclass&quot;&gt;
+     template text here
+    &lt;div class=&quot;someotherclass&quot;&gt;
+    <strong>&lt;content&gt;&lt;/content&gt;</strong>
+    &lt;/div&gt;
+  &lt;/div&gt;
+<strong>&lt;/template&gt;</strong></pre>
+</div>
+
+<div class="slide">
+  <pre contenteditable><strong>&lt;template id=&quot;nameTagTemplate&quot;&gt;</strong>
+  <em>&lt;style&gt;
+  .outer {
+    border-radius: 1em; background: red; text-align: center; margin-bottom: 1em; }
+  .boilerplate {
+    color: white; padding: 0.5em; }
+  .name {
+    font-family: &quot;Marker Felt&quot;, cursive; }
+  &lt;/style&gt;</em>
+  &lt;div class=&quot;outer&quot;&gt;
+    &lt;div class=&quot;boilerplate&quot;&gt;
+     Hi! My name is
+    &lt;/div&gt;
+    &lt;div class=&quot;name&quot;&gt;
+      <strong>&lt;content&gt;&lt;/content&gt;</strong>
+    &lt;/div&gt;
+  &lt;/div&gt;
+<strong>&lt;/template&gt;</strong></pre>
+</div>
+
+
+<div class="slide">
+  <p style="margin: 0;">HTML</p>
+  <pre contenteditable>&lt;div class="nameTag">Jean Phillippe&lt;/div>
+&lt;div class="nameTag">Estelle&lt;/div>
+&lt;div class="nameTag">Miriam&lt;/div></pre>
+<p style="margin: 0;">JavaScript</p>
+  <pre contenteditable>var el = document.querySelectorAll('.nameTag');
+var template = document.getElementById('nameTagTemplate');
+for(var i = 0; i < el.length; i++) {
+  var shadow = el[i].createShadowRoot();
+  var clone = document.importNode(template.content, true);
+  shadow.appendChild(clone);
+}</pre>
+</div>
+
+<div class="slide">
+  <header><h1>In browser</h1></header>
+    <figure><object data="files/shadow2.html"></object></figure>
+  <a href="files/shadow2.html" target="play" title="open resource in new window">↪</a>
+</div>
+
+<div class="slide">
+  <p style="margin: 0;">HTML</p>
+  <pre contenteditable>&lt;div class="nameTag">Jean Phillippe&lt;/div>
+&lt;div class="nameTag">Estelle&lt;/div>
+&lt;div class="nameTag">Miriam&lt;/div></pre>
+<p style="margin: 0;">JavaScript</p>
+  <pre contenteditable>var el = document.querySelectorAll('.nameTag');
+<em>var template = document.getElementById('nameTagTemplate');</em>
+for(var i = 0; i < el.length; i++) {
+  var shadow = el[i]<strong>.createShadowRoot()</strong>;
+  var clone = document.importNode(template<strong>.content</strong>, true);
+  shadow.appendChild(clone);
+}</pre>
+</div>
+
+<div class="slide">
+  <header><h1>Scoped CSS</h1></header>
+    <figure><object data="files/scoped-style.html"></object></figure>
+  <a href="files/scoped-style.html" target="play" title="open resource in new window">↪</a>
+</div>
+
+<div class="slide">
+  <header><h1>Benefits</h1></header>
+    <section class="content">
+      <ul>
+        <li>Nothing!
+          <ul>
+            <li>inert</li>
+            <li>invisible</li>
+            <li>inactive</li>
+          </ul>
+        </li>
+        <li>Reuseable</li>
+        <li>Scoped CSS</li>
+        <li>Importable</li>
+      </ul>
+    </section>
+</div>
+
+
+<div class="slide title">
+<h1>Shadow DOM</h1>
+</div>
+
+<div class="slide">
+  <header><h1>By Example</h1></header>
+    <section class="content">
+      <input type="range">
+      <br/>
+      <img src="assets/images/sd_range.gif" alt="shadow DOM for input type range">
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>By Example</h1></header>
+    <section class="content">
+      <input type="datetime-local">
+      <br/>
+      <img src="assets/images/sd_datetimelocal.gif" alt="shadow DOM for input type datetime-local">
+    </section>
+</div>
+
+<div class="slide white">
+  <header><h1>By Example</h1></header>
+    <section class="content">
+      <video controls style="height: 1em; width: 400px;">
+      </video>
+      <br/>
+
+      <img src="assets/images/sd_video.gif" alt="shadow DOM for video controls">
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>&lt;template&gt; &amp; Shadow DOM</h1></header>
+    <section class="content">
+
+      <img src="assets/images/sd_template.gif" alt="shadow DOM for our templated name tags" align="left">
+      <figure style="width: 50%; float: left;"><object data="files/shadow2.html"  style="width: 100%;"></object></figure>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Notes:</h1></header>
+    <section class="content">
+
+<p>Creates a Shadow Tree</p>
+      <p>The content inside of the shadow host (or parent of the shadow root) is not rendered. Rather, the content inside the shadow root itself is what gets rendered.
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>Encapsulated Markup</h1></header>
+    <section class="content">
+<ul>
+<li>Not available to the rest of the page</lu>
+<li>Page-wide CSS doesn't imact it</li>
+<li>CSS selectors don't target it</li>
+<li>JavaScript is not aware of it</li>
+<li>Nodes are not part of the regular DOM</li>
+<li>Attributes of parent node can configure it</li>
+<li>Shadow CSS is scoped
+<li>JavaScript can access via shadowRoot
+</ul>
+    </section>
+</div>
+
+<div class="slide">
+  <p style="margin: 0;">HTML</p>
+  <pre contenteditable>&lt;div class="nameTag">Jean Phillippe&lt;/div>
+&lt;div class="nameTag">Estelle&lt;/div>
+&lt;div class="nameTag">Miriam&lt;/div></pre>
+<p style="margin: 0;">JavaScript</p>
+  <pre contenteditable>var el = document.querySelectorAll('.nameTag');
+var template = document.getElementById('nameTagTemplate');
+for(var i = 0; i &lt; el.length; i++) {
+  var shadow = el[i]<strong>.createShadowRoot()</strong>;
+  var clone = document.importNode(template.content, true);
+  shadow.appendChild(clone);
+}</pre>
+</div>
+
+
+<div class="slide">
+  <header><h1>Simple Example</h1></header>
+    <section class="content">
+      <pre contenteditable>&lt;div class="spirit">&lt;/div>
+&lt;script>
+  var host = document.querySelector('.spirit');
+  var root = host<strong>.createShadowRoot()</strong>;
+  root<strong>.textContent</strong> = "Just because you see me," +
+       "does that mean I really exist?";
+&lt;/script></pre>
+<a href="files/philophy.html" target="play">↪</a>
+    </section>
+</div>
+
+
+
+
+<div class="slide title">
+<h1>HTML Imports</h1>
+</div>
+
+
+
+<div class="slide title">
+<h1>Custom Element</h1>
+</div>
+
+<div class="slide">
+  <header><h1>Custom Elements</h1></header>
+    <section class="content">
+      <ol>
+        <li>Register the Element</li>
+      </ol>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Register Element</h1></header>
+    <section class="content">
+      <pre contenteditable>var FooBar = document.<strong>registerElement(</strong>'foo-bar'<strong>)</strong>;
+document.body.appendChild(new FooBar());</pre>
+<pre contenteditable>registerElement(tag-name, prototype)</pre>
+<pre contenteditable>var MyButton = document.registerElement('my-button', HTMLButtonElement);</pre>
+<pre contenteditable>var MyButton = document.registerElement('my-button', {
+  prototype: Object.create(HTMLButtonElement.prototype),
+  extends: 'button'
+});<pre></section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1></h1></header>
+    <section class="content">
+    </section>
+</div>
+
+
+<!-- END SLIDES -->
+   </div>
+</div>
+<script src="assets/slides.js"></script>
+  </body>
+</html>
+

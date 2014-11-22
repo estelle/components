@@ -1,0 +1,36 @@
+:root {font-size: 162.5%;}
+body {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif, 'Droid Sans';
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  left: 0px; top: 0px;
+  background: #333333;
+  color: #ddd;
+}
+
+.slide.opposite {
+ .current {
+  background-color: #fff !important;
+  color: #333;
+ }
+}
+a {
+  color: #da0;
+}
+cite {
+  font-size: smaller;
+  float: right;
+}
+
+.title h1 {
+  text-align: center;
+  line-height: 80vh;
+  font-size: 3rem;
+  color: #da0;
+}
+.slide .content {
+max-height: 80vh;
+overflow-y: scroll;
+}

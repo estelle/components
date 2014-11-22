@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Scoped Style</title>
+  <link rel="stylesheet" href="../css/files.css"/>
+  <style contenteditable id="editme">/*Page CSS*/
+h3 {color: red;}</style>
+
+<template>
+<div>
+  <h3>This is part of the template</h3>
+  <h3><content></content></h3>
+</div>
+  <style>
+  #editme {
+  text-align: left;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  background: rgba(255,255,255, 0.1);
+  border-radius: 8px;
+  border: 1px solid  rgba(255,255,255, 0.4);
+  line-height: 1.6;
+  tab-size: 2;
+  display: block;
+  white-space: pre;
+  font-family: monospace;
+}
+</style>
+  <style contenteditable id="editme">/* template CSS */
+  h3 {color: #ddaa00;}
+  div {background-color: black;}       </style>
+</template>
+</head>
+<body>
+<div id="host">
+This is template.content
+</div>
+<h3>This is not part of the template</h3>
+
+
+<script>
+  //var shadow = document.querySelector('#host').createShadowRoot();
+  //shadow.appendChild(document.querySelector('template').content);
+</script>
+
+<script>
+var template = document.querySelector('template');
+var el = document.getElementById('host');
+var shadow = el.createShadowRoot();
+var clone = document.importNode(template.content, true);
+shadow.appendChild(clone);
+</script>
+</body>
+</html>

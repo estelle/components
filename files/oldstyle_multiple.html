@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Old School</title>
+  <style>
+    .outer {
+      border: 2px solid brown;
+      border-radius: 1em;
+      background: red;
+      font-size: 20pt;
+      width: 12em;
+      height: 7em;
+      text-align: center;
+      margin-bottom: 1em;
+    }
+    .boilerplate {
+      color: white;
+      font-family: sans-serif;
+      padding: 0.5em;
+    }
+    .name {
+      color: black;
+      background: white;
+      font-family: "Marker Felt", cursive;
+      font-size: 45pt;
+      padding-top: 0.2em;
+    }
+  </style>
+</head>
+<body>
+  <div class="my-nametag">Jean Phillippe</div>
+  <div class="my-nametag">Estelle</div>
+  <div class="my-nametag">Miriam</div>
+
+<script>
+var Nametag = createNametag();
+createUnit('my-nametag', Nametag);
+
+function createUnit(identifier, tmpl) {
+  var units = document.querySelectorAll(
+    '.' + identifier);
+  [].forEach.call(
+    units, function(unit) {
+      var clone = tmpl.cloneNode(true);
+      unit.appendChild(clone);
+      if(unit.firstChild.data.length) {
+        var content = unit.firstChild.data;
+        unit.querySelector('.name').innerHTML = content;
+        unit.firstChild.remove();
+      }
+    });
+}
+
+function createNametag() {
+  var tmpl = document.createDocumentFragment(),
+      outer       = document.createElement('div'),
+      boilerplate = document.createElement('div'),
+      name        = document.createElement('div');
+  // add classes
+  outer.classList.add('outer');
+  boilerplate.classList.add('boilerplate');
+  name.classList.add('name');
+  // add content
+  boilerplate.textContent = 'Hi! My name is';
+  // put it all together
+  outer.appendChild(boilerplate);
+  outer.appendChild(name);
+  tmpl.appendChild(outer);
+
+  return tmpl;
+}
+
+</script>
+</body>
+</html>
