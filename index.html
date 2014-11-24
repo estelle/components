@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Web Components</title>
+<title>Talk:  Web Components</title>
 <!--
 Made by: Estelle Weyl
 Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
@@ -35,7 +35,7 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
   <img src="http://akamaicovers.oreilly.com/images/9780980846904/cat.gif" alt="HTML5 and CSS3 for the Real World">
   <img src="http://akamaicovers.oreilly.com/images/0636920018063/cat.gif" alt="HTML5: The Definitive Guide"/>
   <img src="http://akamaicovers.oreilly.com/images/0636920021711/cat.gif" alt="MObile HTML5" />
-  \<img src="http://akamaicovers.oreilly.com/images/0636920025955/cat.gif" alt="Web Performance Daybook"/></div>
+  <img src="http://akamaicovers.oreilly.com/images/0636920025955/cat.gif" alt="Web Performance Daybook"/></div>
     </section>
 </div>
 
@@ -48,11 +48,24 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 
 
 <div class="slide">
-  <header><h1>Web Components</h1></header>
+  <header><h1> </h1></header>
     <section class="content"><strong>Web Components:</strong> Encapsulated and reusable components for the web.
     </section>
 </div>
 
+
+<div class="slide">
+  <header><h1>Components of Web Components</h1></header>
+    <section class="content">
+      <h2></h2>
+      <h3>a.k.a. Table of Contents </h3>
+      <ul>
+        <li>&lt;template&gt;</li>
+        <li>Shadow DOM</li>
+        <li>HTML imports</li>
+        <li>Custom Elements</li>
+    </section>
+</div>
 
 <div class="slide">
   <header><h1>Browser Support</h1></header>
@@ -72,18 +85,6 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 </div>
 
 
-<div class="slide">
-  <header><h1>Web Components</h1></header>
-    <section class="content">
-      <h2>Components of Web Components</h2>
-      <h3>a.k.a. Table of Contents </h3>
-      <ul>
-        <li>&lt;template&gt;</li>
-        <li>Shadow DOM</li>
-        <li>HTML imports</li>
-        <li>Custom Elements</li>
-    </section>
-</div>
 
 
 
@@ -114,7 +115,7 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 
 
 <div class="slide">
-  <header><h1>Backend Frameworks</h1></header>
+  <header><h1><!--Backend Frameworks--></h1></header>
     <section class="content">
       <pre contenteditable>&lt;div class=&quot;my-nametag&quot;&gt;
   &lt;div class=&quot;outer&quot;&gt;
@@ -151,6 +152,108 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
     </section>
 </div>
 
+
+
+
+<div class="slide">
+  <header><h1>No Frameworks</h1></header>
+    <section class="content">
+      <ol>
+        <li><a href="files/oldstyle.html">DOM Manipulation</a></li>
+        <li><a href="files/oldstyle_multiple.html">DOM Programming</a></li>
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>DOM Manipulation</h1></header>
+    <pre contenteditable><em>&lt;div class="my-nametag">&lt;/div></em>
+
+&lt;script>
+var Nametag = createNametag();
+createUnit('my-nametag', Nametag);
+
+function createUnit(name, tmpl) {
+  var units = document.querySelectorAll(
+    '.' + name);
+
+  [].forEach.call(
+    units, function(unit) {
+      var clone = tmpl.cloneNode(true);
+      unit.appendChild(clone);
+    });
+}
+
+function createNametag() {
+  var tmpl = document.createDocumentFragment(),
+      outer       = document.createElement('div'),
+      boilerplate = document.createElement('div'),
+      name        = document.createElement('div');
+  // add classes
+  outer.classList.add('outer');
+  boilerplate.classList.add('boilerplate');
+  name.classList.add('name');
+  // add content
+  boilerplate.textContent = 'Hi! My name is';
+  name.textContent = 'Estelle';
+  // put it all together
+  outer.appendChild(boilerplate);
+  outer.appendChild(name);
+  tmpl.appendChild(outer);
+
+  return tmpl;
+}
+&lt;/script></pre><a href="files/oldstyle.html" target="play">@</a>
+</div>
+
+<div class="slide">
+  <header><h1>DOM Programming</h1></header>
+    <pre contenteditable><em>  &lt;div class="my-nametag">Jean Phillippe&lt;/div>
+  &lt;div class="my-nametag">Estelle&lt;/div>
+  &lt;div class="my-nametag">Miriam&lt;/div>
+</em>
+&lt;script>
+var Nametag = createNametag();
+createUnit('my-nametag', Nametag);
+
+function createUnit(identifier, tmpl) {
+  var units = document.querySelectorAll(
+    '.' + identifier);
+  [].forEach.call(
+    units, function(unit) {
+      var clone = tmpl.cloneNode(true);
+      unit.appendChild(clone);
+      if(unit.firstChild.data.length) {
+        var content = unit.firstChild.data;
+        unit.querySelector('.name').innerHTML = content;
+        unit.firstChild.remove();
+      }
+    });
+}
+
+function createNametag() {
+  var tmpl = document.createDocumentFragment(),
+      outer       = document.createElement('div'),
+      boilerplate = document.createElement('div'),
+      name        = document.createElement('div');
+  // add classes
+  outer.classList.add('outer');
+  boilerplate.classList.add('boilerplate');
+  name.classList.add('name');
+  // add content
+  boilerplate.textContent = 'Hi! My name is';
+  // put it all together
+  outer.appendChild(boilerplate);
+  outer.appendChild(name);
+  tmpl.appendChild(outer);
+
+  return tmpl;
+}
+
+&lt;/script></pre>
+<a href="files/oldstyle_multiple.html" target="play">@</a>
+</div>
+
+
 <div class="slide">
   <header><h1>Front End Frameworks</h1></header>
     <section class="content">
@@ -170,15 +273,6 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 </section>
 </div>
 
-
-<div class="slide">
-  <header><h1>No Frameworks</h1></header>
-    <section class="content">
-      <ol>
-        <li><a href="files/oldstyle.hmtl">DOM Manipulation</a></li>
-        <li><a href="files/oldstyle_multiple.hmtl">DOM Programming</a></li>
-    </section>
-</div>
 
 
 <div class="slide title">
@@ -342,6 +436,12 @@ for(var i = 0; i < el.length; i++) {
   var clone = document.importNode(template<strong>.content</strong>, true);
   shadow.appendChild(clone);
 }</pre>
+</div>
+
+<div class="slide">
+  <header><h1>Scoped CSS</h1></header>
+    <figure><object data="http://codepen.io/estelle/pen/WbvwjR"></object></figure>
+    <a href="http://codepen.io/estelle/pen/WbvwjR" target="play" title="open resource in new window">↪</a>
 </div>
 
 <div class="slide">
