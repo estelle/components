@@ -29,6 +29,10 @@ cite {
   font-size: 3rem;
   color: #da0; }
 
+.slide .content {
+  max-height: 80vh;
+  overflow-y: scroll; }
+
 head * {
   display: none; }
 
