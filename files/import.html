@@ -3,16 +3,22 @@
 <head>
   <meta charset="utf-8"/>
   <title></title>
-  <link rel="import" href="nametagtemplate.html">
+  <link rel="import" href="nametagtemplate.html"
+      onload="handleLoad(event)" onerror="handleError(event)">
 </head>
 <body>
 <div id="nameTag">Estelle</div>
-<script>
-var shadow = document.querySelector('#nameTag').createShadowRoot();
-var template = document.querySelector('#nameTagTemplate');
-var clone = document.importNode(template.content, true);
-shadow.appendChild(clone);
-document.querySelector('#nameTag').textContent = 'Estelle';
+<script async>
+  function handleLoad(e) {
+    var shadow = document.querySelector('#nameTag').createShadowRoot();
+    var template = document.querySelector('#nameTagTemplate');
+    var clone = document.importNode(template.content, true);
+    shadow.appendChild(clone);
+    document.querySelector('#nameTag').textContent = 'Estelle';
+  }
+  function handleError(e) {
+    console.log('Error loading import: ' + e.target.href);
+  }
 </script>
 </body>
 </html>
