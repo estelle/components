@@ -8,13 +8,15 @@
 </head>
 <body>
 <div id="nameTag">Estelle</div>
-<script async>
+<script>
   function handleLoad(e) {
+    /*
     var shadow = document.querySelector('#nameTag').createShadowRoot();
     var template = document.querySelector('#nameTagTemplate');
     var clone = document.importNode(template.content, true);
     shadow.appendChild(clone);
-    document.querySelector('#nameTag').textContent = 'Estelle';
+    document.querySelector('#nameTag').textContent = 'Estelle';*/
+    console.log(e.target.href);
   }
   function handleError(e) {
     console.log('Error loading import: ' + e.target.href);
