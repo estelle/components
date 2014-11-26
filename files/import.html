@@ -3,11 +3,6 @@
 <head>
   <meta charset="utf-8"/>
   <title></title>
-  <link rel="import" href="nametagtemplate.html"
-      onload="handleLoad(event)" onerror="handleError(event)">
-</head>
-<body>
-<div id="nameTag">Estelle</div>
 <script>
   function handleLoad(e) {
     /*
@@ -22,5 +17,10 @@
     console.log('Error loading import: ' + e.target.href);
   }
 </script>
+  <link rel="import" href="nametagtemplate.html"
+      onload="handleLoad(event)" onerror="handleError(event)">
+</head>
+<body>
+<div id="nameTag">Estelle</div>
 </body>
 </html>
