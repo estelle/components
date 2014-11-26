@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title></title>
+  <link rel="import" href="nametagtemplate.html">
+</head>
+<body>
+<div id="nameTag">Estelle</div>
+<script>
+var shadow = document.querySelector('#nameTag').createShadowRoot();
+var template = document.querySelector('#nameTagTemplate');
+var clone = document.importNode(template.content, true);
+shadow.appendChild(clone);
+document.querySelector('#nameTag').textContent = 'Estelle';
+</script>
+</body>
+</html>

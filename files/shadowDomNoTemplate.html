@@ -3,11 +3,9 @@
 <head>
   <meta charset="utf-8"/>
   <title></title>
-</head>
-<body><template id="nameTagTemplate">
+
 <style>
 .outer {
-  border: 2px solid brown;
   border-radius: 1em;
   background: red;
   font-size: 20pt;
@@ -28,23 +26,31 @@
   padding-top: 0.2em;
 }
 </style>
-<div class="outer">
-  <div class="boilerplate">
-    Hi! My name is
-  </div>
-  <div class="name">
-    <content></content>
-  </div>
-</div>
-</template>
+</head>
+<body>
+  <div class="nameTag">Estelle</div>
+  <script>
+    var host = document.querySelector('.nameTag');
+    var root = host.createShadowRoot();
+    root.resetStyleInheritance = true;
+    root.applyAuthorStyles = true;
 
-<div id="nameTag">Estelle</div>
-<script>
-var shadow = document.querySelector('#nameTag').createShadowRoot();
-var template = document.querySelector('#nameTagTemplate');
-var clone = document.importNode(template.content, true);
-shadow.appendChild(clone);
-document.querySelector('#nameTag').textContent = 'Estelle';
+    var outer = document.createElement('div');
+    outer.classList.add('outer');
+
+    var boilerplate = document.createElement('div');
+    boilerplate.classList.add('boilerplate');
+    boilerplate.textContent = 'Hi! My name is';
+
+    var person = document.createElement('div');
+    person.classList.add('name');
+    person.textContent = 'Estelle';
+
+    outer.appendChild(boilerplate);
+    outer.appendChild(person);
+    root.appendChild(outer);
+  </script>
+</body>
 </script>
 </body>
 </html>

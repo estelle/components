@@ -60,7 +60,7 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
       <h2></h2>
       <h3>a.k.a. Table of Contents </h3>
       <ul>
-        <li>&lt;template&gt;</li>
+        <li>&lt;template&gt; <em>(and &lt;content&gt;)</em></li>
         <li>Shadow DOM</li>
         <li>HTML imports</li>
         <li>Custom Elements</li>
@@ -439,13 +439,64 @@ for(var i = 0; i < el.length; i++) {
 </div>
 
 <div class="slide">
+  <header><h1>&lt;content&gt; &amp; select attribute</h1></header>
+    <section class="content">
+      <p><strong>&lt;content&gt;</strong>: insertion point that projects the text from the shadow host to shadow root. </p>
+      <p><strong>&lt;content select=".classInHost"&gt;</strong> looks inside the shadow host for any element with a matching class of <em>.classInHost</em>. If an element in the shadow host has the class fo <em>classInHost</em>, its contents will be rendered in the shadow DOM.
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1><strong>select</strong> attribute</h1></header>
+    <figure><object data="view-source:http://estelle.github.io/components/files/select_attribute.html"></object>
+    <a href="view-source:http://estelle.github.io/components/files/select_attribute.html" target="play" title="open resource in new window">↪</a></figure>
+</div>
+
+
+<div class="slide">
+  <header><h1><strong>select</strong> attribute</h1></header>
+  <pre contenteditable><strong>&lt;template id="nameTagTemplate"&gt;</strong>
+    &lt;div class="outer"&gt;
+  &lt;div class="boilerplate"&gt;
+    Hi! My name is
+  &lt;/div&gt;
+  &lt;div class="name"&gt;
+    &lt;content <strong>select=".firstName"</strong>&gt;&lt;/content&gt;
+    &lt;content <strong>select=".lastName"</strong>&gt;&lt;/content&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+<strong>&lt;/template&gt;</strong>
+
+&lt;div class="nameTag"&gt;
+  &lt;span <strong>class="lastName"</strong>&gt;Weyl&lt;/span&gt;
+  &lt;span <strong>class="firstName"</strong>&gt;Estelle&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    var host = document.querySelector('.nameTag');
+    var root = host.createShadowRoot();
+    var template = document.querySelector('#nameTagTemplate');
+    root.appendChild(<strong>template.content</strong>);
+&lt;/script&gt;</pre>
+</div>
+
+<div class="slide">
+  <header><h1>All unclaimed content</h1></header>
+    <section class="content">
+      <pre contenteditable>&lt;content&gt;&lt;/content&gt;
+&lt;conent select=""&gt;&lt;/conent&gt;
+&lt;content select="*"&gt;&lt;/content&gt;</pre>
+    </section>
+</div>
+
+<div class="slide">
   <header><h1>Scoped CSS</h1></header>
     <figure><object data="http://codepen.io/estelle/pen/WbvwjR"></object></figure>
     <a href="http://codepen.io/estelle/pen/WbvwjR" target="play" title="open resource in new window">↪</a>
 </div>
 
 <div class="slide">
-  <header><h1>Scoped CSS</h1></header>
+  <header><h1>In case "Scoped CSS" failed</h1></header>
     <figure><object data="files/scoped-style.html"></object></figure>
   <a href="files/scoped-style.html" target="play" title="open resource in new window">↪</a>
 </div>
@@ -562,19 +613,83 @@ for(var i = 0; i &lt; el.length; i++) {
   var root = host<strong>.createShadowRoot()</strong>;
   root<strong>.textContent</strong> = "Just because you see me," +
        "does that mean I really exist?";
-&lt;/script></pre>
-<a href="files/philophy.html" target="play">↪</a>
+&lt;/script></pre><a href="files/philophy.html" target="play">↪</a>
     </section>
 </div>
 
 
+<div class="slide">
+  <header><h1>Shadow Root and Host:</h1></header>
+    <section class="content">
+  <pre contenteditable> var <strong>root</strong> = <strong>host</strong>.createShadowRoot();</pre>
+<p><strong>shadow root</strong>: 1st node of your shadow tree. Ancestor to all other nodes in the tree.</p>
+<p>Shadow <strong>host</strong> content is not rendered. Rather, shadow <strong>root</strong> content gets rendered.
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>Visible or not?</h1></header>
+    <section class="content">
+      <p>while the shadow root is not accessible via the DOM, it is manipulated exactly like the DOM:</p>
+       <pre contenteditable>document.<strong>querySelectorAll(</strong>'.blockquote'<strong>)</strong>.length === 0</pre>
+       <pre contenteditable>var header = <strong>document.createElement(</strong>'h1'<strong>)</strong>;
+root<strong>.appendChild(</strong>header<strong>)</strong>;</pre>
+    </section>
+</div>
 
 
 <div class="slide title">
 <h1>HTML Imports</h1>
 </div>
 
+<div class="slide">
+  <header><h1>Feature Detect</h1></header>
+    <section class="content">
+      <pre contenteditable>if(<strong>'import' in document.createElement('link')</strong>) {
+  // you're good
+} else {
+  // you need to polyfill
+}</pre>
+    </section>
+</div>
 
+
+<div class="slide">
+  <header><h1>Browser Support</h1></header>
+    <figure><object data="http://caniuse.com/#search=import"></object></figure>
+  <a href="http://caniuse.com/#search=import" target="play" title="open resource in new window">↪</a>
+</div>
+
+
+<div class="slide">
+  <header><h1><strong>&lt;link rel="import"...</strong></h1></header>
+    <section class="content">
+      <pre contenteditable><code>&lt;head&gt;
+
+  ....
+
+  &lt;link rel="import" href="/path/file.html"&gt;
+
+  &lt;link rel="import" href="//mysite.com/file.html"&gt;
+
+  &lt;link rel="import" href="https://CORSEnabled.com/file.html"&gt;
+
+&lt;/head&gt;</code></pre>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1></h1></header>
+    <section class="content"><pre contenteditable><code>&lt;head&gt;
+
+  ....
+
+  &lt;link rel="import" href="nameTagTemplate.html"&gt;
+
+&lt;/head&gt;</code></pre>
+    </section>
+</div>
 
 <div class="slide title">
 <h1>Custom Element</h1>
