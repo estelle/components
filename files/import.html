@@ -5,7 +5,14 @@
   <title>Import a template</title>
   <script>
     function handleLoad(e) {
-      processTemplate();
+      var content = document.querySelector('link[rel="import"]').import;
+      var el = document.querySelectorAll('.nameTag');
+      var template = content.getElementById('nameTagTemplate');
+      for(var i = 0; i < el.length; i++) {
+        var shadow = el[i].createShadowRoot();
+        var clone = document.importNode(template.content, true);
+        shadow.appendChild(clone);
+      }
     }
     function handleError(e) {
       console.log('Error loading import: ' + e.target.href);
@@ -15,6 +22,8 @@
       onload="handleLoad(event)" onerror="handleError(event)">
 </head>
 <body>
+  <div class="nameTag">Jean Phillippe</div>
   <div class="nameTag">Estelle</div>
+  <div class="nameTag">Miriam</div>
 </body>
 </html>
