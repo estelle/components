@@ -3,27 +3,13 @@
 <head>
   <meta charset="utf-8"/>
   <title>Import a template</title>
-  <script>
-    function handleLoad(e) {
-      var content = document.querySelector('link[rel="import"]').import;
-      var el = document.querySelectorAll('.nameTag');
-      var template = content.getElementById('nameTagTemplate');
-      for(var i = 0; i < el.length; i++) {
-        var shadow = el[i].createShadowRoot();
-        var clone = document.importNode(template.content, true);
-        shadow.appendChild(clone);
-      }
-    }
-    function handleError(e) {
-      console.log('Error loading import: ' + e.target.href);
-    }
-  </script>
   <link rel="import" href="nametagtemplate.html"
-      onload="handleLoad(event)" onerror="handleError(event)">
+      onload="loadHandler(e)" onerror="errorHandler(e)">
 </head>
 <body>
   <div class="nameTag">Jean Phillippe</div>
   <div class="nameTag">Estelle</div>
   <div class="nameTag">Miriam</div>
+  <script src="import.js"></script>
 </body>
 </html>
