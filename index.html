@@ -642,6 +642,14 @@ root<strong>.appendChild(</strong>header<strong>)</strong>;</pre>
 <h1>HTML Imports</h1>
 </div>
 
+
+<div class="slide">
+  <header><h1>&nbsp;</h1></header>
+    <section class="content"><pre contenteditable>&lt;!--#exec cgi="/cgi-bin/template.pl" --&gt;</pre>
+    </section>
+</div>
+
+
 <div class="slide">
   <header><h1>Feature Detect</h1></header>
     <section class="content">
@@ -690,6 +698,115 @@ root<strong>.appendChild(</strong>header<strong>)</strong>;</pre>
 &lt;/head&gt;</code></pre>
     </section>
 </div>
+
+
+<div class="slide">
+  <header><h1>HTML</h1></header>
+    <section class="content"><pre contenteditable>&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"/&gt;
+  &lt;title&gt;Import a template&lt;/title&gt;
+  &lt;script src="import.js"&gt;&lt;/script&gt;
+  <strong>&lt;link rel="import" href="nametagtemplate.html"
+      onload="loadHandler(event)" onerror="errorHandler(event)"&gt;</strong>
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="nameTag"&gt;Jean Phillippe&lt;/div&gt;
+  &lt;div class="nameTag"&gt;Estelle&lt;/div&gt;
+  &lt;div class="nameTag"&gt;Miriam&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<a href="http://estelle.github.io/components/files/import.html" target="play" title="open resource in new window">↪</a>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1><strong>nametagtemplate.html</strong></h1></header>
+    <section class="content"><pre contenteditable><code>&lt;template id="nameTagTemplate"&gt;
+&lt;style&gt;
+.outer {
+  margin-bottom: 1em;
+  border-radius: 1em;
+  background: red;
+  font-size: 20pt;
+  width: 12em;
+  height: 7em;
+  text-align: center;
+}
+.boilerplate {
+  color: white;
+  font-family: sans-serif;
+  padding: 0.5em;
+}
+.name {
+  color: black;
+  background: white;
+  font-family: "Marker Felt", cursive;
+  font-size: 45pt;
+  padding-top: 0.2em;
+}
+&lt;/style&gt;
+&lt;div class="outer"&gt;
+  &lt;div class="boilerplate"&gt;
+    Hi! My name is
+  &lt;/div&gt;
+  &lt;div class="name"&gt;
+    &lt;content&gt;&lt;/content&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/template&gt;</code></pre>
+    </section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>JavaScript</h1></header>
+<section class="content"><pre contenteditable>function loadHandler(e) {
+  var content = document.querySelector('link[rel="import"]')<strong>.import</strong>;
+  var el = document.querySelectorAll('.nameTag');
+  var template = <strong>content.</strong>getElementById('nameTagTemplate');
+  for(var i = 0; i &lt; el.length; i++) {
+    var shadow = el[i].createShadowRoot();
+    var clone = document.importNode(template.content, true);
+    shadow.appendChild(clone);
+  }
+}
+function errorHandler(e) {
+  console.log('Error loading import: ' + e.target.href);
+}</pre>
+<a href="http://estelle.github.io/components/files/import.html" target="play" title="open resource in new window">↪</a>
+    </section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1></h1></header>
+    <section class="content">
+      <ul>
+          <li>The import can access its own DOM and the DOM of the importing document
+            <ul>
+              <li><code><strong>window.document</strong></code> refers to main document</li>
+              <li><code><strong>importLinkFile.import</strong></code> refers to the imported document where <code>importedLinkFile</code> is <code>link[rel=import]</code></li>
+            </ul>
+          </li>
+          <li><code><strong>&lt;link&gt;</strong></code> must have <code><strong>rel="import"</strong></code></li>
+
+      </ul>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1></h1></header>
+    <section class="content">
+    </section>
+</div>
+
+
 
 <div class="slide title">
 <h1>Custom Element</h1>
