@@ -442,14 +442,25 @@ for(var i = 0; i < el.length; i++) {
   <header><h1>&lt;content&gt; &amp; select attribute</h1></header>
     <section class="content">
       <p><strong>&lt;content&gt;</strong>: insertion point that projects the text from the shadow host to shadow root. </p>
-      <p><strong>&lt;content select=".classInHost"&gt;</strong> looks inside the shadow host for any element with a matching class of <em>.classInHost</em>. If an element in the shadow host has the class fo <em>classInHost</em>, its contents will be rendered in the shadow DOM.
+      <p><strong>&lt;content select=".classInHost"&gt;</strong> looks inside the shadow host for any element with a matching class of <em>.classInHost</em>. If an element in the shadow host has the class of <em>classInHost</em>, its contents will be rendered in the shadow DOM.
     </section>
 </div>
 
 <div class="slide">
-  <header><h1><strong>select</strong> attribute</h1></header>
-    <figure><object data="view-source:http://estelle.github.io/components/files/select_attribute.html"></object>
-    <a href="view-source:http://estelle.github.io/components/files/select_attribute.html" target="play" title="open resource in new window">↪</a></figure>
+  <header>
+    <h1><strong>select</strong> attribute</h1>
+  </header>
+<!--   <figure><object data="http://codepen.io/estelle/pen/xbGBQw"></object></figure>
+  <figure><object data="http://codepen.io/estelle/pen/xbGBQw"></object></figure>
+--><div data-height="461" data-theme-id="0" data-slug-hash="xbGBQw" data-default-tab="js" data-user="estelle" class='codepen'><pre><code>
+    var host = document.querySelector(&#x27;.nameTag&#x27;);
+    var root = host.createShadowRoot();
+    var template = document.querySelector(&#x27;#nameTagTemplate&#x27;);
+    root.appendChild(template.content);</code></pre>
+<p>See the Pen <a href='http://codepen.io/estelle/pen/xbGBQw/'>template select attribute</a> by Estelle Weyl (<a href='http://codepen.io/estelle'>@estelle</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+</div><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+    <a href="http://codepen.io/estelle/pen/xbGBQw" target="play" title="open resource in new window">↪</a>
+
 </div>
 
 
