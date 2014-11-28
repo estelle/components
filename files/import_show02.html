@@ -9,10 +9,9 @@
 <body><p>A template has been imported that has an H1, image and an alert, and we added some javascript!</p>
 
   <script>
-    var myImport = document.getElementById('foo');
-    var myTemplate = myImport.import.querySelector('template');
+    var myLink = document.getElementById('foo');
+    var myTemplate = myLink.import.querySelector('template');
     var clonedTemplate = document.importNode(myTemplate.content, true);
-
     document.querySelector('body').appendChild(clonedTemplate);
   </script>
 </body>

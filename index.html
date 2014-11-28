@@ -801,12 +801,47 @@ function errorHandler(e) {
 
 
 <div class="slide">
-  <header><h1></h1></header>
+  <header><h1>HTML imports</h1></header>
     <section class="content">
+      <p>Inactive until activated:</p>
+      <ul>
+        <li><a href="http://estelle.github.io/components/files/import_show.html" target="foo">http://bit.ly/121oPBf</a> - inactive</li>
+        <li><a href="http://estelle.github.io/components/files/import_show02.html" target="foo">http://bit.ly/1uPMpXI</a> - activated</li>
+      </ul>
+      <p>imported &lt;template></p>
+      <pre contenteditable><code>&lt;template&gt;
+  &lt;h1&gt;This is some text&lt;/h1&gt;
+  &lt;img src="../assets/icons/icon-templates.png" alt="this is some media"&gt;
+  &lt;script&gt;alert("This is some javascript");&lt;/script&gt;
+&lt;/template&gt;</code></pre>
     </section>
 </div>
 
 
+<div class="slide">
+  <header><h1>Activation</h1></header>
+    <section class="content">
+<pre contenteditable><code>&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"/&gt;
+  &lt;title&gt;What happens to imported content&lt;/title&gt;
+  &lt;script src="import.js"&gt;&lt;/script&gt;
+  <strong>&lt;link rel="import" href="template_textmediajs.html" id="foo"&gt;</strong>
+&lt;/head&gt;
+&lt;body&gt;&lt;p&gt;A template has been imported that has an H1, image and an alert, and we added some javascript!&lt;/p&gt;
+
+  &lt;script&gt;
+    var myLink = document.getElementById('foo');
+    var myTemplate = myLink<strong>.import</strong>.querySelector('template');
+    var clonedTemplate = document<strong>.importNode(myTemplate.content, true)</strong>;
+
+    <strong>document</strong>.querySelector('body').<strong>appendChild(clonedTemplate)</strong>;
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </section>
+</div>
 
 <div class="slide title">
 <h1>Custom Element</h1>
