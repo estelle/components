@@ -38,13 +38,13 @@
 </div>
 </template>
 
-<div id="nameTag">Estelle</div>
+<div class="name-tag">Estelle</div>
 <script>
-var shadow = document.querySelector('#nameTag').createShadowRoot();
+var shadow = document.querySelector('.name-tag').createShadowRoot();
 var template = document.querySelector('#nameTagTemplate');
 var clone = document.importNode(template.content, true);
 shadow.appendChild(clone);
-document.querySelector('#nameTag').textContent = 'Estelle';
+document.querySelector('.name-tag').textContent = 'Estelle';
 </script>
 </body>
 </html>

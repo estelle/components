@@ -28,18 +28,13 @@
   </style>
 </head>
 <body>
-  <div class="my-nametag"></div>
+  <div class="name-tag"></div>
 
 <script>
-function createUnit(name, tmpl) {
-  var units = document.querySelectorAll(
-    '.' + name);
-
-  [].forEach.call(
-    units, function(unit) {
-      var clone = tmpl.cloneNode(true);
-      unit.appendChild(clone);
-    });
+function createComponent(name, tmpl) {
+  var unit = document.querySelector('.' + name);
+  var clone = tmpl.cloneNode(true);
+  unit.appendChild(clone);
 }
 
 function createNametag() {
@@ -62,7 +57,7 @@ function createNametag() {
   return tmpl;
 }
 var Nametag = createNametag();
-createUnit('my-nametag', Nametag);
+createComponent('name-tag', Nametag);
 </script>
 </body>
 </html>

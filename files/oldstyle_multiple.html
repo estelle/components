@@ -29,15 +29,15 @@
   </style>
 </head>
 <body>
-  <div class="my-nametag">Jean Phillippe</div>
-  <div class="my-nametag">Estelle</div>
-  <div class="my-nametag">Miriam</div>
+  <div class="name-tag">Jean Phillippe</div>
+  <div class="name-tag">Estelle</div>
+  <div class="name-tag">Miriam</div>
 
 <script>
 var Nametag = createNametag();
-createUnit('my-nametag', Nametag);
+createComponent('name-tag', Nametag);
 
-function createUnit(identifier, tmpl) {
+function createComponent(identifier, tmpl) {
   var units = document.querySelectorAll(
     '.' + identifier);
   [].forEach.call(

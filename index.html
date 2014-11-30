@@ -99,7 +99,7 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 <div class="slide">
   <header><h1>Static Code</h1></header>
     <section class="content">
-      <pre contenteditable>&lt;div class=&quot;my-nametag&quot;&gt;
+      <pre contenteditable>&lt;div class=&quot;name-tag&quot;&gt;
   &lt;div class=&quot;outer&quot;&gt;
     &lt;div class=&quot;boilerplate&quot;&gt;
       Hi! My name is
@@ -117,7 +117,7 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 <div class="slide">
   <header><h1><!--Backend Frameworks--></h1></header>
     <section class="content">
-      <pre contenteditable>&lt;div class=&quot;my-nametag&quot;&gt;
+      <pre contenteditable>&lt;div class=&quot;name-tag&quot;&gt;
   &lt;div class=&quot;outer&quot;&gt;
     &lt;div class=&quot;boilerplate&quot;&gt;
       Hi! My name is
@@ -128,7 +128,7 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;my-nametag&quot;&gt;
+&lt;div class=&quot;name-tag&quot;&gt;
   &lt;div class=&quot;outer&quot;&gt;
     &lt;div class=&quot;boilerplate&quot;&gt;
       Hi! My name is
@@ -139,7 +139,7 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;my-nametag&quot;&gt;
+&lt;div class=&quot;name-tag&quot;&gt;
   &lt;div class=&quot;outer&quot;&gt;
     &lt;div class=&quot;boilerplate&quot;&gt;
       Hi! My name is
@@ -156,38 +156,22 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 
 
 <div class="slide">
-  <header><h1>No Frameworks</h1></header>
-    <section class="content">
-      <ol>
-        <li><a href="files/oldstyle.html">DOM Manipulation</a></li>
-        <li><a href="files/oldstyle_multiple.html">DOM Programming</a></li>
-    </section>
-</div>
-
-<div class="slide">
-  <header><h1>DOM Manipulation</h1></header>
-    <pre contenteditable><em>&lt;div class="my-nametag">&lt;/div></em>
-
+  <header><h1>DOM Manipulation (<a href="files/oldstyle.html" target="foo">show</a>)</h1></header>
+    <pre contenteditable><em>&lt;div class="name-tag">&lt;/div></em>
 &lt;script>
 var Nametag = createNametag();
-createUnit('my-nametag', Nametag);
+createComponent('name-tag', Nametag);
 
-function createUnit(name, tmpl) {
-  var units = document.querySelectorAll(
-    '.' + name);
-
-  [].forEach.call(
-    units, function(unit) {
-      var clone = tmpl.cloneNode(true);
-      unit.appendChild(clone);
-    });
+function createComponent(name, tmpl) {
+  var unit = document.querySelector('.' + name);
+  var clone = tmpl.cloneNode(true);
+  unit.appendChild(clone);
 }
-
 function createNametag() {
   var tmpl = document.createDocumentFragment(),
-      outer       = document.createElement('div'),
+      outer = document.createElement('div'),
       boilerplate = document.createElement('div'),
-      name        = document.createElement('div');
+      name = document.createElement('div');
   // add classes
   outer.classList.add('outer');
   boilerplate.classList.add('boilerplate');
@@ -199,23 +183,22 @@ function createNametag() {
   outer.appendChild(boilerplate);
   outer.appendChild(name);
   tmpl.appendChild(outer);
-
   return tmpl;
 }
 &lt;/script></pre><a href="files/oldstyle.html" target="play">@</a>
 </div>
 
 <div class="slide">
-  <header><h1>DOM Programming</h1></header>
-    <pre contenteditable><em>  &lt;div class="my-nametag">Jean Phillippe&lt;/div>
-  &lt;div class="my-nametag">Estelle&lt;/div>
-  &lt;div class="my-nametag">Miriam&lt;/div>
+  <header><h1>DOM Programming (<a href="files/oldstyle_multiple.html" target="foo">show</a>)</h1></header>
+    <pre contenteditable><em>  &lt;div class="name-tag">Jean Phillippe&lt;/div>
+  &lt;div class="name-tag">Estelle&lt;/div>
+  &lt;div class="name-tag">Miriam&lt;/div>
 </em>
 &lt;script>
 var Nametag = createNametag();
-createUnit('my-nametag', Nametag);
+createComponent('name-tag', Nametag);
 
-function createUnit(identifier, tmpl) {
+function createComponent(identifier, tmpl) {
   var units = document.querySelectorAll(
     '.' + identifier);
   [].forEach.call(
@@ -259,7 +242,7 @@ function createNametag() {
     <section class="content">
 <pre contenteditable>
 <strong>&lt;script id=&quot;myNametag&quot; type=&quot;text/x-handlebars-template&quot;&gt;</strong>
-  &lt;div class=&quot;my-nametag&quot;&gt;
+  &lt;div class=&quot;name-tag&quot;&gt;
     &lt;div class=&quot;outer&quot;&gt;
       &lt;div class=&quot;boilerplate&quot;&gt;
         Hi! My name is
@@ -273,7 +256,22 @@ function createNametag() {
 </section>
 </div>
 
+<div class="slide">
+  <header><h1>Goal</h1></header>
+    <section class="content">
+      <pre contenteditable><strong>&lt;name-tag></strong>Jean Phillippe<strong>&lt;/name-tag></strong>
+<strong>&lt;name-tag></strong>Estelle<strong>&lt;/name-tag></strong>
+<strong>&lt;name-tag></strong>Miriam<strong>&lt;/name-tag></strong></pre>
+    </section>
+</div>
 
+<!---
+  #
+  #
+  #    Templates
+  #
+  #
+-->
 
 <div class="slide title">
 <h1>Templates</h1>
@@ -361,7 +359,7 @@ function createNametag() {
         <li>&lt;template&gt;</li>
         <li>&lt;style&gt;</li>
         <li>content</li>
-        <li>&lt;content&gt;</li>
+        <li>&lt;content&gt; <i>(in Shadow DOM spec)</i></li>
       </ul>
     </section>
 </div>
@@ -404,11 +402,11 @@ function createNametag() {
 
 <div class="slide">
   <p style="margin: 0;">HTML</p>
-  <pre contenteditable>&lt;div class="nameTag">Jean Phillippe&lt;/div>
-&lt;div class="nameTag">Estelle&lt;/div>
-&lt;div class="nameTag">Miriam&lt;/div></pre>
+  <pre contenteditable>&lt;div class="name-tag">Jean Phillippe&lt;/div>
+&lt;div class="name-tag">Estelle&lt;/div>
+&lt;div class="name-tag">Miriam&lt;/div></pre>
 <p style="margin: 0;">JavaScript</p>
-  <pre contenteditable>var el = document.querySelectorAll('.nameTag');
+  <pre contenteditable>var el = document.querySelectorAll('.name-tag');
 var template = document.getElementById('nameTagTemplate');
 for(var i = 0; i < el.length; i++) {
   var shadow = el[i].createShadowRoot();
@@ -425,11 +423,11 @@ for(var i = 0; i < el.length; i++) {
 
 <div class="slide">
   <p style="margin: 0;">HTML</p>
-  <pre contenteditable>&lt;div class="nameTag">Jean Phillippe&lt;/div>
-&lt;div class="nameTag">Estelle&lt;/div>
-&lt;div class="nameTag">Miriam&lt;/div></pre>
+  <pre contenteditable>&lt;div class="name-tag">Jean Phillippe&lt;/div>
+&lt;div class="name-tag">Estelle&lt;/div>
+&lt;div class="name-tag">Miriam&lt;/div></pre>
 <p style="margin: 0;">JavaScript</p>
-  <pre contenteditable>var el = document.querySelectorAll('.nameTag');
+  <pre contenteditable>var el = document.querySelectorAll('.name-tag');
 <em>var template = document.getElementById('nameTagTemplate');</em>
 for(var i = 0; i < el.length; i++) {
   var shadow = el[i]<strong>.createShadowRoot()</strong>;
@@ -439,6 +437,13 @@ for(var i = 0; i < el.length; i++) {
 </div>
 
 <div class="slide">
+  <header><h1></h1></header>
+    <section class="content"><img src="assets/images/tmp_shadowroot.gif">
+    </section>
+</div>
+
+
+<div class="slide">
   <header><h1>&lt;content&gt; &amp; select attribute</h1></header>
     <section class="content">
       <p><strong>&lt;content&gt;</strong>: insertion point that projects the text from the shadow host to shadow root. </p>
@@ -446,22 +451,7 @@ for(var i = 0; i < el.length; i++) {
     </section>
 </div>
 
-<div class="slide">
-  <header>
-    <h1><strong>select</strong> attribute</h1>
-  </header>
-<!--   <figure><object data="http://codepen.io/estelle/pen/xbGBQw"></object></figure>
-  <figure><object data="http://codepen.io/estelle/pen/xbGBQw"></object></figure>
---><div data-height="461" data-theme-id="0" data-slug-hash="xbGBQw" data-default-tab="js" data-user="estelle" class='codepen'><pre><code>
-    var host = document.querySelector(&#x27;.nameTag&#x27;);
-    var root = host.createShadowRoot();
-    var template = document.querySelector(&#x27;#nameTagTemplate&#x27;);
-    root.appendChild(template.content);</code></pre>
-<p>See the Pen <a href='http://codepen.io/estelle/pen/xbGBQw/'>template select attribute</a> by Estelle Weyl (<a href='http://codepen.io/estelle'>@estelle</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-</div><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-    <a href="http://codepen.io/estelle/pen/xbGBQw" target="play" title="open resource in new window">↪</a>
 
-</div>
 
 
 <div class="slide">
@@ -478,32 +468,73 @@ for(var i = 0; i < el.length; i++) {
 &lt;/div&gt;
 <strong>&lt;/template&gt;</strong>
 
-&lt;div class="nameTag"&gt;
+&lt;div class="name-tag"&gt;
   &lt;span <strong>class="lastName"</strong>&gt;Weyl&lt;/span&gt;
   &lt;span <strong>class="firstName"</strong>&gt;Estelle&lt;/span&gt;
 &lt;/div&gt;
 
 &lt;script&gt;
-    var host = document.querySelector('.nameTag');
+    var host = document.querySelector('.name-tag');
     var root = host.createShadowRoot();
     var template = document.querySelector('#nameTagTemplate');
     root.appendChild(<strong>template.content</strong>);
 &lt;/script&gt;</pre>
+<a href="http://codepen.io/estelle/pen/xbGBQw" target="play" title="open resource in new window">↪</a>
 </div>
+
+
+
+<div class="slide">
+  <header>
+    <h1><strong>select</strong> attribute</h1>
+  </header>
+
+  <pre contenteditable>&lt;template&gt;
+&lt;div class="outer"&gt;
+  &lt;div class="boilerplate"&gt;
+    Hi! My name is
+  &lt;/div&gt;
+  &lt;div class="name"&gt;
+    &lt;content <strong>select=".f"</strong>&gt;&lt;/content&gt; &lt;content <strong>select=".l"</strong>&gt;&lt;/content&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;div class="name-tag"&gt;&lt;i <strong>class="f"</strong>&gt;J.&lt;/i&gt; &lt;i <strong>class="l"</strong>&gt;Phillippe&lt;/i&gt;&lt;/div&gt;
+&lt;div class="name-tag"&gt;&lt;i <strong>class="l"</strong>&gt;Weyl&lt;/i&gt;, &lt;i <strong>class="f"</strong>&gt;Estelle&lt;/i&gt;&lt;/div&gt;
+&lt;div class="name-tag"&gt;&lt;i <strong>class="l"</strong>&gt;Smith&lt;/i&gt;, &lt;i <strong>class="f"</strong>&gt;M.&lt;/i&gt;&lt;/div&gt;
+
+&lt;script&gt;
+var el = document.querySelectorAll('.name-tag');
+var template = document.getElementById('nameTagTemplate');
+for(var i = 0; i &lt; el.length; i++) {
+  var shadow = el[i].createShadowRoot();
+  var clone = document.importNode(<strong>template.content</strong>, true);
+  shadow.appendChild(clone);
+}
+&lt;/script&gt;</pre>
+
+<a href="files/shadow2_select.html" target="play" title="open resource in new window">↪</a>
+</div>
+
+
+
+
 
 <div class="slide">
   <header><h1>All unclaimed content</h1></header>
     <section class="content">
       <pre contenteditable>&lt;content&gt;&lt;/content&gt;
-&lt;conent select=""&gt;&lt;/conent&gt;
+&lt;content select=""&gt;&lt;/conent&gt;
 &lt;content select="*"&gt;&lt;/content&gt;</pre>
     </section>
 </div>
 
 <div class="slide">
   <header><h1>Scoped CSS</h1></header>
-    <figure><object data="http://codepen.io/estelle/pen/WbvwjR"></object></figure>
+    <figure><object data="http://jsbin.com/yaruja/1/edit?html,css,output"></object></figure>
     <a href="http://codepen.io/estelle/pen/WbvwjR" target="play" title="open resource in new window">↪</a>
+    <a href="http://jsbin.com/yaruja/1/edit?html,css,output" target="play" title="open resource in new window">↪</a>
 </div>
 
 <div class="slide">
@@ -601,11 +632,11 @@ for(var i = 0; i < el.length; i++) {
 
 <div class="slide">
   <p style="margin: 0;">HTML</p>
-  <pre contenteditable>&lt;div class="nameTag">Jean Phillippe&lt;/div>
-&lt;div class="nameTag">Estelle&lt;/div>
-&lt;div class="nameTag">Miriam&lt;/div></pre>
+  <pre contenteditable>&lt;div class="name-tag">Jean Phillippe&lt;/div>
+&lt;div class="name-tag">Estelle&lt;/div>
+&lt;div class="name-tag">Miriam&lt;/div></pre>
 <p style="margin: 0;">JavaScript</p>
-  <pre contenteditable>var el = document.querySelectorAll('.nameTag');
+  <pre contenteditable>var el = document.querySelectorAll('.name-tag');
 var template = document.getElementById('nameTagTemplate');
 for(var i = 0; i &lt; el.length; i++) {
   var shadow = el[i]<strong>.createShadowRoot()</strong>;
@@ -624,7 +655,7 @@ for(var i = 0; i &lt; el.length; i++) {
   var root = host<strong>.createShadowRoot()</strong>;
   root<strong>.textContent</strong> = "Just because you see me," +
        "does that mean I really exist?";
-&lt;/script></pre><a href="files/philophy.html" target="play">↪</a>
+&lt;/script></pre><a href="files/philosophy.html" target="play">↪</a>
     </section>
 </div>
 
@@ -723,9 +754,9 @@ root<strong>.appendChild(</strong>header<strong>)</strong>;</pre>
       onload="loadHandler(event)" onerror="errorHandler(event)"&gt;</strong>
 &lt;/head&gt;
 &lt;body&gt;
-  &lt;div class="nameTag"&gt;Jean Phillippe&lt;/div&gt;
-  &lt;div class="nameTag"&gt;Estelle&lt;/div&gt;
-  &lt;div class="nameTag"&gt;Miriam&lt;/div&gt;
+  &lt;div class="name-tag"&gt;Jean Phillippe&lt;/div&gt;
+  &lt;div class="name-tag"&gt;Estelle&lt;/div&gt;
+  &lt;div class="name-tag"&gt;Miriam&lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;</pre>
 <a href="http://estelle.github.io/components/files/import.html" target="play" title="open resource in new window">↪</a>
@@ -777,7 +808,7 @@ root<strong>.appendChild(</strong>header<strong>)</strong>;</pre>
   <header><h1>JavaScript</h1></header>
 <section class="content"><pre contenteditable>function loadHandler(e) {
   var content = document.querySelector('link[rel="import"]')<strong>.import</strong>;
-  var el = document.querySelectorAll('.nameTag');
+  var el = document.querySelectorAll('.name-tag');
   var template = <strong>content.</strong>getElementById('nameTagTemplate');
   for(var i = 0; i &lt; el.length; i++) {
     var shadow = el[i].createShadowRoot();

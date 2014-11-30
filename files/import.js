@@ -1,6 +1,6 @@
     function loadHandler(e) {
       var content = document.querySelector('link[rel="import"]').import;
-      var el = document.querySelectorAll('.nameTag');
+      var el = document.querySelectorAll('.name-tag');
       var template = content.getElementById('nameTagTemplate');
       for(var i = 0; i < el.length; i++) {
         var shadow = el[i].createShadowRoot();
