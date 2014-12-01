@@ -36,6 +36,9 @@ cite {
   max-height: 80vh;
   overflow-y: scroll; }
 
+.hide {
+  opacity: 0.1; }
+
 .slides {
   padding-top: 10px;
   padding-bottom: 10px;

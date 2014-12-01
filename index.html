@@ -115,7 +115,7 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 
 
 <div class="slide">
-  <header><h1><!--Backend Frameworks--></h1></header>
+  <header><h1 class="hide">Backend Frameworks</h1></header>
     <section class="content">
       <pre contenteditable>&lt;div class=&quot;name-tag&quot;&gt;
   &lt;div class=&quot;outer&quot;&gt;
@@ -156,10 +156,11 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 
 
 <div class="slide">
-  <header><h1>DOM Manipulation (<a href="files/oldstyle.html" target="foo">show</a>)</h1></header>
-    <pre contenteditable><em>&lt;div class="name-tag">&lt;/div></em>
+  <header class="hide"><h1>DOM Manipulation (<a href="files/oldstyle.html" target="foo">view</a>)</h1></header>
+    <pre contenteditable>  <em>&lt;div class="name-tag">&lt;/div></em>
+
 &lt;script>
-var Nametag = createNametag();
+var Nametag = createNametag('Estelle');
 createComponent('name-tag', Nametag);
 
 function createComponent(name, tmpl) {
@@ -167,7 +168,7 @@ function createComponent(name, tmpl) {
   var clone = tmpl.cloneNode(true);
   unit.appendChild(clone);
 }
-function createNametag() {
+function createNametag(content) {
   var tmpl = document.createDocumentFragment(),
       outer = document.createElement('div'),
       boilerplate = document.createElement('div'),
@@ -178,7 +179,7 @@ function createNametag() {
   name.classList.add('name');
   // add content
   boilerplate.textContent = 'Hi! My name is';
-  name.textContent = 'Estelle';
+  name.textContent = content;
   // put it all together
   outer.appendChild(boilerplate);
   outer.appendChild(name);
@@ -189,7 +190,7 @@ function createNametag() {
 </div>
 
 <div class="slide">
-  <header><h1>DOM Programming (<a href="files/oldstyle_multiple.html" target="foo">show</a>)</h1></header>
+  <header class="hide"><h1>DOM Programming (<a href="files/oldstyle_multiple.html" target="foo">view</a>)</h1></header>
     <pre contenteditable><em>  &lt;div class="name-tag">Jean Phillippe&lt;/div>
   &lt;div class="name-tag">Estelle&lt;/div>
   &lt;div class="name-tag">Miriam&lt;/div>
@@ -297,7 +298,7 @@ function createNametag() {
   <header><h1>&lt;template&gt; specification</h1></header>
     <section class="content">
 <blockquote><p>The <strong>template</strong> element is used to declare fragments of HTML that can be cloned and inserted in the document by script.</p>
-<p>In a rendering, the template element <strong>represents nothing</strong></p></blockquote>
+<p>In a rendering, the template element represents <strong>nothing</strong></p></blockquote>
 
 <cite>-- <a href="https://html.spec.whatwg.org/multipage/scripting.html#the-template-element">WHATWG Specification</a></cite>
     </section>
@@ -313,14 +314,14 @@ function createNametag() {
           <li><strong title="even where parser doesn't allow content">Placable anywhere:</strong> head, body, iframe.</li>
       </ul>
 
-      <p>Designers can create rich web user interaction (UI) using CSS and HTML markup only. Developers can focus on integrating the design elements.
+      <p class="hide">Designers can create rich web user interaction (UI) using CSS and HTML markup only. Developers can focus on integrating the design elements.
     </section>
 </div>
 
 
 
 <div class="slide">
-  <header><h1>How do you do it?</h1></header>
+  <header><h1>Implementation</h1></header>
     <section class="content">
       <ol>
         <li>Feature detect</li>
@@ -431,7 +432,7 @@ for(var i = 0; i < el.length; i++) {
 <em>var template = document.getElementById('nameTagTemplate');</em>
 for(var i = 0; i < el.length; i++) {
   var shadow = el[i]<strong>.createShadowRoot()</strong>;
-  var clone = document.importNode(template<strong>.content</strong>, true);
+  var clone = document<strong>.importNode(</strong>template<strong>.content</strong>, true<strong>)</strong>;
   shadow.appendChild(clone);
 }</pre>
 </div>
