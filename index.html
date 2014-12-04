@@ -1261,8 +1261,10 @@ custom element's attribute is added, changed or removed.
 <div class="slide">
   <header><h1>Register Element</h1></header>
     <section class="content">
+<pre contenteditable>registerElement(custom-element)</pre>
       <pre contenteditable>var CustomElement = document.<strong>registerElement(</strong>'custom-element'<strong>)</strong>;
 document.body.appendChild(new CustomElement());</pre>
+<p>or</p>
 <pre contenteditable>registerElement(custom-element, prototype)</pre>
 <pre contenteditable>var CustomElement = document.registerElement('custom-button', {
   prototype: Object.create(HTMLVideoElement.prototype)
