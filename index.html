@@ -520,8 +520,6 @@ function createNametag(n, r) {
   &lt;/div&gt;
 &lt;/div&gt;
 <strong>&lt;/template&gt;</strong>
-
-
 </pre>
 </div>
 
@@ -767,6 +765,17 @@ for(var i = 0; i &lt; el.length; i++) {
 </div>
 
 
+
+
+
+<!---
+  #
+  #
+  #    Shadow DOM
+  #
+  #
+-->
+
 <div class="slide title">
 <h1>Shadow DOM</h1>
 </div>
@@ -820,7 +829,7 @@ for(var i = 0; i &lt; el.length; i++) {
 </div>
 
 <div class="slide">
-  <header><h1>Encapsulated Markup</h1></header>
+  <header><h1>DOM Encapsulation</h1></header>
     <section class="content">
 <ul>
 <li>Not available to the rest of the page</lu>
@@ -831,6 +840,7 @@ for(var i = 0; i &lt; el.length; i++) {
 <li>Attributes of parent node can configure it</li>
 <li>Shadow CSS is scoped
 <li>JavaScript can access via shadowRoot
+  <li>&lt;content&gt; is part of Shadow DOM spec
 </ul>
     </section>
 </div>
@@ -886,6 +896,13 @@ root<strong>.appendChild(</strong>header<strong>)</strong>;</pre>
     </section>
 </div>
 
+<!---
+  #
+  #
+  #    Imports
+  #
+  #
+-->
 
 <div class="slide title">
 <h1>HTML Imports</h1>
@@ -1130,6 +1147,25 @@ function errorHandler(e) {
 
 
 
+<div class="slide">
+  <header><h1>Imports</h1></header>
+    <section class="content">
+      <ul>
+        <li>Include and reuse documents or document fragments</li>
+        <li>Shared dependencies are only loaded once.</li>
+        <li>Import has to be same origin, or CORS.
+        <li>doc and import share window but not document
+
+    </section>
+</div>
+
+<!---
+  #
+  #
+  #    Custom Elements
+  #
+  #
+-->
 
 <div class="slide title">
 <h1>Custom Elements</h1>
