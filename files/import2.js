@@ -1,6 +1,6 @@
     function loadHandler(e) {
       var content = document.querySelector('link[rel="import"]').import;
-      /*var el = document.querySelectorAll('.name-tag');
+      doIt();/*var el = document.querySelectorAll('.name-tag');
       var template = content.getElementById('nameTagTemplate');
       for(var i = 0; i < el.length; i++) {
         var shadow = el[i].createShadowRoot();
@@ -25,4 +25,25 @@ document.registerElement('name-tag', {
       console.log('Error loading import: ' + e.target.href);
     }
 
+
+function doIt() {
+    var importDoc = document.currentScript.ownerDocument; // importee
+
+    // Define and register <shadow-element>
+    // that uses Shadow DOM and a template.
+    var proto = Object.create(HTMLElement.prototype);
+
+    proto.createdCallback = function() {
+      // get template in import
+      var template = importDoc.querySelector('#nameTagTemplate');
+
+      // import template into
+      var clone = document.importNode(template.content, true);
+
+      var root = this.createShadowRoot();
+      root.appendChild(clone);
+    };
+
+    document.registerElement('name-tag', {prototype: proto});
+  }
 
