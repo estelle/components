@@ -981,37 +981,63 @@ root<strong>.appendChild(</strong>header<strong>)</strong>;</pre>
 
 <div class="slide">
   <header><h1><strong>nametagtemplate.html</strong></h1></header>
-    <section class="content"><pre contenteditable><code>&lt;template id="nameTagTemplate"&gt;
+    <section class="content">
+    <pre contenteditable><code>&lt;template id="nameTagTemplate"&gt;
 &lt;style&gt;
-.outer {
-  margin-bottom: 1em;
-  border-radius: 1em;
-  background: red;
-  font-size: 20pt;
-  width: 12em;
-  height: 7em;
-  text-align: center;
-}
-.logo {
-  color: white;
-  font-family: sans-serif;
-  padding: 0.5em;
-}
-.name {
-  color: black;
-  background: white;
-  font-family: "Marker Felt", cursive;
-  font-size: 45pt;
-  padding-top: 0.2em;
-}
+    .outer {
+      border: 1px solid black;
+      background: #2c57a9;
+      width: 21rem;
+      font-size: 3.5rem;
+      text-align: center;
+      font-family: Rockwell, serif;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    header {
+      font-weight: bold;
+      padding: 10px 0 0 0;
+    }
+    header span {
+      color: #ccc;
+      font-weight: normal;
+    }
+    p, footer {
+      font-size: 1rem;
+      font-weight: normal;
+      margin: -5px 0 10px 0; padding: 0;
+    }
+    main {
+      background: white;
+      color: black;
+      font-family: sans-serif;
+      font-size: 1.8rem;
+      height: 12rem;
+      padding-top: 0.2em;
+    }
+    .name,
+    main:first-line {
+      font-weight: bold;
+      font-size: 2.3rem;
+      margin-bottom: 1rem;
+    }
+    footer {
+      margin: 10px 0 2rem;
+    }
 &lt;/style&gt;
+
+
 &lt;div class="outer"&gt;
-  &lt;div class="logo"&gt;
-    Hi! My name is
-  &lt;/div&gt;
-  &lt;div class="name"&gt;
-    &lt;content&gt;&lt;/content&gt;
-  &lt;/div&gt;
+  &lt;header&gt;YOW!&lt;span&gt;2014&lt;/span&gt;
+    &lt;p&gt;Australia Software Developer Conference&lt;/p&gt;
+  &lt;/header&gt;
+  &lt;main&gt;
+  &lt;content select=".name"&gt;&lt;/content&gt;
+  &lt;content select=".role"&gt;&lt;/content&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;Follow us on Twitter @yow_oz&lt;br&gt;
+    Follow the conversation using #yow2014
+  &lt;/footer&gt;
 &lt;/div&gt;
 &lt;/template&gt;</code></pre>
     </section>
@@ -1057,22 +1083,6 @@ function errorHandler(e) {
 </div>
 
 
-<div class="slide">
-  <header><h1>HTML imports</h1></header>
-    <section class="content">
-      <p>Inactive until activated:</p>
-      <ul>
-        <li><a href="http://estelle.github.io/components/files/import_show.html" target="foo">http://bit.ly/121oPBf</a> - inactive</li>
-        <li><a href="http://estelle.github.io/components/files/import_show02.html" target="foo">http://bit.ly/1uPMpXI</a> - activated</li>
-      </ul>
-      <p>imported &lt;template></p>
-      <pre contenteditable><code>&lt;template&gt;
-  &lt;h1&gt;This is some text&lt;/h1&gt;
-  &lt;img src="../assets/icons/icon-templates.png" alt="this is some media"&gt;
-  &lt;script&gt;alert("This is some javascript");&lt;/script&gt;
-&lt;/template&gt;</code></pre>
-    </section>
-</div>
 
 
 <div class="slide">
@@ -1098,6 +1108,27 @@ function errorHandler(e) {
 &lt;/html&gt;</code></pre>
     </section>
 </div>
+
+
+<div class="slide">
+  <header><h1>HTML imports</h1></header>
+    <section class="content">
+      <p>Inactive until activated:</p>
+      <ul>
+        <li><a href="http://estelle.github.io/components/files/import_show.html" target="foo">http://bit.ly/121oPBf</a> - inactive</li>
+        <li><a href="http://estelle.github.io/components/files/import_show02.html" target="foo">http://bit.ly/1uPMpXI</a> - activated</li>
+      </ul>
+      <p>imported &lt;template></p>
+      <pre contenteditable><code>&lt;template&gt;
+  &lt;h1&gt;This is some text&lt;/h1&gt;
+  &lt;img src="../assets/icons/icon-templates.png" alt="this is some media"&gt;
+  &lt;script&gt;alert("This is some javascript");&lt;/script&gt;
+&lt;/template&gt;</code></pre>
+    </section>
+</div>
+
+
+
 
 <div class="slide title">
 <h1>Custom Elements</h1>
@@ -1145,10 +1176,41 @@ document.body.appendChild(new FooBar());</pre>
 
 
 <div class="slide">
-  <header><h1></h1></header>
-    <section class="content">
+  <header><h1>nameTag Prototype</h1></header>
+    <section class="content"><pre contenteditable><code>var nameTag = Object.create(HTMLElement.prototype);
+
+nameTag.createdCallback = function() {
+   var template = document.getElementById('nameTagTemplate').content;
+   var clone = template.cloneNode(true);
+   var root = this.createShadowRoot();
+   root.appendChild(clone);
+ };
+
+document.registerElement('name-tag', {
+  prototype: nameTag
+});</code></pre>
     </section>
 </div>
+
+
+<div class="slide">
+  <header><h1>HTML</h1></header>
+    <section class="content"><pre contenteditable><code><strong>&lt;name-tag&gt;</strong>
+  &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
+  &lt;p class="role"&gt;Speaker&lt;/p&gt;
+<strong>&lt;/name-tag&gt;</strong>
+<strong>&lt;name-tag&gt;</strong>
+  &lt;p class="name"&gt;Ninian Wang&lt;/p&gt;
+  &lt;p class="role"&gt;CTO, Minted&lt;/p&gt;
+<strong>&lt;/name-tag&gt;</strong>
+<strong>&lt;name-tag&gt;</strong>
+  &lt;p class="name"&gt;Tim Berners-Lee&lt;/p&gt;
+  &lt;p class="role"&gt;Web Developer&lt;/p&gt;
+<strong>&lt;/name-tag&gt;</strong></code></pre>
+    </section>
+</div>
+
+
 
 
 <!-- END SLIDES -->
