@@ -7,13 +7,8 @@
         var clone = document.importNode(template.content, true);
         shadow.appendChild(clone);
       }*/
-    }
-    function errorHandler(e) {
-      console.log('Error loading import: ' + e.target.href);
-    }
 
-
-var nameTag = Object.create(HTMLElement.prototype);
+      var nameTag = Object.create(HTMLElement.prototype);
 
 nameTag.createdCallback = function() {
    var template = document.getElementById('nameTagTemplate').content;
@@ -25,3 +20,9 @@ nameTag.createdCallback = function() {
 document.registerElement('name-tag', {
   prototype: nameTag
 });
+    }
+    function errorHandler(e) {
+      console.log('Error loading import: ' + e.target.href);
+    }
+
+
