@@ -2,9 +2,11 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-  <title></title>
+  <title>Template: Multiple Iterations</title>
 </head>
-<body><template id="nameTagTemplate">
+<body>
+
+<template id="nameTagTemplate">
   <style>
     .outer {
       border: 1px solid black;
@@ -16,11 +18,11 @@
       color: white;
       margin-bottom: 1rem;
     }
-    .boilerplate {
+    header {
       font-weight: bold;
       padding: 10px 0 0 0;
     }
-    .boilerplate span {
+    header span {
       color: #ccc;
       font-weight: normal;
     }
@@ -29,7 +31,7 @@
       font-weight: normal;
       margin: -5px 0 10px 0; padding: 0;
     }
-    .inner {
+    main {
       background: white;
       color: black;
       font-family: sans-serif;
@@ -37,7 +39,8 @@
       height: 12rem;
       padding-top: 0.2em;
     }
-    .name {
+    .name,
+    main:first-line {
       font-weight: bold;
       font-size: 2.3rem;
       margin-bottom: 1rem;
@@ -46,136 +49,33 @@
       margin: 10px 0 2rem;
     }
   </style>
-<div class="outer">
-  <div class="boilerplate">
-    YOW!<span>2014</span>
-  </div>
-  <div class="inner">
-    <content></content>
+<div class="name-tag">
+  <div class="outer">
+    <header>YOW!<span>2014</span>
+      <p>Australia Software Developer Conference</p>
+    </header>
+    <main>
+      <content></content>
+    </main>
+    <footer>Follow us on Twitter @yow_oz<br>
+      Follow the conversation using #yow2014
+    </footer>
   </div>
 </div>
 </template>
 
-<div class="name-tag">  <style>
-    .outer {
-      border: 1px solid black;
-      background: #2c57a9;
-      width: 21rem;
-      font-size: 3.5rem;
-      text-align: center;
-      font-family: Rockwell, serif;
-      color: white;
-      margin-bottom: 1rem;
-    }
-    .boilerplate {
-      font-weight: bold;
-      padding: 10px 0 0 0;
-    }
-    .boilerplate span {
-      color: #ccc;
-      font-weight: normal;
-    }
-    p, footer {
-      font-size: 1rem;
-      font-weight: normal;
-      margin: -5px 0 10px 0; padding: 0;
-    }
-    .inner {
-      background: white;
-      color: black;
-      font-family: sans-serif;
-      font-size: 1.8rem;
-      height: 12rem;
-      padding-top: 0.2em;
-    }
-    .name {
-      font-weight: bold;
-      font-size: 2.3rem;
-      margin-bottom: 1rem;
-    }
-    footer {
-      margin: 10px 0 2rem;
-    }
-Tim   <style>
-    .outer {
-      border: 1px solid black;
-      background: #2c57a9;
-      width: 21rem;
-      font-size: 3.5rem;
-      text-align: center;
-      font-family: Rockwell, serif;
-      color: white;
-      margin-bottom: 1rem;
-    }
-    .boilerplate {
-      font-weight: bold;
-      padding: 10px 0 0 0;
-    }
-    .boilerplate span {
-      color: #ccc;
-      font-weight: normal;
-    }
-    p, footer {
-      font-size: 1rem;
-      font-weight: normal;
-      margin: -5px 0 10px 0; padding: 0;
-    }
-    .inner {
-      background: white;
-      color: black;
-      font-family: sans-serif;
-      font-size: 1.8rem;
-      height: 12rem;
-      padding-top: 0.2em;
-    }
-    .name {
-      font-weight: bold;
-      font-size: 2.3rem;
-      margin-bottom: 1rem;
-    }
-Berners-Lee</div>
-<div class="name-tag">Estelle</div>
-<div class="name-tag">  <style>
-    .outer {
-      border: 1px solid black;
-      background: #2c57a9;
-      width: 21rem;
-      font-size: 3.5rem;
-      text-align: center;
-      font-family: Rockwell, serif;
-      color: white;
-      margin-bottom: 1rem;
-    }
-    .boilerplate {
-      font-weight: bold;
-      padding: 10px 0 0 0;
-    }
-    .boilerplate span {
-      color: #ccc;
-      font-weight: normal;
-    }
-    p, footer {
-      font-size: 1rem;
-      font-weight: normal;
-      margin: -5px 0 10px 0; padding: 0;
-    }
-    .inner {
-      background: white;
-      color: black;
-      font-family: sans-serif;
-      font-size: 1.8rem;
-      height: 12rem;
-      padding-top: 0.2em;
-    }
-    .name {
-      font-weight: bold;
-      font-size: 2.3rem;
-      margin-bottom: 1rem;
-    }
-    footer {
-      margin: 10px 0 2rem;
-    }
-Niniane</div>
+<div class="name-tag">
+  <p class="name">Estelle Weyl</p>
+  <p class="role">Speaker</p>
+</div>
+<div class="name-tag">
+  <p class="name">Ninian Wang</p>
+  <p class="role">CTO, Minted</p>
+</div>
+<div class="name-tag">
+  <p class="name">Tim Berners-Lee</p>
+  <p class="role">Web Developer</p>
+</div>
 
 <script>
 var el = document.querySelectorAll('.name-tag');

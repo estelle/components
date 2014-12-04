@@ -14,11 +14,11 @@
       color: white;
       margin-bottom: 1rem;
     }
-    .boilerplate {
+    header {
       font-weight: bold;
       padding: 10px 0 0 0;
     }
-    .boilerplate span {
+    header span {
       color: #ccc;
       font-weight: normal;
     }
@@ -27,17 +27,21 @@
       font-weight: normal;
       margin: -5px 0 10px 0; padding: 0;
     }
-    .inner {
+    main{
       background: white;
       color: black;
       font-family: sans-serif;
-      font-size: 1.8rem;
       height: 12rem;
       padding-top: 0.2em;
     }
-    .name {
+    main p {
+      font-size: 1.8rem;
+    }
+    name,
+    main:first-line {
       font-weight: bold;
       font-size: 2.3rem;
+      display: block;
       margin-bottom: 1rem;
     }
     footer {
@@ -47,16 +51,16 @@
 </head>
 <body>
   <div class="name-tag">
-    <div class="name">Estelle Weyl</div>
-    <div class="role">Speaker</div>
+    <div class="nm">Estelle Weyl</div>
+    <div class="rl">Speaker</div>
   </div>
   <div class="name-tag">
-    <div class="name">Niniane Wang</div>
-    <div class="role">CTO, Minted</div>
+    <div class="nm">Niniane Wang</div>
+    <div class="rl">CTO, Minted</div>
   </div>
   <div class="name-tag">
-    <div class="name">Tim Berners-Lee</div>
-    <div class="role">Web Developer</div>
+    <div class="nm">Tim Berners-Lee</div>
+    <div class="rl">Web Developer</div>
   </div>
 
 <script>
@@ -71,38 +75,39 @@ function createComponent(identifier, tmpl) {
       var clone = tmpl.cloneNode(true);
       unit.appendChild(clone);
       if(unit.firstChild.data.length) {
-        var content = unit.firstChild.data;
-        unit.querySelector('.name').innerHTML = content;
-        unit.firstChild.remove();
+        unit.querySelector('.name').innerHTML = unit.firstElementChild.innerHTML;
+        unit.firstElementChild.remove();
+        unit.querySelector('.role').innerHTML = unit.firstElementChild.innerHTML;
+        unit.firstElementChild.remove();
       }
     });
 }
 
-function createNametag(n, r) {
-  var tmpl = document.createDocumentFragment(),
+
+
+function createNametag() {
+  var tmpl        = document.createDocumentFragment(),
       outer       = document.createElement('div'),
-      boilerplate = document.createElement('div'),
+      header      = document.createElement('header'),
       p           = document.createElement('p'),
-      inner       = document.createElement('div'),
-      name        = document.createElement('div'),
-      role        = document.createElement('div'),
+      main        = document.createElement('main'),
+      name        = document.createElement('p'),
+      role        = document.createElement('p'),
       footer      = document.createElement('footer');
   // add classes
   outer.classList.add('outer');
-  boilerplate.classList.add('boilerplate');
-  inner.classList.add('inner');
   name.classList.add('name');
   role.classList.add('role')
   // add content
-  boilerplate.innerHTML = 'YOW!<span>2014</span>';
+  header.innerHTML = 'YOW!<span>2014</span>';
   p.textContent = "Australia Software Developer Conference";
   footer.innerHTML = 'Follow us on Twitter @yow_oz<br/>Follow the conversation using #yow2014';
   // put it all together
-  outer.appendChild(boilerplate);
+  outer.appendChild(header);
   outer.appendChild(p);
-  inner.appendChild(name);
-  inner.appendChild(role);
-  outer.appendChild(inner);
+  main.appendChild(name);
+  main.appendChild(role);
+  outer.appendChild(main);
   outer.appendChild(footer);
   tmpl.appendChild(outer);
 

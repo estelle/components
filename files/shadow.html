@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-  <title></title>
+  <title>Template: Single Iteration</title>
 </head>
 <body><template id="nameTagTemplate">
   <style>
@@ -16,11 +16,11 @@
       color: white;
       margin-bottom: 1rem;
     }
-    .boilerplate {
+    header {
       font-weight: bold;
       padding: 10px 0 0 0;
     }
-    .boilerplate span {
+    header span {
       color: #ccc;
       font-weight: normal;
     }
@@ -29,7 +29,7 @@
       font-weight: normal;
       margin: -5px 0 10px 0; padding: 0;
     }
-    .inner {
+    main {
       background: white;
       color: black;
       font-family: sans-serif;
@@ -37,7 +37,8 @@
       height: 12rem;
       padding-top: 0.2em;
     }
-    .name {
+    .name,
+    main:first-line {
       font-weight: bold;
       font-size: 2.3rem;
       margin-bottom: 1rem;
@@ -46,23 +47,31 @@
       margin: 10px 0 2rem;
     }
   </style>
-<div class="outer">
-  <div class="boilerplate">
-    YOW!<span>2014</span>
-  </div>
-  <div class="inner">
-    <content></content>
+<div class="name-tag">
+  <div class="outer">
+    <header>YOW!<span>2014</span>
+      <p>Australia Software Developer Conference</p>
+    </header>
+    <main>
+      <content></content>
+    </main>
+    <footer>Follow us on Twitter @yow_oz<br>
+      Follow the conversation using #yow2014
+    </footer>
   </div>
 </div>
 </template>
 
-<div class="name-tag">Estelle</div>
+<div class="name-tag">
+  <p class="name">Estelle Weyl</p>
+  <p class="role">Speaker</p>
+</div>
+
 <script>
 var shadow = document.querySelector('.name-tag').createShadowRoot();
 var template = document.querySelector('#nameTagTemplate');
 var clone = document.importNode(template.content, true);
 shadow.appendChild(clone);
-document.querySelector('.name-tag').textContent = 'Estelle';
 </script>
 </body>
 </html>
