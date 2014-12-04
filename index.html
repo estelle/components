@@ -1152,7 +1152,20 @@ function errorHandler(e) {
     </section>
 </div>
 
+<div class="slide">
+  <header><h1>JS: importer v importee</h1></header>
+    <section class="content"><pre contenteditable>&lt;script>
+  // the "importee", in this case the template
+  var importedDoc = document<strong>.currentScript.ownerDocument</strong>;
 
+  // the "importer", which has custom elements
+  var parentDoc = document;
+
+  parentDoc.body.appendChild(importedDoc.importNode(content, true));
+&lt;/script></pre>
+
+    </section>
+</div>
 
 <div class="slide">
   <header><h1>Imports</h1></header>
