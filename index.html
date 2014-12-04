@@ -22,7 +22,7 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
   </header>
   <h1>Estelle Weyl</h1>
   <h4>@estellevw</h3>
-  <h4>estelle.github.io/components</h4>
+  <h4><a href="http://estelle.github.io/components">estelle.github.io/components</a></h4>
 </div>
 
 <div class="slide">
@@ -70,7 +70,7 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 <div class="slide">
   <header><h1>Browser Support</h1></header>
     <figure><object data="http://caniuse.com/#search=components"></object></figure>
-  <a href="http://caniuse.com/#search=components" target="play" title="open resource in new window">↪</a>
+  <a href="http://caniuse.com/#search=components" target="play" title="open resource in new window">➹</a>
 </div>
 
 <div class="slide">
@@ -97,6 +97,11 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 
 
 <div class="slide">
+  <header><h1>Our Task</h1></header>
+    <figure><object data="files/shadow.html"></object></figure>
+</div>
+
+<div class="slide">
   <header><h1>Static Code</h1></header>
     <section class="content">
       <pre contenteditable>&lt;div class=&quot;name-tag&quot;&gt;
@@ -112,7 +117,7 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</pre>
-<a href="files/static_1.html" target="play" title="open resource in new window">↪</a>
+<a href="files/static_1.html" target="play" title="open resource in new window">➹</a>
     </section>
 </div>
 
@@ -122,14 +127,14 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 
 <pre contenteditable>&lt;div class=&quot;name-tag&quot;&gt;
   &lt;div class=&quot;outer&quot;&gt;
-    &lt;header&gt;YOW!&lt;span&gt;2014&lt;/span&gt;
+    <strong>&lt;header&gt;</strong>YOW!&lt;span&gt;2014&lt;/span&gt;
       &lt;p&gt;Australia Software Developer Conference&lt;/p&gt;
     &lt;/header&gt;
-    &lt;main&gt;
+     <strong>&lt;main&gt;</strong>
       &lt;p class=&quot;name&quot;&gt;Estelle Weyl&lt;/p&gt;
       &lt;p class=&quot;role&quot;&gt;Speaker&lt;/p&gt;
     &lt;/main&gt;
-    &lt;footer&gt;Follow us on Twitter @yow_oz&lt;br&gt;
+    <strong>&lt;footer&gt;</strong>Follow us on Twitter @yow_oz&lt;br&gt;
       Follow the conversation using #yow2014
     &lt;/footer&gt;
   &lt;/div&gt;
@@ -182,7 +187,7 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</pre>
-<a href="files/static_many.html" target="play" title="open resource in new window">↪</a>
+<a href="files/static_many.html" target="play" title="open resource in new window">➹</a>
     </section>
 </div>
 
@@ -201,6 +206,7 @@ function createComponent(name, tmpl) {
 }
 
 function createNametag() {
+<strong>// create all the elements</strong>
   var tmpl        = document.createDocumentFragment(),
       outer       = document.createElement('div'),
       header      = document.createElement('header'),
@@ -209,15 +215,15 @@ function createNametag() {
       name        = document.createElement('p'),
       role        = document.createElement('p'),
       footer      = document.createElement('footer');
-  // add classes
+<strong>// add classes</strong>
   outer.classList.add('outer');
   name.classList.add('name');
   role.classList.add('role')
-  // add content
+<strong>// add content</strong>
   header.innerHTML = 'YOW!&lt;span>2014&lt;/span>';
   p.textContent = "Australia Software Developer Conference";
   footer.innerHTML = 'Follow us on Twitter @yow_oz&lt;br/>Follow the conversation using #yow2014';
-  // put it all together
+<strong>// put it all together</strong>
   outer.appendChild(header);
   outer.appendChild(p);
   main.appendChild(name);
@@ -230,7 +236,7 @@ function createNametag() {
 }
 var Nametag = createNametag('Estelle Weyl', 'Speaker');
 createComponent('name-tag', Nametag);
-&lt;/script&gt;</pre><a href="files/oldstyle.html" target="play" title="open resource in new window">↪</a>
+&lt;/script&gt;</pre><a href="files/oldstyle.html" target="play" title="open resource in new window">➹</a>
 </div>
 
 <div class="slide">
@@ -255,6 +261,7 @@ createComponent('name-tag', Nametag);
 function createComponent(identifier, tmpl) {
   var units = document.querySelectorAll(
     '.' + identifier);
+  <strong>// iterate. Clone then remove content</strong>
   [].forEach.call(
     units, function(unit) {
       var clone = tmpl.cloneNode(true);
@@ -267,8 +274,6 @@ function createComponent(identifier, tmpl) {
       }
     });
 }
-
-
 
 function createNametag(n, r) {
   var tmpl = document.createDocumentFragment(),
@@ -302,7 +307,7 @@ function createNametag(n, r) {
 }
 
 &lt;/script&gt;</pre>
-<a href="files/oldstyle_multiple.html" target="play" title="open resource in new window">↪</a>
+<a href="files/oldstyle_multiple.html" target="play" title="open resource in new window">➹</a>
 </div>
 
 
@@ -393,6 +398,7 @@ function createNametag(n, r) {
           <li><strong>No side effects:</strong> scripts don't run, images don't load, video doesn't play until template is used.</li>
           <li><strong>Outside of DOM:</strong> child nodes don't exist in DOM. Can't <code>querySelector()</code> content</li>
           <li><strong title="even where parser doesn't allow content">Placable anywhere:</strong> head, body, iframe.</li>
+          <li>Could be used as a performance hack
       </ul>
 
       <p class="hide">Designers can create rich web user interaction (UI) using CSS and HTML markup only. Developers can focus on integrating the design elements.
@@ -416,7 +422,7 @@ function createNametag(n, r) {
 <div class="slide">
   <header><h1>Browser Support</h1></header>
     <figure><object data="http://caniuse.com/#search=template"></object></figure>
-  <a href="http://caniuse.com/#search=template" target="play" title="open resource in new window">↪</a>
+  <a href="http://caniuse.com/#search=template" target="play" title="open resource in new window">➹</a>
 </div>
 
 
@@ -442,6 +448,7 @@ function createNametag(n, r) {
         <li>&lt;style&gt;</li>
         <li>content</li>
         <li>&lt;content&gt; <i>(in Shadow DOM spec)</i></li>
+        <li>&lt;script&gt;</li>
       </ul>
     </section>
 </div>
@@ -582,7 +589,6 @@ function createNametag(n, r) {
     <section class="content">
   <pre contenteditable>var el = document.querySelectorAll('.name-tag');
 var template = document.getElementById('nameTagTemplate');
-// var clone = template.content.cloneNode(true);
 for(var i = 0; i &lt; el.length; i++) {
   var shadow = el[i].createShadowRoot();
   var clone = document.importNode(template.content, true);
@@ -593,7 +599,7 @@ for(var i = 0; i &lt; el.length; i++) {
 <div class="slide">
   <header><h1>In browser</h1></header>
     <figure><object data="files/shadow2.html"></object></figure>
-  <a href="files/shadow2.html" target="play" title="open resource in new window">↪</a>
+  <a href="files/shadow2.html" target="play" title="open resource in new window">➹</a>
 </div>
 
 <div class="slide">
@@ -606,6 +612,7 @@ for(var i = 0; i &lt; el.length; i++) {
   var clone = document<strong>.importNode(</strong>template<strong>.content</strong>, true<strong>)</strong>;
   shadow.appendChild(clone);
 }</pre>
+  <pre contenteditable>var clone = template.content.cloneNode(true); </pre>
 </div>
 
 <div class="slide">
@@ -644,7 +651,7 @@ for(var i = 0; i &lt; el.length; i++) {
   &lt;/div&gt;
 &lt;/div&gt;
 <strong>&lt;/template&gt;</strong></pre>
-<a href="http://codepen.io/estelle/pen/MYaxwV" target="play" title="open resource in new window">↪</a>
+<a href="http://codepen.io/estelle/pen/MYaxwV" target="play" title="open resource in new window">➹</a>
     </section>
 </div>
 
@@ -667,7 +674,7 @@ for(var i = 0; i &lt; el.length; i++) {
     var template = document.querySelector('#nameTagTemplate');
     root.appendChild(<strong>template.content</strong>);
 &lt;/script&gt;</pre>
-<a href="http://codepen.io/estelle/pen/MYaxwV" target="play" title="open resource in new window">↪</a>
+<a href="http://codepen.io/estelle/pen/MYaxwV" target="play" title="open resource in new window">➹</a>
 </div>
 
 
@@ -717,7 +724,7 @@ for(var i = 0; i &lt; el.length; i++) {
 }
 &lt;/script&gt;</pre>
 
-<a href="files/shadow2_select.html" target="play" title="open resource in new window">↪</a>
+<a href="files/shadow2_select.html" target="play" title="open resource in new window">➹</a>
 </div>
 
 
@@ -736,18 +743,18 @@ for(var i = 0; i &lt; el.length; i++) {
 <div class="slide">
   <header><h1>Scoped CSS</h1></header>
     <figure><object data="http://jsbin.com/yaruja/1/edit?html,css,output"></object></figure>
-    <a href="http://codepen.io/estelle/pen/WbvwjR" target="play" title="open resource in new window">↪</a>
-    <a href="http://jsbin.com/yaruja/1/edit?html,css,output" target="play" title="open resource in new window">↪</a>
+    <a href="http://codepen.io/estelle/pen/WbvwjR" target="play" title="open resource in new window">➹</a>
+    <a href="http://jsbin.com/yaruja/1/edit?html,css,output" target="play" title="open resource in new window">➹</a>
 </div>
 
 <div class="slide">
   <header><h1>In case "Scoped CSS" failed</h1></header>
     <figure><object data="files/scoped-style.html"></object></figure>
-  <a href="files/scoped-style.html" target="play" title="open resource in new window">↪</a>
+  <a href="files/scoped-style.html" target="play" title="open resource in new window">➹</a>
 </div>
 
 <div class="slide">
-  <header><h1>Benefits</h1></header>
+  <header><h1>Benefits of &lt;template&gt;</h1></header>
     <section class="content">
       <ul>
         <li>Nothing!
@@ -871,7 +878,7 @@ for(var i = 0; i &lt; el.length; i++) {
   var root = host<strong>.createShadowRoot()</strong>;
   root<strong>.textContent</strong> = "Just because you see me," +
        "does that mean I really exist?";
-&lt;/script></pre><a href="files/philosophy.html" target="play">↪</a>
+&lt;/script></pre><a href="files/philosophy.html" target="play">➹</a>
     </section>
 </div>
 
@@ -882,7 +889,7 @@ for(var i = 0; i &lt; el.length; i++) {
      <img src="assets/images/sd_template2.gif" alt="shadow DOM for our templated name tags" align="right">
   <pre contenteditable> var <strong>root</strong> = <strong>host</strong>.createShadowRoot();</pre>
 <p><strong>shadow root</strong>: 1st node of your shadow tree. Ancestor to all other nodes in the tree.</p>
-<p>Shadow <strong>host</strong> content is not rendered. Rather, shadow <strong>root</strong> content gets rendered.
+<p>Shadow <strong>host</strong> content is <u>not</u> rendered. Rather, shadow <strong>root</strong> content gets rendered.
     </section>
 </div>
 
@@ -931,7 +938,7 @@ root<strong>.appendChild(</strong>header<strong>)</strong>;</pre>
 <div class="slide">
   <header><h1>Browser Support</h1></header>
     <figure><object data="http://caniuse.com/#search=import"></object></figure>
-  <a href="http://caniuse.com/#search=import" target="play" title="open resource in new window">↪</a>
+  <a href="http://caniuse.com/#search=import" target="play" title="open resource in new window">➹</a>
 </div>
 
 
@@ -992,7 +999,7 @@ root<strong>.appendChild(</strong>header<strong>)</strong>;</pre>
 &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;</pre>
-<a href="http://estelle.github.io/components/files/import.html" target="play" title="open resource in new window">↪</a>
+<a href="http://estelle.github.io/components/files/import.html" target="play" title="open resource in new window">➹</a>
     </section>
 </div>
 
@@ -1078,7 +1085,7 @@ root<strong>.appendChild(</strong>header<strong>)</strong>;</pre>
 function errorHandler(e) {
   console.log('Error loading import: ' + e.target.href);
 }</pre>
-<a href="http://estelle.github.io/components/files/import.html" target="play" title="open resource in new window">↪</a>
+<a href="http://estelle.github.io/components/files/import.html" target="play" title="open resource in new window">➹</a>
     </section>
 </div>
 
@@ -1215,7 +1222,7 @@ function errorHandler(e) {
   <header><h1>Custom Elements</h1></header>
     <section class="content">
       <ol>
-        <li>Name the element: name all lower-case and must contain a U+002D hyphen.
+        <li>Name the element: all lower-case and must contain a U+002D hyphen.
         <li>Define a prototype
         <li>Register the Element</li>
       </ol>
@@ -1284,7 +1291,7 @@ btnProto.<strong>attributeChangedCallback</strong> = function (attr, old, newA) 
 var btnProto = document<strong>.registerElement</strong>('my-button', {
   <strong>prototype: btnProto</strong>
 });</pre>
-<a href="files/my-button.html"  target="play" title="open resource in new window">↪</a>
+<a href="files/my-button.html"  target="play" title="open resource in new window">➹</a>
     </section>
 </div>
 
@@ -1313,7 +1320,7 @@ document.registerElement('my-button', MyButton);</section>
 
 
 <div class="slide">
-  <header><h1>Registering and Extending</h1></header>
+  <header><h1>Registering</h1></header>
     <section class="content">
 <pre contenteditable>var MyButton = document.registerElement('my-button', HTMLButtonElement);</pre>
 <pre contenteditable>var MyButton = document.registerElement('my-button', {
@@ -1360,25 +1367,7 @@ document.getElementById('beep').appendChild(yourButton);
 
 
 <div class="slide">
-  <header><h1>nameTag Prototype</h1></header>
-    <section class="content"><pre contenteditable><code>var nameTag = Object.create(HTMLElement.prototype);
-
-nameTag.createdCallback = function() {
-   var template = document.getElementById('nameTagTemplate').content;
-   var clone = template.cloneNode(true);
-   var root = this.createShadowRoot();
-   root.appendChild(clone);
- };
-
-document.registerElement('name-tag', {
-  prototype: nameTag
-});</code></pre>
-    </section>
-</div>
-
-
-<div class="slide">
-  <header><h1>HTML</h1></header>
+  <header><h1>HTML: Custom Elements</h1></header>
     <section class="content"><pre contenteditable><code><strong>&lt;name-tag&gt;</strong>
   &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
   &lt;p class="role"&gt;Speaker&lt;/p&gt;
@@ -1396,6 +1385,47 @@ document.registerElement('name-tag', {
 
 
 
+<div class="slide">
+  <header><h1>&lt;name-tag&gt; registration</h1></header>
+    <section class="content"><pre contenteditable><code>var nameTag = <strong>Object.create(HTMLElement.prototype)</strong>;
+
+nameTag<strong>.createdCallback</strong> = function() {
+   var template = document.getElementById('nameTagTemplate').content;
+   var clone = template.cloneNode(true);
+   var root = this.createShadowRoot();
+   root.appendChild(clone);
+ };
+
+document.<strong>registerElement</strong>('name-tag', {
+  prototype: nameTag
+});</code></pre>
+    </section>
+</div>
+
+
+
+
+
+
+<div class="slide">
+  <header><h1>Custom Element using template</h1></header>
+    <figure><object data="files/custom_element1.html"></object></figure>
+  <a href="files/custom_element1.html" target="play" title="open resource in new window">➹</a>
+</div>
+
+<div class="slide">
+    <section class="content">
+<h1 class="textmask">Thank you</h1>
+<h2><a href="http://www.standardista.com">www.standardista.com</a></h2>
+<h2><a href="http://www.twitter.com/estellevw">@estellevw</a></h2>
+<h2><a href="http://estelle.github.io/components">http://estelle.github.io/components</a></h2>
+<div class="floatright">
+  <img src="http://akamaicovers.oreilly.com/images/9780980846904/cat.gif" alt="HTML5 and CSS3 for the Real World">
+  <img src="http://akamaicovers.oreilly.com/images/0636920018063/cat.gif" alt="HTML5: The Definitive Guide"/>
+  <img src="http://akamaicovers.oreilly.com/images/0636920021711/cat.gif" alt="MObile HTML5" />
+  <img src="http://akamaicovers.oreilly.com/images/0636920025955/cat.gif" alt="Web Performance Daybook"/></div>
+    </section>
+</div>
 
 <!-- END SLIDES -->
    </div>
