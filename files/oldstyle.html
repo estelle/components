@@ -5,25 +5,43 @@
   <title>Old School</title>
   <style>
     .outer {
-      border: 2px solid brown;
-      border-radius: 1em;
-      background: red;
-      font-size: 20pt;
-      width: 12em;
-      height: 7em;
+      border: 1px solid black;
+      background: #2c57a9;
+      width: 21rem;
+      font-size: 3.5rem;
       text-align: center;
+      font-family: Rockwell, serif;
+      color: white;
+      margin-bottom: 1rem;
     }
     .boilerplate {
-      color: white;
+      font-weight: bold;
+      padding: 10px 0 0 0;
+    }
+    .boilerplate span {
+      color: #ccc;
+      font-weight: normal;
+    }
+    p, footer {
+      font-size: 1rem;
+      font-weight: normal;
+      margin: -5px 0 10px 0; padding: 0;
+    }
+    .inner {
+      background: white;
+      color: black;
       font-family: sans-serif;
-      padding: 0.5em;
+      font-size: 1.8rem;
+      height: 12rem;
+      padding-top: 0.2em;
     }
     .name {
-      color: black;
-      background: white;
-      font-family: "Marker Felt", cursive;
-      font-size: 45pt;
-      padding-top: 0.2em;
+      font-weight: bold;
+      font-size: 2.3rem;
+      margin-bottom: 1rem;
+    }
+    footer {
+      margin: 10px 0 2rem;
     }
   </style>
 </head>
@@ -37,26 +55,39 @@ function createComponent(name, tmpl) {
   unit.appendChild(clone);
 }
 
-function createNametag(content) {
+function createNametag(n, r) {
   var tmpl = document.createDocumentFragment(),
       outer       = document.createElement('div'),
       boilerplate = document.createElement('div'),
-      name        = document.createElement('div');
+      p           = document.createElement('p'),
+      inner       = document.createElement('div'),
+      name        = document.createElement('div'),
+      role        = document.createElement('div'),
+      footer      = document.createElement('footer');
   // add classes
   outer.classList.add('outer');
   boilerplate.classList.add('boilerplate');
+  inner.classList.add('inner');
   name.classList.add('name');
+  role.classList.add('role')
   // add content
-  boilerplate.textContent = 'Hi! My name is';
-  name.textContent = content;
+  boilerplate.innerHTML = 'YOW!<span>2014</span>';
+  p.textContent = "Australia Software Developer Conference";
+  name.textContent = n;
+  role.textContent = r;
+  footer.innerHTML = 'Follow us on Twitter @yow_oz<br/>Follow the conversation using #yow2014';
   // put it all together
   outer.appendChild(boilerplate);
-  outer.appendChild(name);
+  outer.appendChild(p);
+  inner.appendChild(name);
+  inner.appendChild(role);
+  outer.appendChild(inner);
+  outer.appendChild(footer);
   tmpl.appendChild(outer);
 
   return tmpl;
 }
-var Nametag = createNametag('Estelle');
+var Nametag = createNametag('Estelle Weyl', 'Speaker');
 createComponent('name-tag', Nametag);
 </script>
 </body>
