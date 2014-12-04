@@ -1,6 +1,10 @@
+
+
+
+
     function loadHandler(e) {
       var content = document.querySelector('link[rel="import"]').import;
-      doIt();/*var el = document.querySelectorAll('.name-tag');
+      /*var el = document.querySelectorAll('.name-tag');
       var template = content.getElementById('nameTagTemplate');
       for(var i = 0; i < el.length; i++) {
         var shadow = el[i].createShadowRoot();
@@ -26,7 +30,7 @@ document.registerElement('name-tag', {
     }
 
 
-function doIt() {
+function() {
     var importDoc = document.currentScript.ownerDocument; // importee
 
     // Define and register <shadow-element>
@@ -45,5 +49,5 @@ function doIt() {
     };
 
     document.registerElement('name-tag', {prototype: proto});
-  }
+  })();
 

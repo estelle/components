@@ -584,7 +584,8 @@ function createNametag(n, r) {
     <section class="content">
   <pre contenteditable>var el = document.querySelectorAll('.name-tag');
 var template = document.getElementById('nameTagTemplate');
-for(var i = 0; i < el.length; i++) {
+// var clone = template.content.cloneNode(true);
+for(var i = 0; i &lt; el.length; i++) {
   var shadow = el[i].createShadowRoot();
   var clone = document.importNode(template.content, true);
   shadow.appendChild(clone);
@@ -602,7 +603,7 @@ for(var i = 0; i < el.length; i++) {
   <header><h1>JavaScript for Template (again)</h1></header>
   <pre contenteditable>var el = document.querySelectorAll('.name-tag');
 <em>var template = document.getElementById('nameTagTemplate');</em>
-for(var i = 0; i < el.length; i++) {
+for(var i = 0; i &lt; el.length; i++) {
   var shadow = el[i]<strong>.createShadowRoot()</strong>;
   var clone = document<strong>.importNode(</strong>template<strong>.content</strong>, true<strong>)</strong>;
   shadow.appendChild(clone);
@@ -1136,24 +1137,50 @@ function errorHandler(e) {
 
 
 <div class="slide">
-  <header><h1>Auto Registration</h1></header>
+  <header><h1>&lt;name-tag&gt; custom element</h1></header>
     <section class="content">
-      <p>Imports can execute script, so we can use imports to auto register our elements: to define and register our custom elements.
-      <p>Implement a custom element that creates Shadow DOM from a &lt;template> then registers itself.
+      <pre contenteditable><code><strong>&lt;name-tag&gt;</strong>
+  &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
+  &lt;p class="role"&gt;Speaker&lt;/p&gt;
+<strong>&lt;/name-tag&gt;</strong>
+<strong>&lt;name-tag&gt;</strong>
+  &lt;p class="name"&gt;Ninian Wang&lt;/p&gt;
+  &lt;p class="role"&gt;CTO, Minted&lt;/p&gt;
+<strong>&lt;/name-tag&gt;</strong>
+<strong>&lt;name-tag&gt;</strong>
+  &lt;p class="name"&gt;Tim Berners-Lee&lt;/p&gt;
+  &lt;p class="role"&gt;Web Developer&lt;/p&gt;
+<strong>&lt;/name-tag&gt;</strong></code></pre>
     </section>
 </div>
 
+
 <div class="slide">
-  <header><h1></h1></header>
+  <header><h1>custom element by extending existing element</h1></header>
     <section class="content">
+      <pre contenteditable><code><strong>&lt;div is="name-tag"&gt;</strong>
+  &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
+  &lt;p class="role"&gt;Speaker&lt;/p&gt;
+<strong>&lt;/div&gt;</strong>
+<strong>&lt;div is="name-tag"&gt;</strong>
+  &lt;p class="name"&gt;Ninian Wang&lt;/p&gt;
+  &lt;p class="role"&gt;CTO, Minted&lt;/p&gt;
+<strong>&lt;/div&gt;</strong>
+<strong>&lt;div is="name-tag"&gt;</strong>
+  &lt;p class="name"&gt;Tim Berners-Lee&lt;/p&gt;
+  &lt;p class="role"&gt;Web Developer&lt;/p&gt;
+<strong>&lt;/div&gt;</strong></code></pre>
     </section>
 </div>
+
 
 
 <div class="slide">
   <header><h1>Custom Elements</h1></header>
     <section class="content">
       <ol>
+        <li>Name the element: name all lower-case and must contain a U+002D hyphen.
+        <li>Define a prototype
         <li>Register the Element</li>
       </ol>
     </section>
@@ -1161,18 +1188,139 @@ function errorHandler(e) {
 
 
 <div class="slide">
-  <header><h1>Register Element</h1></header>
+  <header><h1>Auto Registration</h1></header>
     <section class="content">
-      <pre contenteditable>var FooBar = document.<strong>registerElement(</strong>'foo-bar'<strong>)</strong>;
-document.body.appendChild(new FooBar());</pre>
-<pre contenteditable>registerElement(tag-name, prototype)</pre>
-<pre contenteditable>var MyButton = document.registerElement('my-button', HTMLButtonElement);</pre>
-<pre contenteditable>var MyButton = document.registerElement('my-button', {
-  prototype: Object.create(HTMLButtonElement.prototype),
-  extends: 'button'
-});<pre></section>
+      <p>Imports can execute script, so we can use imports to auto register our elements: to define and register our custom elements.
+      <p>Implement a custom element that creates Shadow DOM from a &lt;template> then registers itself.
+    </section>
 </div>
 
+
+<div class="slide">
+  <header><h1>Element Callbacks</h1></header>
+    <section class="content">
+      <ol>
+        <li><strong>createdCallback</strong><br/>
+invoked after custom element is created, registered and prototype set.
+
+<li><strong>attachedCallback</strong><br/>
+custom element is inserted<br/>
+Event handlers get added here
+
+<li><strong>detachedCallback</strong><br/>
+custom element is removed
+
+<li><strong>attributeChangedCallback</strong><br/>
+custom element's attribute is added, changed or removed.
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>Register Element</h1></header>
+    <section class="content">
+      <pre contenteditable>var CustomElement = document.<strong>registerElement(</strong>'custom-element'<strong>)</strong>;
+document.body.appendChild(new CustomElement());</pre>
+<pre contenteditable>registerElement(custom-element, prototype)</pre>
+<pre contenteditable>var CustomElement = document.registerElement('custom-button', {
+  prototype: Object.create(HTMLVideoElement.prototype)
+});</pre>
+    </section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>Element Callbacks</h1></header>
+    <section class="content">
+ <pre contenteditable>var btnProto = <strong>Object.create(HTMLButtonElement.prototype)</strong>;
+btnProto.<strong>createdCallback</strong> = function () {
+  console.log('custom element was created');
+}
+btnProto.<strong>attachedCallback</strong> = function (){
+  console.log('custom element was added') ;
+}
+btnProto.<strong>detachedCallback</strong> = function () {
+  console.log('custom element was removed');
+}
+btnProto.<strong>attributeChangedCallback</strong> = function (attr, old, newA)  {
+  console.log('attributes were altered');
+}
+var btnProto = document<strong>.registerElement</strong>('my-button', {
+  <strong>prototype: btnProto</strong>
+});</pre>
+<a href="files/my-button.html"  target="play" title="open resource in new window">↪</a>
+    </section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>Should be happening in ECMAScript 6</h1></header>
+    <section class="content">
+ <pre contenteditable>class MyButton extends HTMLButtonElement {
+  createdCallback () {
+    console.log('custom element was created');
+  }
+  attachedCallback () {
+    console.log('custom element was added');
+  }
+  detachedCallback () {
+    console.log('custom element was removed');
+  }
+  attributeChangedCallback (attr, old, newA) {
+    console.log('attributes were altered');
+  }
+}
+document.registerElement('my-button', MyButton);</section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>Registering and Extending</h1></header>
+    <section class="content">
+<pre contenteditable>var MyButton = document.registerElement('my-button', HTMLButtonElement);</pre>
+<pre contenteditable>var MyButton = document.registerElement('my-button', {
+  prototype: Object.create(HTMLButtonElement.prototype)
+});</pre>
+<pre>var YourButton = document.registerElement('your-button', {
+  prototype: MyButton
+});
+</section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Including it...</h1></header>
+    <section class="content">
+      <pre contenteditable>var myButton = <strong>new MyButton()</strong>;
+myButton.textContent = 'some content';
+document.body.appendChild(myButton);</pre>
+<p>or, simply</p>
+<pre contenteditable><strong>&lt;my-button&gt;</strong>some content&lt;my-button&gt;</section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>Extending</h1></header>
+    <section class="content">
+<pre contenteditable>
+var yourButton = document.createElement('button', 'your-button');
+yourButton.textContent = "I am extended"
+document.body.appendChild(yourButton);
+</pre>
+<p>which creates:
+<pre contenteditable><strong>&lt;button is="your-button"&gt;</strong>I am extended&lt;button&gt;</pre>
+
+<div id="beep"></div>
+<script>
+var yourButton = document.createElement('button', 'your-button');
+yourButton.textContent = "I am extended"
+document.getElementById('beep').appendChild(yourButton);
+</script>
+    </section>
+</div>
 
 
 <div class="slide">
