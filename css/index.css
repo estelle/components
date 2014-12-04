@@ -58,10 +58,12 @@ header, section {
   padding: 10px 20px; }
 
 .slide {
+  -webkit-transform: translate(0, -99%) scale(0.01) rotate(180deg);
   transform: translate(0, -99%) scale(0.01) rotate(180deg);
   position: absolute;
   overflow: hidden;
   width: calc(100vw - 2em);
+  /*foo*/
   height: 100vh;
   top: 0;
   left: 0;
@@ -70,10 +72,13 @@ header, section {
   -webkit-transition: all 0.25s ease-in;
   transition: all 0.25s ease-in; }
   .slide.future {
+    -webkit-transform: translate(45%, -50%) scale(0.2) rotate(-90deg);
     transform: translate(45%, -50%) scale(0.2) rotate(-90deg); }
   .slide.current {
+    -webkit-transform: translate(0%) scale(1) rotate(0deg);
     transform: translate(0%) scale(1) rotate(0deg); }
   .slide.past, .slide.far-past {
+    -webkit-transform: translate(-100%, 0) scale(0.1) rotate(0deg);
     transform: translate(-100%, 0) scale(0.1) rotate(0deg); }
 
 .slide .counter {

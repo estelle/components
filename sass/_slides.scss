@@ -1,23 +1,25 @@
 .slide {
+  -webkit-transform: translate(0, -99%) scale(0.01) rotate(180deg);
   transform: translate(0, -99%) scale(0.01) rotate(180deg);
   position: absolute;
   overflow: hidden;
-  width: calc(100vw - 2em);
+  width: calc(100vw - 2em); /*foo*/
   height: 100vh;
   top: 0; left: 0;
   padding-left: 1em;
   padding-right: 0.5em;
   &.future {
+     -webkit-transform: translate(45%, -50%) scale(0.2) rotate(-90deg);
      transform: translate(45%, -50%) scale(0.2) rotate(-90deg);
   }
-
   -webkit-transition: all 0.25s ease-in;
   transition: all 0.25s ease-in;
-
   &.current {
+  -webkit-transform: translate(0%) scale(1) rotate(0deg);
   transform: translate(0%) scale(1) rotate(0deg);
   }
   &.past, &.far-past {
+  -webkit-transform: translate(-100%, 0) scale(0.1) rotate(0deg);
   transform: translate(-100%, 0) scale(0.1) rotate(0deg);
   }
 }
