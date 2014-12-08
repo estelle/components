@@ -43,6 +43,7 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 
 <div class="slide title">
 <h1>Web Components</h1>
+<p style="opacity: 0.2">Notes / links ➹<p>
 </div>
 
 
@@ -53,6 +54,68 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
     </section>
 </div>
 
+
+
+<div class="slide opposite" style="background: url(assets/images/divitis.gif) center no-repeat;">
+  <header><h1>Current state of affairs</h1></header>
+    <section class="content">
+
+    </section>
+</div>
+
+
+
+<div class="slide">
+    <section class="content">
+<pre contenteditable><strong>google-map</strong> {
+    display: block; height: 600px;
+  }</pre>
+
+<pre contenteditable>&lt;<strong>google-map</strong> latitude="37.77493" longitude="-122.41942">&lt;/google-map></pre>
+<pre contenteditable>&lt;<strong>template is="auto-binding"</strong>>
+&lt;<strong>google-map-directions</strong> map="{{map}}"
+      startAddress="San Francisco"
+      endAddress="Mountain View"
+      travelMode="TRANSIT"><strong>&lt;/google-map-directions></strong>
+  &lt;<strong>google-map</strong> map="{{map}}" latitude="37.779"
+              longitude="-122.3892"><strong>&lt;/google-map></strong>
+&lt;/template></pre>
+<a href="http://googlewebcomponents.github.io/google-map/components/google-map/" target="play" title="open resource in new window">➹</a>
+
+    </section>
+</div>
+
+
+<div class="slide">
+<header><h1>All you add to your HTML</h1></header>
+<pre contenteditable>&lt;<strong>link rel="import"</strong> href="google-map-directions.html"&gt;</pre>
+
+
+<pre contenteditable>&lt;<strong>google-map</strong> latitude="37.779" longitude="-122.3892" minZoom="9" maxZoom="11" fit&gt;
+  &lt;<strong>google-map-marker</strong> latitude="37.779" longitude="-122.3892"
+                     title="Go Giants!" draggable="true"&gt;
+    &lt;img src="http://www. ... SFGiants.png" /&gt;
+  &lt;<strong>/google-map-marker</strong>&gt;
+&lt;<strong>/google-map</strong>&gt;
+
+&lt;<strong>google-map-directions</strong> startAddress="San Francisco" endAddress="Mountain View"&gt;&lt;<strong>/google-map-directions</strong>&gt;</pre>
+</div>
+
+<div class="slide">
+  <header><h1></h1></header>
+    <figure><object data="http://googlewebcomponents.github.io/google-map/components/google-map/demo.html"></object></figure>
+    <a href="http://googlewebcomponents.github.io/google-map/components/google-map/demo.html" target="play" title="open resource in new window">➹</a>
+</div>
+
+<div class="slide">
+    <figure style="width: 336px; height: 400px; position: static">
+      <object data="files/shadow.html"></object>
+    </figure>
+    <pre contenteditable style=" display: inline-block;"><code><strong>&lt;name-tag&gt;</strong>
+  &lt;p class="role"&gt;Speaker&lt;/p&gt;
+  &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
+<strong>&lt;/name-tag&gt;</strong></code></pre>
+</div>
 
 <div class="slide">
   <header><h1>Components of Web Components</h1></header>
@@ -87,13 +150,6 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 
 
 
-
-<div class="slide opposite" style="background: url(assets/images/divitis.gif) center no-repeat;">
-  <header><h1>The problem</h1></header>
-    <section class="content">
-
-    </section>
-</div>
 
 
 <div class="slide">
