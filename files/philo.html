@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Scoped Style</title>
+  <link rel="stylesheet" href="../css/files.css"/>
+  <style contenteditable id="editme">/*Page CSS*/
+* {color: red;}</style>
+</head>
+<body>
+
+<div class="spirit"></div>
+<script>
+  var host = document.querySelector('.spirit');
+  var root = host.createShadowRoot();
+  root.innerHTML = "<p>Just because you saw me, how do you know if I really exist?</p>";
+</script>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Old School</title>
+    <style>
+    .outer {
+      border: 1px solid black;
+      background: #2c57a9;
+      width: 21rem;
+      font-size: 3.5rem;
+      text-align: center;
+      font-family: Rockwell, serif;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    header {
+      font-weight: bold;
+      padding: 10px 0 0 0;
+    }
+    header span {
+      color: #ccc;
+      font-weight: normal;
+    }
+    p, footer {
+      font-size: 1rem;
+      font-weight: normal;
+      margin: -5px 0 10px 0; padding: 0;
+    }
+    main{
+      background: white;
+      color: black;
+      font-family: sans-serif;
+      height: 12rem;
+      padding-top: 0.2em;
+    }
+    main p {
+      font-size: 1.8rem;
+    }
+    name,
+    main:first-line {
+      font-weight: bold;
+      font-size: 2.3rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+    footer {
+      margin: 10px 0 2rem;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+var data = [
+    {name: 'Estelle Weyl', role: 'Speaker'},
+    {name: 'Niniane Wang', role: 'CTO, Minted'},
+    {name: 'Tim Berners-Lee', role: 'Web Developer'}
+  ];
+
+function createComponent() {
+  console.log(data.length)
+  var unit, clone, i = 0;
+  for (i = 0; data.length > i; i += 1) {
+
+    console.log('bar')
+    unit = data[i];
+    clone = createNametag();
+    console.log(clone);
+    clone.querySelector('.name').innerHTML = unit.name;
+    clone.querySelector('.role').innerHTML = unit.role;
+    document.body.appendChild(clone);
+  }
+}
+
+function createNametag() {
+  var tmpl        = document.createElement('div'),
+      outer       = document.createElement('div'),
+      header      = document.createElement('header'),
+      p           = document.createElement('p'),
+      main        = document.createElement('main'),
+      name        = document.createElement('p'),
+      role        = document.createElement('p'),
+      footer      = document.createElement('footer');
+  // add classes
+  tmpl.classList.add('name-tag');
+  outer.classList.add('outer');
+  name.classList.add('name');
+  role.classList.add('role')
+  // add content
+  header.innerHTML = 'YOW!<span>2014</span>';
+  p.textContent = "Australia Software Developer Conference";
+  footer.innerHTML = 'Follow us on Twitter @yow_oz<br/>Follow the conversation using #yow2014';
+  // put it all together
+  outer.appendChild(header);
+  outer.appendChild(p);
+  main.appendChild(name);
+  main.appendChild(role);
+  outer.appendChild(main);
+  outer.appendChild(footer);
+  tmpl.appendChild(outer);
+
+  return tmpl;
+}
+
+createComponent();
+
+</script>
+</body>
+</html>

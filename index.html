@@ -8,6 +8,10 @@ Made by: Estelle Weyl
 Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 -->
 <link rel="stylesheet" href="css/index.css"/>
+<style>
+.title h1 + ul {font-size: 1em; position: relative; top: -200px;}
+.fade { opacity: 0.5;}
+</style>
 </head>
 
 <body>
@@ -63,7 +67,22 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
     </section>
 </div>
 
-
+<div class="slide">
+  <header><h1>Benefits of Web Components</h1></header>
+    <section class="content">
+      <ul>
+        <li>Semantic
+        <li>JS for behavior, CSS for presentation, HTML for content</li>
+        <li>Silo-ability</li>
+        <li>Style encapsulation</li>
+        <li>Native so better performance</li>
+        <li>Reducing number of DOM nodes to those needed at runtime.
+        <li>modularized and organized code: less prone to errors.
+        <li>Reusable interface elements and functionality.
+        <li>Easily open sourced: share interface elements/code between projects/developers.
+        <li>Two-way binding</li>
+    </section>
+</div>
 
 <div class="slide">
     <section class="content">
@@ -117,6 +136,8 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 <strong>&lt;/name-tag&gt;</strong></code></pre>
 </div>
 
+
+
 <div class="slide">
   <header><h1>Components of Web Components</h1></header>
     <section class="content">
@@ -127,6 +148,9 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
         <li>Shadow DOM</li>
         <li>HTML imports</li>
         <li>Custom Elements</li>
+      </ul>
+
+<p style="opacity: 0.2">Notes / links ➹<p>
     </section>
 </div>
 
@@ -202,7 +226,7 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 <div class="slide">
   <header><h1 class="hide">Backend Frameworks</h1></header>
     <section class="content">
-      <pre contenteditable>&lt;div class=&quot;name-tag&quot;&gt;
+      <pre contenteditable style="font-size: 0.8rem; line-height: 1">&lt;div class=&quot;name-tag&quot;&gt;
   &lt;div class=&quot;outer&quot;&gt;
     &lt;div class=&quot;logo&quot;&gt;YOW!&lt;span&gt;2014&lt;/span&gt;&lt;/div&gt;
     &lt;div class=&quot;tagline&quot;&gt;Australia Software Developer Conference&lt;/div&gt;
@@ -248,13 +272,15 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 </div>
 
 
-
+<!--
 
 <div class="slide">
   <header class="hide"><h1>DOM Manipulation (<a href="files/oldstyle.html" target="foo">view</a>)</h1></header>
-    <pre contenteditable>  <em>&lt;div class="name-tag"&gt;&lt;/div&gt;</em>
+    <pre contenteditable>  <em>&lt;div class="name-tag"&gt;&lt;/div&gt;</em></pre>
 
-&lt;script&gt;
+<pre contenteditable>var Nametag = createNametag('Estelle Weyl', 'Speaker');
+createComponent('name-tag', Nametag);
+
 function createComponent(name, tmpl) {
   var unit = document.querySelector('.' + name);
   var clone = tmpl.cloneNode(true);
@@ -290,79 +316,69 @@ function createNametag() {
 
   return tmpl;
 }
-var Nametag = createNametag('Estelle Weyl', 'Speaker');
-createComponent('name-tag', Nametag);
-&lt;/script&gt;</pre><a href="files/oldstyle.html" target="play" title="open resource in new window">➹</a>
+
+
+</pre><a href="files/oldstyle.html" target="play" title="open resource in new window">➹</a>
 </div>
 
+-->
+
+
 <div class="slide">
-  <header class="hide"><h1>DOM Programming (<a href="files/oldstyle_multiple.html" target="foo">view</a>)</h1></header>
-    <pre contenteditable>  <em>&lt;div class="name-tag"&gt;
-    &lt;div class="nm"&gt;Estelle Weyl&lt;/div&gt;
-    &lt;div class="rl"&gt;Speaker&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class="name-tag"&gt;
-    &lt;div class="nm"&gt;Niniane Wang&lt;/div&gt;
-    &lt;div class="rl"&gt;CTO, Minted&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class="name-tag"&gt;
-    &lt;div class="nm"&gt;Tim Berners-Lee&lt;/div&gt;
-    &lt;div class="rl"&gt;Web Developer&lt;/div&gt;
-  &lt;/div&gt;</em>
+  <header class="hide"><h1>DOM Programming (<a href="files/oldstyle_multiple.2" target="foo">view</a>)</h1></header>
+    <pre contenteditable>var data = [
+    {name: 'Estelle Weyl', role: 'Speaker'},
+    {name: 'Niniane Wang', role: 'CTO, Minted'},
+    {name: 'Tim Berners-Lee', role: 'Web Developer'}
+  ];
 
-&lt;script&gt;
-var Nametag = createNametag();
-createComponent('name-tag', Nametag);
-
-function createComponent(identifier, tmpl) {
-  var units = document.querySelectorAll(
-    '.' + identifier);
-  <strong>// iterate. Clone then remove content</strong>
-  [].forEach.call(
-    units, function(unit) {
-      var clone = tmpl.cloneNode(true);
-      unit.appendChild(clone);
-      if(unit.firstChild.data.length) {
-        unit.querySelector('.name').innerHTML = unit.firstElementChild.innerHTML;
-        unit.firstElementChild.remove();
-        unit.querySelector('.role').innerHTML = unit.firstElementChild.innerHTML;
-        unit.firstElementChild.remove();
-      }
-    });
+function createComponent() {
+  var unit, clone, i = 0;
+  <strong>// iterate creating tag per object</strong>
+  for (i = 0; data.length > i; i += 1) {
+    unit = data[i];
+    clone = createNametag();
+    clone.querySelector('.name').innerHTML = unit.name;
+    clone.querySelector('.role').innerHTML = unit.role;
+    document.body.appendChild(clone);
+  }
 }
 
-function createNametag(n, r) {
-  var tmpl = document.createDocumentFragment(),
+function createNametag() {
+  <strong>// Create the nodes</strong>
+  var tmpl        = document.createElement('div'),
       outer       = document.createElement('div'),
-      boilerplate = document.createElement('div'),
+      header      = document.createElement('header'),
       p           = document.createElement('p'),
-      inner       = document.createElement('div'),
-      name        = document.createElement('div'),
-      role        = document.createElement('div'),
+      main        = document.createElement('main'),
+      name        = document.createElement('p'),
+      role        = document.createElement('p'),
       footer      = document.createElement('footer');
-  // add classes
+  <strong>// add classes</strong>
+  tmpl.classList.add('name-tag');
   outer.classList.add('outer');
-  boilerplate.classList.add('boilerplate');
-  inner.classList.add('inner');
   name.classList.add('name');
   role.classList.add('role')
-  // add content
-  boilerplate.innerHTML = 'YOW!&lt;span&gt;2014&lt;/span&gt;';
+  <strong>// add content</strong>
+  header.innerHTML = 'YOW!&gt;span>2014&gt;/span>';
   p.textContent = "Australia Software Developer Conference";
-  footer.innerHTML = 'Follow us on Twitter @yow_oz&lt;br/&gt;Follow the conversation using #yow2014';
-  // put it all together
-  outer.appendChild(boilerplate);
+  footer.innerHTML = 'Follow us on Twitter @yow_oz&gt;br/>Follow the conversation using #yow2014';
+  <strong>// put it all together</strong>
+  outer.appendChild(header);
   outer.appendChild(p);
-  inner.appendChild(name);
-  inner.appendChild(role);
-  outer.appendChild(inner);
+  main.appendChild(name);
+  main.appendChild(role);
+  outer.appendChild(main);
   outer.appendChild(footer);
   tmpl.appendChild(outer);
 
   return tmpl;
 }
 
-&lt;/script&gt;</pre>
+createComponent();
+
+
+</pre>
 <a href="files/oldstyle_multiple.html" target="play" title="open resource in new window">➹</a>
 </div>
 
@@ -394,17 +410,18 @@ function createNametag(n, r) {
   <header><h1>Goal</h1></header>
     <section class="content">
       <pre contenteditable><strong>&lt;name-tag></strong>
-    &lt;div&gt;Estelle Weyl&lt;/div&gt;
-    &lt;div&gt;Speaker&lt;/div&gt;
+    &lt;p class="role"&gt;Speaker&lt;/p&gt;
+    &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
 <strong>&lt;/name-tag></strong>
 <strong>&lt;name-tag></strong>
-    &lt;div&gt;Niniane Wang&lt;/div&gt;
-    &lt;div&gt;CTO, Minted&lt;/div&gt;
+    &lt;p class="name"&gt;Niniane Wang&lt;/p&gt;
+    &lt;p class="role"&gt;CTO, Minted&lt;/p&gt;
 <strong>&lt;/name-tag></strong>
 <strong>&lt;name-tag></strong>
-    &lt;div&gt;Tim Berners-Lee&lt;/div&gt;
-    &lt;div&gt;Web Developer&lt;/div&gt;
+    &lt;p class="name"&gt;Tim Berners-Lee&lt;/p&gt;
+    &lt;p class="role"&gt;Web Developer&lt;/p&gt;
 <strong>&lt;/name-tag></strong></pre>
+<p style="opacity: 0.2">Order of role / name doesn't matter</p>
     </section>
 </div>
 
@@ -418,6 +435,12 @@ function createNametag(n, r) {
 
 <div class="slide title">
 <h1>Templates</h1>
+ <ul>
+        <li>&lt;template&gt; <em>(and &lt;content&gt;)</em></li>
+        <li class="fade">Shadow DOM</li>
+        <li class="fade">HTML imports</li>
+        <li class="fade">Custom Elements</li>
+      </ul>
 </div>
 
 <div class="slide">
@@ -427,6 +450,7 @@ function createNametag(n, r) {
     </section>
 </div>
 
+<!--
 <div class="slide">
   <header><h1>&lt;template&gt; specification</h1></header>
     <section class="content">
@@ -435,6 +459,7 @@ function createNametag(n, r) {
 
     </section>
 </div>
+-->
 
 <div class="slide">
   <header><h1>&lt;template&gt; specification</h1></header>
@@ -737,7 +762,7 @@ for(var i = 0; i &lt; el.length; i++) {
 
 <div class="slide">
   <header>
-    <h1><strong>select</strong> attribute</h1>
+    <h1>HTML, CSS &amp; JS</h1>
   </header>
 
   <pre contenteditable>&lt;template&gt;
@@ -795,16 +820,16 @@ for(var i = 0; i &lt; el.length; i++) {
 &lt;content select="*"&gt;&lt;/content&gt;</pre>
     </section>
 </div>
-
+<!--
 <div class="slide">
   <header><h1>Scoped CSS</h1></header>
     <figure><object data="http://jsbin.com/yaruja/1/edit?html,css,output"></object></figure>
     <a href="http://codepen.io/estelle/pen/WbvwjR" target="play" title="open resource in new window">➹</a>
     <a href="http://jsbin.com/yaruja/1/edit?html,css,output" target="play" title="open resource in new window">➹</a>
 </div>
-
+-->
 <div class="slide">
-  <header><h1>In case "Scoped CSS" failed</h1></header>
+  <header><h1>Scoped CSS</h1></header>
     <figure><object data="files/scoped-style.html"></object></figure>
   <a href="files/scoped-style.html" target="play" title="open resource in new window">➹</a>
 </div>
@@ -841,6 +866,12 @@ for(var i = 0; i &lt; el.length; i++) {
 
 <div class="slide title">
 <h1>Shadow DOM</h1>
+ <ul>
+        <li class="fade">&lt;template&gt; <em>(and &lt;content&gt;)</em></li>
+        <li>Shadow DOM</li>
+        <li class="fade">HTML imports</li>
+        <li class="fade">Custom Elements</li>
+      </ul>
 </div>
 
 <div class="slide">
@@ -881,7 +912,7 @@ for(var i = 0; i &lt; el.length; i++) {
     </section>
 </div>
 
-
+<!--
 <div class="slide">
   <header><h1>Notes:</h1></header>
     <section class="content">
@@ -890,6 +921,7 @@ for(var i = 0; i &lt; el.length; i++) {
       <p>The content inside of the shadow host (or parent of the shadow root) is not rendered. Rather, the content inside the shadow root itself is what gets rendered.
     </section>
 </div>
+-->
 
 <div class="slide">
   <header><h1>DOM Encapsulation</h1></header>
@@ -928,14 +960,21 @@ for(var i = 0; i &lt; el.length; i++) {
 <div class="slide">
   <header><h1>Simple Example</h1></header>
     <section class="content">
+     <pre contenteditable>* {color: red;}</pre>
       <pre contenteditable>&lt;div class="spirit">&lt;/div>
 &lt;script>
   var host = document.querySelector('.spirit');
   var root = host<strong>.createShadowRoot()</strong>;
-  root<strong>.textContent</strong> = "Just because you see me," +
-       "does that mean I really exist?";
-&lt;/script></pre><a href="files/philosophy.html" target="play">➹</a>
+  root<strong>.innerHTML</strong> = "&lt;p>Just because you see me," +
+       "does that mean I really exist?&lt;/p>";
+&lt;/script></pre><a href="files/philo.html" target="play">➹</a>
     </section>
+</div>
+
+<div class="slide">
+  <header><h1>Shadow DOM/Scoped CSS</h1></header>
+    <figure><object data="files/philo.html"></object></figure>
+  <a href="files/philo.html" target="play" title="open resource in new window">➹</a>
 </div>
 
 
@@ -969,6 +1008,12 @@ root<strong>.appendChild(</strong>header<strong>)</strong>;</pre>
 
 <div class="slide title">
 <h1>HTML Imports</h1>
+<ul>
+        <li class="fade">&lt;template&gt; <em>(and &lt;content&gt;)</em></li>
+        <li class="fade">Shadow DOM</li>
+        <li>HTML imports</li>
+        <li class="fade">Custom Elements</li>
+      </ul>
 </div>
 
 
@@ -1249,6 +1294,12 @@ function errorHandler(e) {
 
 <div class="slide title">
 <h1>Custom Elements</h1>
+ <ul>
+        <li class="fade">&lt;template&gt; <em>(and &lt;content&gt;)</em></li>
+        <li class="fade">Shadow DOM</li>
+        <li class="fade">HTML imports</li>
+        <li>Custom Elements</li>
+      </ul>
 </div>
 
 
@@ -1306,8 +1357,10 @@ function errorHandler(e) {
 <div class="slide">
   <header><h1>Auto Registration</h1></header>
     <section class="content">
-      <p>Imports can execute script, so we can use imports to auto register our elements: to define and register our custom elements.
-      <p>Implement a custom element that creates Shadow DOM from a &lt;template> then registers itself.
+      <p>The <strong>custom element</strong> that you <strong>import</strong> creates a <strong>shadow DOM</strong> from a <strong>&lt;template></strong> then registers itself.</p>
+    <ul>
+      <li>Imports can execute script, so use imports to define and register custom elements.</li>
+    </ul>
     </section>
 </div>
 
@@ -1499,6 +1552,22 @@ document.<strong>registerElement</strong>('name-tag', {
   <img src="http://akamaicovers.oreilly.com/images/0636920018063/cat.gif" alt="HTML5: The Definitive Guide"/>
   <img src="http://akamaicovers.oreilly.com/images/0636920021711/cat.gif" alt="MObile HTML5" />
   <img src="http://akamaicovers.oreilly.com/images/0636920025955/cat.gif" alt="Web Performance Daybook"/></div>
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>Resources</h1></header>
+    <section class="content">
+      <ul>
+        <li>Deck at <a href="http://estelle.github.io/components" target="foo">estelle.github.io/components</a></li>
+        <li>All resources linked via the arrow (➹)</li>
+        <li><a href="https://www.polymer-project.org/" target="foo">Polymer-Project.org</a>
+        <li><a href="http://webcomponents.org/" target="foo">WebComponents.org</a>
+        <li><a href="http://customelements.io/" target="foo">CustomElements.io</a>
+        <li><a href="http://twitter.com/estellevw" target="foo">Twitter</a> * <a href="http://standardista.com">Blog</a>
+      </ul>
+
+  <a href="http://estelle.github.io/components" target="play" title="open resource in new window">➹</a>
     </section>
 </div>
 

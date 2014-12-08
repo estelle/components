@@ -56,7 +56,38 @@
   </footer>
 </div>
 </template>
+<script>
+  // the "importee", in this case the template
+  var importedDoc = document.currentScript.ownerDocument;
 
+  // the "importer", which has custom elements
+  var parentDoc = document;
+
+  parentDoc.body.appendChild(importedDoc.importNode(content, true));
+
+  // grab the contents of the #blog-post from this document
+  // and append it to the importing document.
+  //var template = importedDoc.querySelector('template');
+
+  var nameTag = Object.create(HTMLElement.prototype);
+
+nameTag.createdCallback = function() {
+   var template = importedDoc.getElementById('nameTagTemplate').content;
+   var clone = template.cloneNode(true);
+   var root = this.createShadowRoot();
+   root.appendChild(clone);
+ };
+
+document.registerElement('name-tag', {
+  prototype: nameTag
+});
+
+
+
+
+
+</script>
+<!--
 function() {
     var importDoc = document.currentScript.ownerDocument; // importee
 
@@ -76,4 +107,4 @@ function() {
     };
 
     document.registerElement('name-tag', {prototype: proto});
-  })();
+  })(); -->
