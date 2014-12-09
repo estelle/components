@@ -10,7 +10,7 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 <link rel="stylesheet" href="css/index.css"/>
 <style>
 .title h1 + ul {font-size: 1em; position: relative; top: -200px;}
-.fade { opacity: 0.5;}
+.fade { opacity: 0.3;}
 </style>
 </head>
 
@@ -67,22 +67,15 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
     </section>
 </div>
 
+
+
 <div class="slide">
-  <header><h1>Benefits of Web Components</h1></header>
-    <section class="content">
-      <ul>
-        <li>Semantic
-        <li>JS for behavior, CSS for presentation, HTML for content</li>
-        <li>Silo-ability</li>
-        <li>Style encapsulation</li>
-        <li>Native so better performance</li>
-        <li>Reducing number of DOM nodes to those needed at runtime.
-        <li>modularized and organized code: less prone to errors.
-        <li>Reusable interface elements and functionality.
-        <li>Easily open sourced: share interface elements/code between projects/developers.
-        <li>Two-way binding</li>
-    </section>
+  <header><h1></h1></header>
+    <figure><object data="http://googlewebcomponents.github.io/google-map/components/google-map/demo.html"></object></figure>
+    <a href="http://googlewebcomponents.github.io/google-map/components/google-map/demo.html" target="play" title="open resource in new window">➹</a>
 </div>
+
+
 
 <div class="slide">
     <section class="content">
@@ -126,15 +119,25 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
     <a href="http://googlewebcomponents.github.io/google-map/components/google-map/demo.html" target="play" title="open resource in new window">➹</a>
 </div>
 
+
 <div class="slide">
-    <figure style="width: 336px; height: 400px; position: static">
-      <object data="files/shadow.html"></object>
-    </figure>
-    <pre contenteditable style=" display: inline-block;"><code><strong>&lt;name-tag&gt;</strong>
-  &lt;p class="role"&gt;Speaker&lt;/p&gt;
-  &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
-<strong>&lt;/name-tag&gt;</strong></code></pre>
+  <header><h1>Benefits of Web Components</h1></header>
+    <section class="content">
+      <ul>
+        <li>Semantic
+        <li>JS for behavior, CSS for presentation, HTML for content</li>
+        <li>Silo-ability</li>
+        <li>Style encapsulation</li>
+        <li>Native so better performance</li>
+        <li>Reducing number of DOM nodes to those needed at runtime.
+        <li>modularized and organized code: less prone to errors.
+        <li>Reusable interface elements and functionality.
+        <li>Easily open sourced: share interface elements/code between projects/developers.
+        <li>Two-way binding</li>
+    </section>
 </div>
+
+
 
 
 
@@ -154,8 +157,64 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
     </section>
 </div>
 
+
+
+
+
+
+
+
+<div class="slide">
+  <header><h1>Our Task</h1></header>
+    <figure style="width: 336px; height: 400px; position: static">
+      <object data="files/shadow.html"></object>
+    </figure>
+    <pre contenteditable style=" display: inline-block;"><code><strong>&lt;name-tag&gt;</strong>
+  &lt;p class="role"&gt;Speaker&lt;/p&gt;
+  &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
+<strong>&lt;/name-tag&gt;</strong></code></pre>
+</div>
+
+
+<div class="slide">
+  <header><h1>Spec 1: Templates</h1></header>
+    <section class="content">
+ <img src="assets/images/speclist_template.gif" alt="template element in action"/>
+</div>
+
+<div class="slide">
+  <header><h1>Spec 2: Shadow DOM</h1></header>
+    <section class="content">
+ <img src="assets/images/speclist_shadowdom.gif" alt="Shadow Root in action"/>
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>Spec 3: HTML Import</h1></header>
+    <section class="content">
+ <img src="assets/images/speclist_import.gif" alt="HTML imports in action"/>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Spec 4: Custom Elements</h1></header>
+    <section class="content">
+
+ <img src="assets/images/speclist_customelement.gif" alt="custom element in action"/>
+    </section>
+</div>
+
+
 <div class="slide">
   <header><h1>Browser Support</h1></header>
+  <ul class="icons">
+    <li class="safari half">Safari (templates only)</li>
+    <li class="firefox half">Firefox (TMP 25%, rest behind flag)</li>
+    <li class="chrome">Chrome <br/>&nbsp;<br/><br/></li>
+    <li class="opera">Opera <br/>&nbsp;<br/><br/></li>
+    <li class="ie bad">IE <br/>&nbsp;<br/><br/></li>
+  </ul>
     <figure><object data="http://caniuse.com/#search=components"></object></figure>
   <a href="http://caniuse.com/#search=components" target="play" title="open resource in new window">➹</a>
 </div>
@@ -172,13 +231,10 @@ Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
 </div>
 
 
-
-
-
-
-<div class="slide">
-  <header><h1>Our Task</h1></header>
-    <figure><object data="files/shadow.html"></object></figure>
+<div class="slide title">
+  <header><h1>Current State of Affairs</h1></header>
+    <section class="content">
+    </section>
 </div>
 
 <div class="slide">
@@ -502,6 +558,13 @@ createComponent();
 
 <div class="slide">
   <header><h1>Browser Support</h1></header>
+   <ul class="icons">
+    <li class="safari">Safari</li>
+    <li class="firefox">Firefox</li>
+    <li class="chrome">Chrome </li>
+    <li class="opera">Opera </li>
+    <li class="ie bad">IE</li>
+  </ul>
     <figure><object data="http://caniuse.com/#search=template"></object></figure>
   <a href="http://caniuse.com/#search=template" target="play" title="open resource in new window">➹</a>
 </div>
@@ -649,8 +712,8 @@ createComponent();
     <section class="content">
 
   <pre contenteditable>&lt;div class="name-tag"&gt;
-  &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
   &lt;p class="role"&gt;Speaker&lt;/p&gt;
+  &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="name-tag"&gt;
   &lt;p class="name"&gt;Ninian Wang&lt;/p&gt;
@@ -810,6 +873,11 @@ for(var i = 0; i &lt; el.length; i++) {
 
 
 
+<div class="slide">
+  <header><h1>In browser</h1></header>
+    <figure><object data="files/shadow2_select.html"></object></figure>
+  <a href="files/shadow2_select.html" target="play" title="open resource in new window">➹</a>
+</div>
 
 
 <div class="slide">
@@ -833,6 +901,8 @@ for(var i = 0; i &lt; el.length; i++) {
     <figure><object data="files/scoped-style.html"></object></figure>
   <a href="files/scoped-style.html" target="play" title="open resource in new window">➹</a>
 </div>
+
+
 
 <div class="slide">
   <header><h1>Benefits of &lt;template&gt;</h1></header>
@@ -977,6 +1047,34 @@ for(var i = 0; i &lt; el.length; i++) {
   <a href="files/philo.html" target="play" title="open resource in new window">➹</a>
 </div>
 
+<div class="slide">
+  <header><h1>Targeting the Shadow DOM</h1></header>
+    <figure><object data="files/philo2.html"></object></figure>
+  <a href="files/philo2.html" target="play" title="open resource in new window">➹</a>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>Targeting the custom element</h1></header>
+    <section class="content">
+      <pre contenteditable>/* unknown elements are unresolved */
+<strong>:unresolved</strong> {
+    opacity: 0; /* hide until resolved
+  }
+/* by default elements are always display:inline. */
+<strong>:host</strong> {
+    display: block;
+  }
+/* target the parent node by class or id */
+<strong>:host(</strong>.customElementsClass<strong>)</strong> {
+  ...
+}
+:host(:hover) { opacity: 1; }
+:host(:active) { ... }</pre>
+    </section>
+</div>
+
 
 <div class="slide">
   <header><h1>Shadow Root and Host:</h1></header>
@@ -1038,6 +1136,13 @@ root<strong>.appendChild(</strong>header<strong>)</strong>;</pre>
 
 <div class="slide">
   <header><h1>Browser Support</h1></header>
+  <ul class="icons">
+    <li class="safari bad">Safari</li>
+    <li class="firefox half">Firefox</li>
+    <li class="chrome">Chrome </li>
+    <li class="opera">Opera </li>
+    <li class="ie bad">IE</li>
+  </ul>
     <figure><object data="http://caniuse.com/#search=import"></object></figure>
   <a href="http://caniuse.com/#search=import" target="play" title="open resource in new window">➹</a>
 </div>
@@ -1495,6 +1600,41 @@ document.getElementById('beep').appendChild(yourButton);
 
 
 <div class="slide">
+  <header><h1>Targeting the importee from the importer</h1></header>
+    <section class="content">
+    <pre contenteditable>&lt;style>
+<strong>my-element</strong> {
+    display: block; }
+my-element<strong>:unresolved</strong> {
+    opacity: 0; }
+my-element<strong>::shadow</strong> {
+    /*target the shadow root */ }
+<strong>::shadow p</strong> {
+    /* any p within any shadow root */ }
+&lt;/style>
+&lt;head>
+&lt;body class="classInImporter">
+  &lt;my-element>&lt;/my-element>
+&lt;/body></pre>
+
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>Targeting the importer from the importee</h1></header>
+    <section class="content"><pre contenteditable>  &lt;template>
+    &lt;style>
+      <strong>:host-context(.classInImporter) { ... }</strong>
+    &lt;/style>
+    .... &lt;!-- html template for &lt;my-element> -->
+  &lt;/template>
+    </pre><pre contenteditable>&lt;body class="classInImporter">
+  &lt;my-element>&lt;/my-element>
+&lt;/body></pre>
+    </section>
+</div>
+
+<div class="slide">
   <header><h1>HTML: Custom Elements</h1></header>
     <section class="content"><pre contenteditable><code><strong>&lt;name-tag&gt;</strong>
   &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
@@ -1560,11 +1700,11 @@ document.<strong>registerElement</strong>('name-tag', {
     <section class="content">
       <ul>
         <li>Deck at <a href="http://estelle.github.io/components" target="foo">estelle.github.io/components</a></li>
-        <li>All resources linked via the arrow (➹)</li>
+        <li>All resources linked via the arrows (➹)</li>
         <li><a href="https://www.polymer-project.org/" target="foo">Polymer-Project.org</a>
         <li><a href="http://webcomponents.org/" target="foo">WebComponents.org</a>
         <li><a href="http://customelements.io/" target="foo">CustomElements.io</a>
-        <li><a href="http://twitter.com/estellevw" target="foo">Twitter</a> * <a href="http://standardista.com">Blog</a>
+        <li><a href="http://twitter.com/estellevw" target="foo">My Twitter</a> * <a href="http://standardista.com">My Blog</a> * <a href="http://estelle.github.io/" target="foo">My Talks</a> * <a href="http://github.com/estelle">My Github</a> * <a href="http://search.oreilly.com/?q=estelle+weyl&x=0&y=0" target="foo">My Books &amp; Videos</a>
       </ul>
 
   <a href="http://estelle.github.io/components" target="play" title="open resource in new window">➹</a>
