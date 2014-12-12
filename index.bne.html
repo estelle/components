@@ -1,0 +1,1719 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Talk:  Web Components</title>
+<!--
+Made by: Estelle Weyl
+Copyright:  CC-SA-NC-BY - Creative Commons Attribution-NonCommercial-ShareAlike
+-->
+<link rel="stylesheet" href="css/index.css"/>
+<style>
+.title h1 + ul {font-size: 1em; position: relative; top: -200px;}
+.fade { opacity: 0.3;}
+</style>
+</head>
+
+<body>
+  <div id="presentation">
+   <div id="slides">
+<!-- SLIDES -->
+
+
+<div class="slide intro">
+  <header>
+    <h1 style="font-size: 4rem;"><strong>Web Components</strong></h1>
+  </header>
+  <h1>Estelle Weyl</h1>
+  <h4>@estellevw</h3>
+  <h4><a href="http://estelle.github.io/components">estelle.github.io/components</a></h4>
+</div>
+
+<div class="slide">
+    <section class="content">
+<h1 class="textmask">Estelle Weyl</h1>
+<h2><a href="http://www.standardista.com">www.standardista.com</a></h2>
+<h2><a href="http://www.twitter.com/estellevw">@estellevw</a></h2>
+<h2><a href="http://www.twitter.com/standardista">@standardista</a></h2>
+<div class="floatright">
+  <img src="http://akamaicovers.oreilly.com/images/9780980846904/cat.gif" alt="HTML5 and CSS3 for the Real World">
+  <img src="http://akamaicovers.oreilly.com/images/0636920018063/cat.gif" alt="HTML5: The Definitive Guide"/>
+  <img src="http://akamaicovers.oreilly.com/images/0636920021711/cat.gif" alt="MObile HTML5" />
+  <img src="http://akamaicovers.oreilly.com/images/0636920025955/cat.gif" alt="Web Performance Daybook"/></div>
+    </section>
+</div>
+
+
+
+<div class="slide title">
+<h1>Web Components</h1>
+<p style="opacity: 0.2">Notes / links ➹<p>
+</div>
+
+
+
+<div class="slide">
+  <header><h1> </h1></header>
+    <section class="content"><strong>Web Components:</strong> Encapsulated and reusable components for the web.
+    </section>
+</div>
+
+
+
+<div class="slide opposite" style="background: url(assets/images/divitis.gif) center no-repeat;">
+  <header><h1>Current state of affairs</h1></header>
+    <section class="content">
+
+    </section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1></h1></header>
+    <figure><object data="http://googlewebcomponents.github.io/google-map/components/google-map/demo.html"></object></figure>
+    <a href="http://googlewebcomponents.github.io/google-map/components/google-map/demo.html" target="play" title="open resource in new window">➹</a>
+</div>
+
+
+
+<div class="slide">
+    <section class="content">
+<pre contenteditable><strong>google-map</strong> { display: block; height: 600px;}</pre>
+
+<pre contenteditable>&lt;<strong>google-map</strong> latitude="37.77493" longitude="-122.41942">&lt;/google-map></pre>
+<pre contenteditable>&lt;<strong>template is="auto-binding"</strong>>
+&lt;<strong>google-map-directions</strong> map="{{map}}"
+      startAddress="San Francisco"
+      endAddress="Mountain View"
+      travelMode="TRANSIT"><strong>&lt;/google-map-directions></strong>
+  &lt;<strong>google-map</strong> map="{{map}}" latitude="37.779"
+              longitude="-122.3892"><strong>&lt;/google-map></strong>
+&lt;/template></pre>
+<a href="http://googlewebcomponents.github.io/google-map/components/google-map/" target="play" title="open resource in new window">➹</a>
+
+    </section>
+</div>
+
+
+<div class="slide">
+<header><h1>All you add to your HTML</h1></header>
+<pre contenteditable>&lt;<strong>link rel="import"</strong> href="google-map-directions.html"&gt;</pre>
+
+
+<pre contenteditable>&lt;<strong>google-map</strong> latitude="37.779" longitude="-122.3892" minZoom="9" maxZoom="11" fit&gt;
+  &lt;<strong>google-map-marker</strong> latitude="37.779" longitude="-122.3892"
+                     title="Go Giants!" draggable="true"&gt;
+    &lt;img src="http://www. ... SFGiants.png" /&gt;
+  &lt;<strong>/google-map-marker</strong>&gt;
+&lt;<strong>/google-map</strong>&gt;
+
+&lt;<strong>google-map-directions</strong> startAddress="San Francisco" endAddress="Mountain View"&gt;&lt;<strong>/google-map-directions</strong>&gt;</pre>
+</div>
+
+<div class="slide">
+  <header><h1></h1></header>
+    <figure><object data="http://googlewebcomponents.github.io/google-map/components/google-map/demo.html"></object></figure>
+    <a href="http://googlewebcomponents.github.io/google-map/components/google-map/demo.html" target="play" title="open resource in new window">➹</a>
+</div>
+
+
+<div class="slide">
+  <header><h1>Benefits of Web Components</h1></header>
+    <section class="content">
+      <ul>
+        <li>Semantic
+        <li>JS for behavior, CSS for presentation, HTML for content</li>
+        <li>Silo-ability</li>
+        <li>Style encapsulation</li>
+        <li>Native (better performance)</li>
+        <li>Reducing number of DOM nodes to those needed at runtime.
+        <li>modularized and organized code: less prone to errors.
+        <li>Reusable interface elements and functionality.
+        <li>Easily open sourced: share interface elements/code between projects/developers.
+        <li>Two-way binding</li>
+    </section>
+</div>
+
+
+
+
+
+<div class="slide">
+  <header><h1>Components of Web Components</h1></header>
+    <section class="content">
+      <h2></h2>
+      <h3>a.k.a. Table of Contents </h3>
+      <ul>
+        <li>&lt;template&gt; <em>(and &lt;content&gt;)</em></li>
+        <li>Shadow DOM</li>
+        <li>HTML imports</li>
+        <li>Custom Elements</li>
+      </ul>
+
+<p style="opacity: 0.2">Notes / links ➹<p>
+    </section>
+</div>
+
+
+
+
+
+
+
+
+<div class="slide">
+  <header><h1>Our Task</h1></header>
+    <figure style="width: 336px; height: 400px; position: static">
+      <object data="files/shadow.html"></object>
+    </figure>
+    <pre contenteditable style=" display: inline-block;"><code><strong>&lt;name-tag&gt;</strong>
+  &lt;p class="role"&gt;Speaker&lt;/p&gt;
+  &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
+<strong>&lt;/name-tag&gt;</strong></code></pre>
+</div>
+
+
+<div class="slide">
+  <header><h1>Spec 1: Templates</h1></header>
+    <section class="content">
+ <img src="assets/images/speclist_template.gif" alt="template element in action"/>
+</div>
+
+<div class="slide">
+  <header><h1>Spec 2: Shadow DOM</h1></header>
+    <section class="content">
+ <img src="assets/images/speclist_shadowdom.gif" alt="Shadow Root in action"/>
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>Spec 3: HTML Import</h1></header>
+    <section class="content">
+ <img src="assets/images/speclist_import.gif" alt="HTML imports in action"/>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Spec 4: Custom Elements</h1></header>
+    <section class="content">
+
+ <img src="assets/images/speclist_customelement.gif" alt="custom element in action"/>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Browser Support</h1></header>
+  <ul class="icons">
+    <li class="safari half">Safari (templates only)</li>
+    <li class="firefox half">Firefox (TMP 25%, rest behind flag)</li>
+    <li class="chrome">Chrome <br/>&nbsp;<br/><br/></li>
+    <li class="opera">Opera <br/>&nbsp;<br/><br/></li>
+    <li class="ie bad">IE <br/>&nbsp;<br/><br/></li>
+  </ul>
+    <figure><object data="http://caniuse.com/#search=components"></object></figure>
+  <a href="http://caniuse.com/#search=components" target="play" title="open resource in new window">➹</a>
+</div>
+
+<div class="slide">
+  <header><h1>Libraries &amp; Polyfills</h1></header>
+    <section class="content icon-images">
+      <ul>
+        <li><img src="assets/icons/icon-polymer.png" alt=""/> Polymer</li>
+        <li><img src="assets/icons/icon-xtags.png" alt=""/>x-tag</li>
+        <li><img src="assets/icons/icon-bosonic.png" alt=""/>Bosonic</li>
+      </ul>
+    </section>
+</div>
+
+
+<div class="slide title">
+  <header><h1>Current State of Affairs</h1></header>
+    <section class="content">
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>Static Code</h1></header>
+    <section class="content">
+      <pre contenteditable>&lt;div class=&quot;name-tag&quot;&gt;
+  &lt;div class=&quot;outer&quot;&gt;
+    &lt;div class=&quot;logo&quot;&gt;YOW!&lt;span&gt;2014&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;tagline&quot;&gt;Australia Software Developer Conference&lt;/div&gt;
+    &lt;div class=&quot;inner&quot;&gt;
+      &lt;div class=&quot;name&quot;&gt;Estelle Weyl&lt;/div&gt;
+      &lt;div class=&quot;role&quot;&gt;Speaker&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;footer&quot;&gt;Follow us on Twitter @yow_oz&lt;br&gt;
+      Follow the conversation using #yow2014
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+<a href="files/static_1.html" target="play" title="open resource in new window">➹</a>
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>A bit more semantic</h1></header>
+    <section class="content">
+
+<pre contenteditable>&lt;div class=&quot;name-tag&quot;&gt;
+  &lt;div class=&quot;outer&quot;&gt;
+    <strong>&lt;header&gt;</strong>YOW!&lt;span&gt;2014&lt;/span&gt;
+      &lt;p&gt;Australia Software Developer Conference&lt;/p&gt;
+    &lt;/header&gt;
+     <strong>&lt;main&gt;</strong>
+      &lt;p class=&quot;name&quot;&gt;Estelle Weyl&lt;/p&gt;
+      &lt;p class=&quot;role&quot;&gt;Speaker&lt;/p&gt;
+    &lt;/main&gt;
+    <strong>&lt;footer&gt;</strong>Follow us on Twitter @yow_oz&lt;br&gt;
+      Follow the conversation using #yow2014
+    &lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1 class="hide">Server-side code</h1></header>
+    <section class="content">
+      <pre contenteditable style="font-size: 0.8rem; line-height: 1">&lt;div class=&quot;name-tag&quot;&gt;
+  &lt;div class=&quot;outer&quot;&gt;
+    &lt;div class=&quot;logo&quot;&gt;YOW!&lt;span&gt;2014&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;tagline&quot;&gt;Australia Software Developer Conference&lt;/div&gt;
+    &lt;div class=&quot;inner&quot;&gt;
+      &lt;div class=&quot;name&quot;&gt;Estelle Weyl&lt;/div&gt;
+      &lt;div class=&quot;role&quot;&gt;Speaker&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;footer&quot;&gt;Follow us on Twitter @yow_oz&lt;br&gt;
+      Follow the conversation using #yow2014
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;name-tag&quot;&gt;
+  &lt;div class=&quot;outer&quot;&gt;
+    &lt;div class=&quot;logo&quot;&gt;YOW!&lt;span&gt;2014&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;tagline&quot;&gt;Australia Software Developer Conference&lt;/div&gt;
+    &lt;div class=&quot;inner&quot;&gt;
+      &lt;div class=&quot;name&quot;&gt;Niniane Wang&lt;/div&gt;
+      &lt;div class=&quot;role&quot;&gt;CTO, Minted&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;footer&quot;&gt;Follow us on Twitter @yow_oz&lt;br&gt;
+      Follow the conversation using #yow2014
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;name-tag&quot;&gt;
+  &lt;div class=&quot;outer&quot;&gt;
+    &lt;div class=&quot;logo&quot;&gt;YOW!&lt;span&gt;2014&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;tagline&quot;&gt;Australia Software Developer Conference&lt;/div&gt;
+    &lt;div class=&quot;inner&quot;&gt;
+      &lt;div class=&quot;name&quot;&gt;Tim Berners-Lee&lt;/div&gt;
+      &lt;div class=&quot;role&quot;&gt;Web Developer&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;footer&quot;&gt;Follow us on Twitter @yow_oz&lt;br&gt;
+      Follow the conversation using #yow2014
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+<a href="files/static_many.html" target="play" title="open resource in new window">➹</a>
+    </section>
+</div>
+
+
+<!--
+
+<div class="slide">
+  <header class="hide"><h1>DOM Manipulation (<a href="files/oldstyle.html" target="foo">view</a>)</h1></header>
+    <pre contenteditable>  <em>&lt;div class="name-tag"&gt;&lt;/div&gt;</em></pre>
+
+<pre contenteditable>var Nametag = createNametag('Estelle Weyl', 'Speaker');
+createComponent('name-tag', Nametag);
+
+function createComponent(name, tmpl) {
+  var unit = document.querySelector('.' + name);
+  var clone = tmpl.cloneNode(true);
+  unit.appendChild(clone);
+}
+
+function createNametag() {
+<strong>// create all the elements</strong>
+  var tmpl        = document.createDocumentFragment(),
+      outer       = document.createElement('div'),
+      header      = document.createElement('header'),
+      p           = document.createElement('p'),
+      main        = document.createElement('main'),
+      name        = document.createElement('p'),
+      role        = document.createElement('p'),
+      footer      = document.createElement('footer');
+<strong>// add classes</strong>
+  outer.classList.add('outer');
+  name.classList.add('name');
+  role.classList.add('role')
+<strong>// add content</strong>
+  header.innerHTML = 'YOW!&lt;span>2014&lt;/span>';
+  p.textContent = "Australia Software Developer Conference";
+  footer.innerHTML = 'Follow us on Twitter @yow_oz&lt;br/>Follow the conversation using #yow2014';
+<strong>// put it all together</strong>
+  outer.appendChild(header);
+  outer.appendChild(p);
+  main.appendChild(name);
+  main.appendChild(role);
+  outer.appendChild(main);
+  outer.appendChild(footer);
+  tmpl.appendChild(outer);
+
+  return tmpl;
+}
+
+
+</pre><a href="files/oldstyle.html" target="play" title="open resource in new window">➹</a>
+</div>
+
+-->
+
+
+<div class="slide">
+  <header class="hide"><h1>JavaScript Code (<a href="files/oldstyle_multiple.2" target="foo">view</a>)</h1></header>
+    <pre contenteditable>var data = [
+    {name: 'Estelle Weyl', role: 'Speaker'},
+    {name: 'Niniane Wang', role: 'CTO, Minted'},
+    {name: 'Tim Berners-Lee', role: 'Web Developer'}
+  ];
+
+function createComponent() {
+  var unit, clone, i = 0;
+  <strong>// iterate creating tag per object</strong>
+  for (i = 0; data.length > i; i += 1) {
+    unit = data[i];
+    clone = createNametag();
+    clone.querySelector('.name').innerHTML = unit.name;
+    clone.querySelector('.role').innerHTML = unit.role;
+    document.body.appendChild(clone);
+  }
+}
+
+function createNametag() {
+  <strong>// Create the nodes</strong>
+  var tmpl        = document.createElement('div'),
+      outer       = document.createElement('div'),
+      header      = document.createElement('header'),
+      p           = document.createElement('p'),
+      main        = document.createElement('main'),
+      name        = document.createElement('p'),
+      role        = document.createElement('p'),
+      footer      = document.createElement('footer');
+  <strong>// add classes</strong>
+  tmpl.classList.add('name-tag');
+  outer.classList.add('outer');
+  name.classList.add('name');
+  role.classList.add('role')
+  <strong>// add content</strong>
+  header.innerHTML = 'YOW!&gt;span>2014&gt;/span>';
+  p.textContent = "Australia Software Developer Conference";
+  footer.innerHTML = 'Follow us on Twitter @yow_oz&gt;br/>Follow the conversation using #yow2014';
+  <strong>// put it all together</strong>
+  outer.appendChild(header);
+  outer.appendChild(p);
+  main.appendChild(name);
+  main.appendChild(role);
+  outer.appendChild(main);
+  outer.appendChild(footer);
+  tmpl.appendChild(outer);
+
+  return tmpl;
+}
+
+createComponent();
+
+
+</pre>
+<a href="files/oldstyle_multiple.html" target="play" title="open resource in new window">➹</a>
+</div>
+
+
+<div class="slide">
+  <header><h1>Client-Side Frameworks</h1></header>
+    <section class="content">
+<pre contenteditable>
+<strong>&lt;script id=&quot;myNametag&quot; type=&quot;text/x-handlebars-template&quot;&gt;</strong>
+&lt;div class=&quot;name-tag&quot;&gt;
+  &lt;div class=&quot;outer&quot;&gt;
+    &lt;header&gt;YOW!&lt;span&gt;2014&lt;/span&gt;
+      &lt;p&gt;Australia Software Developer Conference&lt;/p&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+      &lt;p class=&quot;name&quot;&gt;<strong>{{person.fullname}}</strong>&lt;/p&gt;
+      &lt;p class=&quot;role&quot;&gt;<strong>{{person.role}}</strong>&lt;/p&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;Follow us on Twitter @yow_oz&lt;br&gt;
+      Follow the conversation using #yow2014
+    &lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+<strong>&lt;/script&gt;</strong></pre>
+</section>
+</div>
+
+<div class="slide">
+  <header><h1>Goal</h1></header>
+    <section class="content">
+      <pre contenteditable><strong>&lt;name-tag></strong>
+    &lt;p class="role"&gt;Speaker&lt;/p&gt;
+    &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
+<strong>&lt;/name-tag></strong>
+<strong>&lt;name-tag></strong>
+    &lt;p class="name"&gt;Niniane Wang&lt;/p&gt;
+    &lt;p class="role"&gt;CTO, Minted&lt;/p&gt;
+<strong>&lt;/name-tag></strong>
+<strong>&lt;name-tag></strong>
+    &lt;p class="name"&gt;Tim Berners-Lee&lt;/p&gt;
+    &lt;p class="role"&gt;Web Developer&lt;/p&gt;
+<strong>&lt;/name-tag></strong></pre>
+<p style="opacity: 0.2">Order of role / name doesn't matter</p>
+    </section>
+</div>
+
+<!---
+  #
+  #
+  #    Templates
+  #
+  #
+-->
+
+<div class="slide title">
+<h1>Templates</h1>
+ <ul>
+        <li>&lt;template&gt; <em>(and &lt;content&gt;)</em></li>
+        <li class="fade">Shadow DOM</li>
+        <li class="fade">HTML imports</li>
+        <li class="fade">Custom Elements</li>
+      </ul>
+</div>
+
+<div class="slide">
+  <header><h1>Definition</h1></header>
+    <section class="content">
+      <p><strong>template (n)</strong> - A document or file having a preset format, used as a starting point for a particular application so that the format does not have to be recreated each time it is used.</p>
+    </section>
+</div>
+
+<!--
+<div class="slide">
+  <header><h1>&lt;template&gt; specification</h1></header>
+    <section class="content">
+      <p><strong>&lt;template&gt;</strong>: A standard DOM-based approach for client-side templating.</p>
+      <p><strong>specification:</strong> method for declaring inert DOM subtrees in HTML and manipulating them to instantiate document fragments with identical content.</p>
+
+    </section>
+</div>
+-->
+
+<div class="slide">
+  <header><h1>&lt;template&gt; specification</h1></header>
+    <section class="content">
+<blockquote><p>The <strong>template</strong> element is used to declare fragments of HTML that can be cloned and inserted in the document by script.</p>
+<p>In a rendering, the template element represents <strong>nothing</strong></p></blockquote>
+
+<cite>-- <a href="https://html.spec.whatwg.org/multipage/scripting.html#the-template-element">WHATWG Specification</a></cite>
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>&lt;template&gt; content</h1></header>
+    <section class="content">
+      <ul>
+          <li><strong title="non-rendered hidden DOM">Inert until activated:</strong>  content available only at runtime</li>
+          <li><strong>No side effects:</strong> scripts don't run, images don't load, video doesn't play until template is used.</li>
+          <li><strong>Outside of DOM:</strong> child nodes don't exist in DOM. Can't <code>querySelector()</code> content</li>
+          <li><strong title="even where parser doesn't allow content">Placable anywhere:</strong> head, body, iframe.</li>
+          <li>Could be used as a performance hack
+      </ul>
+
+      <p class="hide">Designers can create rich web user interaction (UI) using CSS and HTML markup only. Developers can focus on integrating the design elements.
+    </section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>Implementation</h1></header>
+    <section class="content">
+      <ol>
+        <li>Feature detect</li>
+        <li>Declare template content</li>
+        <li>Activate content</li>
+      </ol>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Browser Support</h1></header>
+   <ul class="icons">
+    <li class="safari">Safari</li>
+    <li class="firefox">Firefox</li>
+    <li class="chrome">Chrome </li>
+    <li class="opera">Opera </li>
+    <li class="ie bad">IE</li>
+  </ul>
+    <figure><object data="http://caniuse.com/#search=template"></object></figure>
+  <a href="http://caniuse.com/#search=template" target="play" title="open resource in new window">➹</a>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>Feature Detect</h1></header>
+    <section class="content">
+      <pre contenteditable>if(<strong>'content' in document.createElement('template')</strong>) {
+  // put template code here
+} else {
+  //polyfill
+}</pre>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Include &lt;template&gt;</h1></header>
+    <section class="content">
+      <p>Clonable DOM that does nothing until activated</p>
+      <ul>
+        <li>&lt;template&gt;</li>
+        <li>&lt;style&gt;</li>
+        <li>content</li>
+        <li>&lt;content&gt; <i>(in Shadow DOM spec)</i></li>
+        <li>&lt;script&gt;</li>
+      </ul>
+    </section>
+</div>
+
+<div class="slide">
+  <pre contenteditable><strong>&lt;template id=&quot;foo&quot;&gt;</strong>
+   <em>&lt;style&gt;
+      /* styles scoped to template only
+   &lt;/style&gt;</em>
+  &lt;div class=&quot;someclass&quot;&gt;
+     template text here
+    &lt;div class=&quot;someotherclass&quot;&gt;
+    <strong>&lt;content&gt;&lt;/content&gt;</strong>
+    &lt;/div&gt;
+  &lt;/div&gt;
+<strong>&lt;/template&gt;</strong></pre>
+</div>
+
+
+
+<div class="slide">
+  <pre contenteditable><strong>&lt;template id=&quot;nameTagTemplate&quot;&gt;</strong>
+  <em>&lt;style&gt;
+    .outer {
+      border: 1px solid black;
+      background: #2c57a9;
+      width: 21rem;
+      font-size: 3.5rem;
+      text-align: center;
+      font-family: Rockwell, serif;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    header {
+      font-weight: bold;
+      padding: 10px 0 0 0;
+    }
+    header span {
+      color: #ccc;
+      font-weight: normal;
+    }
+    p, footer {
+      font-size: 1rem;
+      font-weight: normal;
+      margin: -5px 0 10px 0; padding: 0;
+    }
+    main {
+      background: white;
+      color: black;
+      font-family: sans-serif;
+      font-size: 1.8rem;
+      height: 12rem;
+      padding-top: 0.2em;
+    }
+    .name,
+    main:first-line {
+      font-weight: bold;
+      font-size: 2.3rem;
+      margin-bottom: 1rem;
+    }
+    footer {
+      margin: 10px 0 2rem;
+    }
+  &lt;/style&gt;</em>
+&lt;div class="name-tag"&gt;
+  &lt;div class="outer"&gt;
+    &lt;header&gt;YOW!&lt;span&gt;2014&lt;/span&gt;
+      &lt;p&gt;Australia Software Developer Conference&lt;/p&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+      <strong>&lt;content&gt;&lt;/content&gt;</strong>
+    &lt;/main&gt;
+    &lt;footer&gt;Follow us on Twitter @yow_oz&lt;br&gt;
+      Follow the conversation using #yow2014
+    &lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+<strong>&lt;/template&gt;</strong>
+</pre>
+</div>
+
+
+
+<div class="slide">
+  <pre contenteditable><strong>&lt;template id=&quot;nameTagTemplate&quot;&gt;</strong>
+  <em>&lt;style&gt;
+    .outer {
+      border: 1px solid black;
+      background: #2c57a9; ....
+
+... footer {
+      margin: 10px 0 2rem;
+    }
+  &lt;/style&gt;</em>
+&lt;div class="name-tag"&gt;
+  &lt;div class="outer"&gt;
+    &lt;header&gt;YOW!&lt;span&gt;2014&lt;/span&gt;
+      &lt;p&gt;Australia Software Developer Conference&lt;/p&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+      <strong>&lt;content&gt;&lt;/content&gt;</strong>
+    &lt;/main&gt;
+    &lt;footer&gt;Follow us on Twitter @yow_oz&lt;br&gt;
+      Follow the conversation using #yow2014
+    &lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+<strong>&lt;/template&gt;</strong>
+
+
+</pre>
+</div>
+
+<div class="slide">
+
+  <header><h1>HTML in Document</h1></header>
+    <section class="content">
+
+  <pre contenteditable>&lt;div class="name-tag"&gt;
+  &lt;p class="role"&gt;Speaker&lt;/p&gt;
+  &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="name-tag"&gt;
+  &lt;p class="name"&gt;Ninian Wang&lt;/p&gt;
+  &lt;p class="role"&gt;CTO, Minted&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="name-tag"&gt;
+  &lt;p class="name"&gt;Tim Berners-Lee&lt;/p&gt;
+  &lt;p class="role"&gt;Web Developer&lt;/p&gt;
+&lt;/div&gt;</pre>
+
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>JavaScript for Template</h1></header>
+    <section class="content">
+  <pre contenteditable>var hosts = document.querySelectorAll('.name-tag');
+var template = document.querySelector('#nameTagTemplate');
+for(var i = 0; i &lt; hosts.length; i++) {
+  var shadow = hosts[i].createShadowRoot();
+  var clone = document.importNode(template.content, true);
+  shadow.appendChild(clone);
+}</pre>
+</div>
+
+<div class="slide">
+  <header><h1>In browser</h1></header>
+    <figure><object data="files/shadow2.html"></object></figure>
+  <a href="files/shadow2.html" target="play" title="open resource in new window">➹</a>
+</div>
+
+<div class="slide">
+
+  <header><h1>JavaScript for Template (again)</h1></header>
+  <pre contenteditable>var hosts = document.querySelectorAll('.name-tag');
+<em>var template = document.querySelector('#nameTagTemplate');</em>
+for(var i = 0; i &lt; hosts.length; i++) {
+  var shadow = hosts[i]<strong>.createShadowRoot()</strong>;
+  var clone = document<strong>.importNode(</strong>template<strong>.content</strong>, true<strong>)</strong>;
+  shadow.appendChild(clone);
+}</pre>
+  <pre>var clone = document<strong>.importNode(</strong>template<strong>.content</strong>, true<strong>)</strong>;</pre>
+  <pre contenteditable>var clone = <strong>template.content.cloneNode(</strong>true<strong>)</strong>; </pre>
+</div>
+
+<div class="slide">
+  <header><h1></h1></header>
+    <section class="content"><img src="assets/images/tmp_shadowroot.gif">
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>&lt;content&gt; &amp; select attribute</h1></header>
+    <section class="content">
+      <p><strong>&lt;content&gt;</strong>: insertion point that projects the text from the shadow host to shadow root. </p>
+      <p><strong>&lt;content select=".classInHost"&gt;</strong> looks inside the shadow host for any element with a matching class of <em>.classInHost</em>. If an element in the shadow host has the class of <em>classInHost</em>, its contents will be rendered in the shadow DOM.
+    </section>
+</div>
+
+
+
+
+<div class="slide">
+  <header><h1><strong>select</strong> attribute</h1></header>
+  <pre contenteditable><strong>&lt;template id="nameTagTemplate"&gt;</strong>
+&lt;div class="name-tag"&gt;
+  &lt;div class="outer"&gt;
+    &lt;header&gt;YOW!&lt;span&gt;2014&lt;/span&gt;
+      &lt;p&gt;Australia Software Developer Conference&lt;/p&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+    &lt;content <strong>select=".name"</strong>&gt;&lt;/content&gt;
+    &lt;content <strong>select=".role"</strong>&gt;&lt;/content&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;Follow us on Twitter @yow_oz&lt;br&gt;
+      Follow the conversation using #yow2014
+    &lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+<strong>&lt;/template&gt;</strong></pre>
+<a href="http://codepen.io/estelle/pen/MYaxwV" target="play" title="open resource in new window">➹</a>
+    </section>
+</div>
+
+
+
+
+<div class="slide">
+  <header><h1></h1></header>
+    <section class="content">
+
+
+  <pre contenteditable>&lt;div class="name-tag"&gt;
+  &lt;span <strong>class="role"</strong>&gt;Speaker&lt;/span&gt;
+  &lt;span <strong>class="name"</strong>&gt;Estelle Weyl&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    var host = document.querySelector('.name-tag');
+    var root = host.createShadowRoot();
+    var template = document.querySelector('#nameTagTemplate');
+    root.appendChild(<strong>template.content</strong>);
+&lt;/script&gt;</pre>
+<a href="http://codepen.io/estelle/pen/MYaxwV" target="play" title="open resource in new window">➹</a>
+</div>
+
+
+
+<div class="slide">
+  <header>
+    <h1>HTML, CSS &amp; JS</h1>
+  </header>
+
+  <pre contenteditable>&lt;template&gt;
+&lt;div class="outer"&gt;
+    &lt;header&gt;YOW!&lt;span&gt;2014&lt;/span&gt;
+      &lt;p&gt;Australia Software Developer Conference&lt;/p&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+      &lt;content <strong>select=".name"</strong>&gt;&lt;/content&gt;
+      &lt;content <strong>select=".role"</strong>&gt;&lt;/content&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;Follow us on Twitter @yow_oz&lt;br&gt;
+      Follow the conversation using #yow2014
+    &lt;/footer&gt;
+  &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;div class="name-tag"&gt;
+  &lt;p <strong>class="role"</strong>&gt;Speaker&lt;/p&gt;
+  &lt;p <strong>class="name"</strong>&gt;Estelle Weyl&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="name-tag"&gt;
+  &lt;p <strong>class="name"</strong>&gt;Ninian Wang&lt;/p&gt;
+  &lt;p <strong>class="role"</strong>&gt;CTO, Minted&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="name-tag"</strong>&gt;
+  &lt;p <strong>class="name"</strong>&gt;Tim Berners-Lee&lt;/p&gt;
+  &lt;p <strong>class="role"</strong>&gt;Web Developer&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+var el = document.querySelectorAll('.name-tag');
+var template = document.getElementById('nameTagTemplate');
+for(var i = 0; i &lt; el.length; i++) {
+  var shadow = el[i].createShadowRoot();
+  var clone = document.importNode(<strong>template.content</strong>, true);
+  shadow.appendChild(clone);
+}
+&lt;/script&gt;</pre>
+
+<a href="files/shadow2_select.html" target="play" title="open resource in new window">➹</a>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>In browser</h1></header>
+    <figure><object data="files/shadow2_select.html"></object></figure>
+  <a href="files/shadow2_select.html" target="play" title="open resource in new window">➹</a>
+</div>
+
+
+<div class="slide">
+  <header><h1>All unclaimed content</h1></header>
+    <section class="content">
+      <pre contenteditable>&lt;content&gt;&lt;/content&gt;
+&lt;content select=""&gt;&lt;/conent&gt;
+&lt;content select="*"&gt;&lt;/content&gt;</pre>
+    </section>
+</div>
+<!--
+<div class="slide">
+  <header><h1>Scoped CSS</h1></header>
+    <figure><object data="http://jsbin.com/yaruja/1/edit?html,css,output"></object></figure>
+    <a href="http://codepen.io/estelle/pen/WbvwjR" target="play" title="open resource in new window">➹</a>
+    <a href="http://jsbin.com/yaruja/1/edit?html,css,output" target="play" title="open resource in new window">➹</a>
+</div>
+-->
+<div class="slide">
+  <header><h1>Scoped CSS</h1></header>
+    <figure><object data="files/scoped-style.html"></object></figure>
+  <a href="files/scoped-style.html" target="play" title="open resource in new window">➹</a>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>Benefits of &lt;template&gt;</h1></header>
+    <section class="content">
+      <ul>
+        <li>Nothing!
+          <ul>
+            <li>inert</li>
+            <li>invisible</li>
+            <li>inactive</li>
+          </ul>
+        </li>
+        <li>Reuseable</li>
+        <li>Scoped CSS</li>
+        <li>Importable</li>
+      </ul>
+    </section>
+</div>
+
+
+
+
+
+<!---
+  #
+  #
+  #    Shadow DOM
+  #
+  #
+-->
+
+<div class="slide title">
+<h1>Shadow DOM</h1>
+ <ul>
+        <li class="fade">&lt;template&gt; <em>(and &lt;content&gt;)</em></li>
+        <li>Shadow DOM</li>
+        <li class="fade">HTML imports</li>
+        <li class="fade">Custom Elements</li>
+      </ul>
+</div>
+
+<div class="slide">
+  <header><h1>By Example</h1></header>
+    <section class="content">
+      <input type="range">
+      <br/>
+      <img src="assets/images/sd_range.gif" alt="shadow DOM for input type range">
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>By Example</h1></header>
+    <section class="content">
+      <input type="datetime-local">
+      <br/>
+      <img src="assets/images/sd_datetimelocal.gif" alt="shadow DOM for input type datetime-local">
+    </section>
+</div>
+
+<div class="slide white">
+  <header><h1>By Example</h1></header>
+    <section class="content">
+      <video controls style="height: 1em; width: 400px;">
+      </video>
+      <br/>
+
+      <img src="assets/images/sd_video.gif" alt="shadow DOM for video controls">
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>&lt;template&gt; &amp; Shadow DOM</h1></header>
+    <section class="content">
+
+      <img src="assets/images/sd_template2.gif" alt="shadow DOM for our templated name tags" align="left">
+      <figure style="width: 50%; float: left;"><object data="files/shadow2.html"  style="width: 100%;"></object></figure>
+    </section>
+</div>
+
+<!--
+<div class="slide">
+  <header><h1>Notes:</h1></header>
+    <section class="content">
+
+<p>Creates a Shadow Tree</p>
+      <p>The content inside of the shadow host (or parent of the shadow root) is not rendered. Rather, the content inside the shadow root itself is what gets rendered.
+    </section>
+</div>
+-->
+
+<div class="slide">
+  <header><h1>DOM Encapsulation</h1></header>
+    <section class="content">
+<ul>
+<li>Not available to the rest of the page<ul>
+<li>Page-wide CSS doesn't impact it</li>
+<li>CSS selectors don't target it</li>
+<li>JavaScript is not aware of it</li>
+<li>Nodes are not part of the regular DOM</li></ul></li>
+<li>Attributes of parent node can configure it</li>
+<li>Shadow CSS is scoped
+<li>JavaScript can access via shadowRoot
+  <li>&lt;content&gt; is part of Shadow DOM spec
+</ul>
+    </section>
+</div>
+
+<div class="slide">
+  <p style="margin: 0;">HTML</p>
+  <pre contenteditable>&lt;div class="<strong>name-tag</strong>"&gt;
+  &lt;p class="name"&gt;Ninian Wang&lt;/p&gt;
+  &lt;p class="role"&gt;CTO, Minted&lt;/p&gt;
+&lt;/div&gt;</pre>
+<p style="margin: 0;">JavaScript</p>
+  <pre contenteditable>var hosts = document.querySelectorAll('.name-tag');
+var template = document.querySelector('#nameTagTemplate');
+for(var i = 0; i &lt; hosts.length; i++) {
+  var shadow = <strong>hosts[i].createShadowRoot()</strong>;
+  var clone = document.importNode(template.content, true);
+  shadow.appendChild(clone);
+}</pre>
+</div>
+
+
+<div class="slide">
+  <header><h1>Simple Example</h1></header>
+    <section class="content">
+     <pre contenteditable>* {color: red;}</pre>
+      <pre contenteditable>&lt;div class="spirit">&lt;/div>
+&lt;script>
+  var host = document.querySelector('.spirit');
+  var root = host<strong>.createShadowRoot()</strong>;
+  root<strong>.innerHTML</strong> = "&lt;p>Just because you see me," +
+       "does that mean I really exist?&lt;/p>";
+&lt;/script></pre><a href="files/philo.html" target="play">➹</a>
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>Shadow DOM/Scoped CSS</h1></header>
+    <figure><object data="files/philo.html"></object></figure>
+  <a href="files/philo.html" target="play" title="open resource in new window">➹</a>
+</div>
+
+<div class="slide">
+  <header><h1>Targeting the Shadow DOM</h1></header>
+    <figure><object data="files/philo2.html"></object></figure>
+  <a href="files/philo2.html" target="play" title="open resource in new window">➹</a>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>Targeting the custom element</h1></header>
+    <section class="content">
+      <pre contenteditable>/* unknown elements are unresolved */
+<strong>:unresolved</strong> {
+    opacity: 0; /* hide until resolved
+  }
+/* by default elements are always display:inline. */
+<strong>:host</strong> {
+    display: block;
+  }
+/* target the parent node by class or id */
+<strong>:host(</strong>.customElementsClass<strong>)</strong> {
+  ...
+}
+:host(:hover) { opacity: 1; }
+:host(:active) { ... }</pre>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Shadow Root and Host:</h1></header>
+    <section class="content">
+     <img src="assets/images/sd_template2.gif" alt="shadow DOM for our templated name tags" align="right">
+  <pre contenteditable> var <strong>root</strong> = <strong>host</strong>.createShadowRoot();</pre>
+<p><strong>shadow root</strong>: 1st node of your shadow tree. Ancestor to all other nodes in the tree.</p>
+<p>Shadow <strong>host</strong> content is <u>not</u> rendered. Rather, shadow <strong>root</strong> content gets rendered.
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>Visible or not?</h1></header>
+    <section class="content">
+      <p>while the shadow root is not accessible via the DOM, it is manipulated exactly like the DOM:</p>
+       <pre contenteditable>document.<strong>querySelectorAll(</strong>'.outer'<strong>)</strong>.length === 0</pre>
+       <pre contenteditable>var header = <strong>document.createElement(</strong>'h1'<strong>)</strong>;
+root<strong>.appendChild(</strong>header<strong>)</strong>;</pre>
+    </section>
+</div>
+
+<!---
+  #
+  #
+  #    Imports
+  #
+  #
+-->
+
+<div class="slide title">
+<h1>HTML Imports</h1>
+<ul>
+        <li class="fade">&lt;template&gt; <em>(and &lt;content&gt;)</em></li>
+        <li class="fade">Shadow DOM</li>
+        <li>HTML imports</li>
+        <li class="fade">Custom Elements</li>
+      </ul>
+</div>
+
+
+<div class="slide">
+  <header><h1>&nbsp;</h1></header>
+    <section class="content"><pre contenteditable>&lt;!--#exec cgi="/cgi-bin/template.pl" --&gt;</pre>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Feature Detect</h1></header>
+    <section class="content">
+      <pre contenteditable>if(<strong>'import' in document.createElement('link')</strong>) {
+  // you're good
+} else {
+  // you need to polyfill
+}</pre>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Browser Support</h1></header>
+  <ul class="icons">
+    <li class="safari bad">Safari</li>
+    <li class="firefox half">Firefox</li>
+    <li class="chrome">Chrome </li>
+    <li class="opera">Opera </li>
+    <li class="ie bad">IE</li>
+  </ul>
+    <figure><object data="http://caniuse.com/#search=import"></object></figure>
+  <a href="http://caniuse.com/#search=import" target="play" title="open resource in new window">➹</a>
+</div>
+
+
+<div class="slide">
+  <header><h1><strong>&lt;link rel="import"...</strong></h1></header>
+    <section class="content">
+      <pre contenteditable><code>&lt;head&gt;
+
+  ....
+
+  &lt;link rel="import" href="/path/file.html"&gt;
+
+  &lt;link rel="import" href="//mysite.com/file.html"&gt;
+
+  &lt;link rel="import" href="https://CORSEnabled.com/file.html"&gt;
+
+&lt;/head&gt;</code></pre>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1></h1></header>
+    <section class="content"><pre contenteditable><code>&lt;head&gt;
+
+  ....
+
+  &lt;link rel="import" href="nameTagTemplate.html"&gt;
+
+&lt;/head&gt;</code></pre>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>HTML</h1></header>
+    <section class="content"><pre contenteditable>&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"/&gt;
+  &lt;title&gt;Import a template&lt;/title&gt;
+  &lt;script src="import.js"&gt;&lt;/script&gt;
+  <strong>&lt;link rel="import" href="nametagtemplate.html"
+      onload="loadHandler(event)" onerror="errorHandler(event)"&gt;</strong>
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="name-tag"&gt;
+  &lt;p class="role"&gt;Speaker&lt;/p&gt;
+  &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="name-tag"&gt;
+  &lt;p class="name"&gt;Ninian Wang&lt;/p&gt;
+  &lt;p class="role"&gt;CTO, Minted&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="name-tag"&gt;
+  &lt;p class="name"&gt;Tim Berners-Lee&lt;/p&gt;
+  &lt;p class="role"&gt;Web Developer&lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<a href="http://estelle.github.io/components/files/import.html" target="play" title="open resource in new window">➹</a>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1><strong>nametagtemplate.html</strong></h1></header>
+    <section class="content">
+    <pre contenteditable><code>&lt;template id="nameTagTemplate"&gt;
+&lt;style&gt;
+    .outer {
+      border: 1px solid black;
+      background: #2c57a9;
+      width: 21rem;
+      font-size: 3.5rem;
+      text-align: center;
+      font-family: Rockwell, serif;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    header {
+      font-weight: bold;
+      padding: 10px 0 0 0;
+    }
+    header span {
+      color: #ccc;
+      font-weight: normal;
+    }
+    p, footer {
+      font-size: 1rem;
+      font-weight: normal;
+      margin: -5px 0 10px 0; padding: 0;
+    }
+    main {
+      background: white;
+      color: black;
+      font-family: sans-serif;
+      font-size: 1.8rem;
+      height: 12rem;
+      padding-top: 0.2em;
+    }
+    .name,
+    main:first-line {
+      font-weight: bold;
+      font-size: 2.3rem;
+      margin-bottom: 1rem;
+    }
+    footer {
+      margin: 10px 0 2rem;
+    }
+&lt;/style&gt;
+
+
+&lt;div class="outer"&gt;
+  &lt;header&gt;YOW!&lt;span&gt;2014&lt;/span&gt;
+    &lt;p&gt;Australia Software Developer Conference&lt;/p&gt;
+  &lt;/header&gt;
+  &lt;main&gt;
+  &lt;content select=".name"&gt;&lt;/content&gt;
+  &lt;content select=".role"&gt;&lt;/content&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;Follow us on Twitter @yow_oz&lt;br&gt;
+    Follow the conversation using #yow2014
+  &lt;/footer&gt;
+&lt;/div&gt;
+&lt;/template&gt;</code></pre>
+    </section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>JavaScript</h1></header>
+<section class="content"><pre contenteditable>function loadHandler(e) {
+  var content = document.querySelector('link[rel="import"]')<strong>.import</strong>;
+  var el = document.querySelectorAll('.name-tag');
+  var template = <strong>content.</strong>getElementById('nameTagTemplate');
+  for(var i = 0; i &lt; el.length; i++) {
+    var shadow = el[i].createShadowRoot();
+    var clone = document.importNode(template.content, true);
+    shadow.appendChild(clone);
+  }
+}
+function errorHandler(e) {
+  console.log('Error loading import: ' + e.target.href);
+}</pre>
+<a href="http://estelle.github.io/components/files/import.html" target="play" title="open resource in new window">➹</a>
+    </section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1></h1></header>
+    <section class="content">
+      <ul>
+          <li>The import can access its own DOM and the DOM of the importing document
+            <ul>
+              <li><code><strong>window.document</strong></code> refers to main document</li>
+              <li><code><strong>importLinkFile.import</strong></code> refers to the imported document where <code>importedLinkFile</code> is <code>link[rel=import]</code></li>
+            </ul>
+          </li>
+          <li><code><strong>&lt;link&gt;</strong></code> must have <code><strong>rel="import"</strong></code></li>
+
+      </ul>
+    </section>
+</div>
+
+
+
+
+<div class="slide">
+  <header><h1>Activation</h1></header>
+    <section class="content">
+<pre contenteditable><code>&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"/&gt;
+  &lt;title&gt;What happens to imported content&lt;/title&gt;
+  &lt;script src="import.js"&gt;&lt;/script&gt;
+  <strong>&lt;link rel="import" href="template_textmediajs.html" id="foo"&gt;</strong>
+&lt;/head&gt;
+&lt;body&gt;&lt;p&gt;A template has been imported that has an H1, image and an alert, and we added some javascript!&lt;/p&gt;
+
+  &lt;script&gt;
+    var myLink = document.getElementById('foo');
+    var myTemplate = myLink<strong>.import</strong>.querySelector('template');
+    var clonedTemplate = document<strong>.importNode(myTemplate.content, true)</strong>;
+    <strong>document</strong>.querySelector('body').<strong>appendChild(clonedTemplate)</strong>;
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>HTML imports</h1></header>
+    <section class="content">
+      <p>Inactive until activated:</p>
+      <ul>
+        <li><a href="http://estelle.github.io/components/files/import_show.html" target="foo">http://bit.ly/121oPBf</a> - inactive</li>
+        <li><a href="http://estelle.github.io/components/files/import_show02.html" target="foo">http://bit.ly/1uPMpXI</a> - activated</li>
+      </ul>
+      <p>imported &lt;template></p>
+      <pre contenteditable><code>&lt;template&gt;
+  &lt;h1&gt;This is some text&lt;/h1&gt;
+  &lt;img src="../assets/icons/icon-templates.png" alt="this is some media"&gt;
+  &lt;script&gt;alert("This is some javascript");&lt;/script&gt;
+&lt;/template&gt;</code></pre>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Imports</h1></header>
+    <section class="content">
+      <ul>
+        <li>Include and reuse documents or document fragments</li>
+        <li>Shared dependencies are only loaded once.</li>
+        <li>Import has to be same origin, or CORS.
+        <li>doc and import share window but not document
+
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>JS: importer v importee</h1></header>
+    <section class="content"><pre contenteditable>&lt;script>
+  // the "importee", in this case the template
+  var importedDoc = document<strong>.currentScript.ownerDocument</strong>;
+
+  // the "importer", which has custom elements
+  var parentDoc = document;
+
+  parentDoc.body.appendChild(importedDoc.importNode(content, true));
+&lt;/script></pre>
+
+    </section>
+</div>
+
+
+
+<!---
+  #
+  #
+  #    Custom Elements
+  #
+  #
+-->
+
+<div class="slide title">
+<h1>Custom Elements</h1>
+ <ul>
+        <li class="fade">&lt;template&gt; <em>(and &lt;content&gt;)</em></li>
+        <li class="fade">Shadow DOM</li>
+        <li class="fade">HTML imports</li>
+        <li>Custom Elements</li>
+      </ul>
+</div>
+
+
+<div class="slide">
+  <header><h1>&lt;name-tag&gt; custom element</h1></header>
+    <section class="content">
+      <pre contenteditable><code><strong>&lt;name-tag&gt;</strong>
+  &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
+  &lt;p class="role"&gt;Speaker&lt;/p&gt;
+<strong>&lt;/name-tag&gt;</strong>
+<strong>&lt;name-tag&gt;</strong>
+  &lt;p class="name"&gt;Ninian Wang&lt;/p&gt;
+  &lt;p class="role"&gt;CTO, Minted&lt;/p&gt;
+<strong>&lt;/name-tag&gt;</strong>
+<strong>&lt;name-tag&gt;</strong>
+  &lt;p class="name"&gt;Tim Berners-Lee&lt;/p&gt;
+  &lt;p class="role"&gt;Web Developer&lt;/p&gt;
+<strong>&lt;/name-tag&gt;</strong></code></pre>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>custom element by extending existing element</h1></header>
+    <section class="content">
+      <pre contenteditable><code><strong>&lt;div is="name-tag"&gt;</strong>
+  &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
+  &lt;p class="role"&gt;Speaker&lt;/p&gt;
+<strong>&lt;/div&gt;</strong>
+<strong>&lt;div is="name-tag"&gt;</strong>
+  &lt;p class="name"&gt;Ninian Wang&lt;/p&gt;
+  &lt;p class="role"&gt;CTO, Minted&lt;/p&gt;
+<strong>&lt;/div&gt;</strong>
+<strong>&lt;div is="name-tag"&gt;</strong>
+  &lt;p class="name"&gt;Tim Berners-Lee&lt;/p&gt;
+  &lt;p class="role"&gt;Web Developer&lt;/p&gt;
+<strong>&lt;/div&gt;</strong></code></pre>
+    </section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>Custom Elements</h1></header>
+    <section class="content">
+      <ol>
+        <li>Name the element: all lower-case and must contain a U+002D hyphen.
+        <li>Define a prototype
+        <li>Register the Element</li>
+      </ol>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Auto Registration</h1></header>
+    <section class="content">
+      <p>The <strong>custom element</strong> that you <strong>import</strong> creates a <strong>shadow DOM</strong> from a <strong>&lt;template></strong> then registers itself.</p>
+    <ul>
+      <li>Imports can execute script, so use imports to define and register custom elements.</li>
+    </ul>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Element Callbacks</h1></header>
+    <section class="content">
+      <ol>
+        <li><strong>createdCallback</strong><br/>
+invoked after custom element is created, registered and prototype set.
+
+<li><strong>attachedCallback</strong><br/>
+custom element is inserted<br/>
+Event handlers get added here
+
+<li><strong>detachedCallback</strong><br/>
+custom element is removed
+
+<li><strong>attributeChangedCallback</strong><br/>
+custom element's attribute is added, changed or removed.
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>Register Element</h1></header>
+    <section class="content">
+<pre contenteditable>registerElement(custom-element)</pre>
+      <pre contenteditable>var CustomElement = document.<strong>registerElement(</strong>'custom-element'<strong>)</strong>;
+document.body.appendChild(new CustomElement());</pre>
+<p>or</p>
+<pre contenteditable>registerElement(custom-element, <strong>prototype</strong>)</pre>
+<pre contenteditable>var CustomElement = document.registerElement('custom-button', {
+  prototype: Object.create(HTMLVideoElement.prototype)
+});</pre>
+    </section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>Element Callbacks</h1></header>
+    <section class="content">
+ <pre contenteditable>var btnProto = <strong>Object.create(HTMLButtonElement.prototype)</strong>;
+btnProto.<strong>createdCallback</strong> = function () {
+  console.log('custom element was created');
+}
+btnProto.<strong>attachedCallback</strong> = function (){
+  console.log('custom element was added') ;
+}
+btnProto.<strong>detachedCallback</strong> = function () {
+  console.log('custom element was removed');
+}
+btnProto.<strong>attributeChangedCallback</strong> = function (attr, old, newA)  {
+  console.log('attributes were altered');
+}
+var btnProto = document<strong>.registerElement</strong>('my-button', {
+  <strong>prototype: btnProto</strong>
+});</pre>
+<a href="files/my-button.html"  target="play" title="open resource in new window">➹</a>
+    </section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>Should be happening in ECMAScript 6</h1></header>
+    <section class="content">
+ <pre contenteditable>class MyButton extends HTMLButtonElement {
+  createdCallback () {
+    console.log('custom element was created');
+  }
+  attachedCallback () {
+    console.log('custom element was added');
+  }
+  detachedCallback () {
+    console.log('custom element was removed');
+  }
+  attributeChangedCallback (attr, old, newA) {
+    console.log('attributes were altered');
+  }
+}
+document.registerElement('my-button', MyButton);</section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>Registering</h1></header>
+    <section class="content">
+<pre contenteditable>var MyButton = document.registerElement('my-button', HTMLButtonElement);</pre>
+<pre contenteditable>var MyButton = document.registerElement('my-button', {
+  prototype: Object.create(HTMLButtonElement.prototype)
+});</pre>
+<pre>var YourButton = document.registerElement('your-button', {
+  prototype: MyButton
+});
+</section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Including it...</h1></header>
+    <section class="content">
+      <pre contenteditable>var myButton = <strong>new MyButton()</strong>;
+myButton.textContent = 'some content';
+document.body.appendChild(myButton);</pre>
+<p>or, simply</p>
+<pre contenteditable><strong>&lt;my-button&gt;</strong>some content&lt;my-button&gt;</section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>Extending</h1></header>
+    <section class="content">
+<pre contenteditable>
+var yourButton = document.createElement('button', 'your-button');
+yourButton.textContent = "I am extended"
+document.body.appendChild(yourButton);
+</pre>
+<p>which creates:
+<pre contenteditable><strong>&lt;button is="your-button"&gt;</strong>I am extended&lt;button&gt;</pre>
+
+<div id="beep"></div>
+<script>
+var yourButton = document.createElement('button', 'your-button');
+yourButton.textContent = "I am extended"
+document.getElementById('beep').appendChild(yourButton);
+</script>
+    </section>
+</div>
+
+
+<div class="slide">
+  <header><h1>Targeting the importee from the importer</h1></header>
+    <section class="content">
+    <pre contenteditable>&lt;style>
+<strong>my-element</strong> {
+    display: block; }
+my-element<strong>:unresolved</strong> {
+    opacity: 0; }
+my-element<strong>::shadow</strong> {
+    /*target the shadow root */ }
+<strong>::shadow p</strong> {
+    /* any p within any shadow root */ }
+&lt;/style>
+&lt;head>
+&lt;body class="classInImporter">
+  &lt;my-element>&lt;/my-element>
+&lt;/body></pre>
+
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>Targeting the importer from the importee</h1></header>
+    <section class="content"><pre contenteditable>  &lt;template>
+    &lt;style>
+      <strong>:host-context(.classInImporter) { ... }</strong>
+    &lt;/style>
+    .... &lt;!-- html template for &lt;my-element> -->
+  &lt;/template>
+    </pre><pre contenteditable>&lt;body class="classInImporter">
+  &lt;my-element>&lt;/my-element>
+&lt;/body></pre>
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>HTML: Custom Elements</h1></header>
+    <section class="content"><pre contenteditable><code><strong>&lt;name-tag&gt;</strong>
+  &lt;p class="name"&gt;Estelle Weyl&lt;/p&gt;
+  &lt;p class="role"&gt;Speaker&lt;/p&gt;
+<strong>&lt;/name-tag&gt;</strong>
+<strong>&lt;name-tag&gt;</strong>
+  &lt;p class="name"&gt;Ninian Wang&lt;/p&gt;
+  &lt;p class="role"&gt;CTO, Minted&lt;/p&gt;
+<strong>&lt;/name-tag&gt;</strong>
+<strong>&lt;name-tag&gt;</strong>
+  &lt;p class="name"&gt;Tim Berners-Lee&lt;/p&gt;
+  &lt;p class="role"&gt;Web Developer&lt;/p&gt;
+<strong>&lt;/name-tag&gt;</strong></code></pre>
+    </section>
+</div>
+
+
+
+<div class="slide">
+  <header><h1>&lt;name-tag&gt; registration</h1></header>
+    <section class="content"><pre contenteditable><code>var nameTag = <strong>Object.create(HTMLElement.prototype)</strong>;
+
+nameTag<strong>.createdCallback</strong> = function() {
+   var template = document.getElementById('nameTagTemplate').content;
+   var clone = template.cloneNode(true);
+   var root = this.createShadowRoot();
+   root.appendChild(clone);
+ };
+
+document.<strong>registerElement</strong>('name-tag', {
+  prototype: nameTag
+});</code></pre>
+    </section>
+</div>
+
+
+
+
+
+
+<div class="slide">
+  <header><h1>Custom Element using template</h1></header>
+    <figure><object data="files/custom_element1.html"></object></figure>
+  <a href="files/custom_element1.html" target="play" title="open resource in new window">➹</a>
+</div>
+
+<div class="slide">
+    <section class="content">
+<h1 class="textmask">Thank you</h1>
+<h2><a href="http://www.standardista.com">www.standardista.com</a></h2>
+<h2><a href="http://www.twitter.com/estellevw">@estellevw</a></h2>
+<h2><a href="http://estelle.github.io/components">http://estelle.github.io/components</a></h2>
+<div class="floatright">
+  <img src="http://akamaicovers.oreilly.com/images/9780980846904/cat.gif" alt="HTML5 and CSS3 for the Real World">
+  <img src="http://akamaicovers.oreilly.com/images/0636920018063/cat.gif" alt="HTML5: The Definitive Guide"/>
+  <img src="http://akamaicovers.oreilly.com/images/0636920021711/cat.gif" alt="MObile HTML5" />
+  <img src="http://akamaicovers.oreilly.com/images/0636920025955/cat.gif" alt="Web Performance Daybook"/></div>
+    </section>
+</div>
+
+<div class="slide">
+  <header><h1>Resources</h1></header>
+    <section class="content">
+      <ul>
+        <li>Deck at <a href="http://estelle.github.io/components" target="foo">estelle.github.io/components</a></li>
+        <li>All resources linked via the arrows (➹)</li>
+        <li><a href="https://www.polymer-project.org/" target="foo">Polymer-Project.org</a>
+        <li><a href="http://webcomponents.org/" target="foo">WebComponents.org</a>
+        <li><a href="http://customelements.io/" target="foo">CustomElements.io</a>
+        <li><a href="http://twitter.com/estellevw" target="foo">My Twitter</a> * <a href="http://standardista.com">My Blog</a> * <a href="http://estelle.github.io/" target="foo">My Talks</a> * <a href="http://github.com/estelle">My Github</a> * <a href="http://search.oreilly.com/?q=estelle+weyl&x=0&y=0" target="foo">My Books &amp; Videos</a>
+      </ul>
+
+  <a href="http://estelle.github.io/components" target="play" title="open resource in new window">➹</a>
+    </section>
+</div>
+
+<!-- END SLIDES -->
+   </div>
+</div>
+<script src="assets/slides.js"></script>
+  </body>
+</html>
+
