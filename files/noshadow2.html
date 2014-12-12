@@ -2,12 +2,8 @@
 <html>
 <head style="display: block;">
   <meta charset="utf-8"/>
-  <title>Template with Shadow Root</title>
-
-  <style style="display: block; white-space: pre; background-color: #ddd; border: 1px solid #ccc; border-radius: 5px; font-size: 2rem; float: left" contenteditable>.outer {background: red; }</style>
-
-
-<template id="nameTagTemplate">
+  <title>Template: Multiple Iterations</title>
+  <template id="nameTagTemplate">
   <style>
     .outer {
       border: 1px solid black;
@@ -56,8 +52,7 @@
       <p>Australia Software Developer Conference</p>
     </header>
     <main>
-    <content select=".name"></content>
-    <content select=".role"></content>
+      <content></content>
     </main>
     <footer>Follow us on Twitter @yow_oz<br>
       Follow the conversation using #yow2014
@@ -66,8 +61,10 @@
 </div>
 </template>
 
+  <style style="display: block; white-space: pre; background-color: #ddd; border: 1px solid #ccc; border-radius: 5px; font-size: 2rem; float: left" contenteditable>.outer {background: red; }</style>
 </head>
 <body style="clear: both; padding-top: 20px;">
+
 <div class="name-tag">
   <p class="role">Speaker</p>
   <p class="name">Estelle Weyl</p>
@@ -82,12 +79,14 @@
 </div>
 
 <script>
-var el = document.querySelectorAll('.name-tag');
+var hosts = document.querySelectorAll('.name-tag');
 var template = document.getElementById('nameTagTemplate');
-for(var i = 0; i < el.length; i++) {
-  var shadow = el[i].createShadowRoot();
+for(var i = 0; i < hosts.length; i++) {
   var clone = document.importNode(template.content, true);
-  shadow.appendChild(clone);
+  clone.querySelector('content').innerHTML =
+      hosts[i].innerHTML;
+  hosts[i].parentNode.appendChild(clone);
+  hosts[i].remove();
 }
 </script>
 </body>

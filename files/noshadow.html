@@ -2,12 +2,8 @@
 <html>
 <head style="display: block;">
   <meta charset="utf-8"/>
-  <title>Template with Shadow Root</title>
-
-  <style style="display: block; white-space: pre; background-color: #ddd; border: 1px solid #ccc; border-radius: 5px; font-size: 2rem; float: left" contenteditable>.outer {background: red; }</style>
-
-
-<template id="nameTagTemplate">
+  <title>Template: Single Iteration</title>
+  <template id="nameTagTemplate">
   <style>
     .outer {
       border: 1px solid black;
@@ -56,8 +52,7 @@
       <p>Australia Software Developer Conference</p>
     </header>
     <main>
-    <content select=".name"></content>
-    <content select=".role"></content>
+      <content></content>
     </main>
     <footer>Follow us on Twitter @yow_oz<br>
       Follow the conversation using #yow2014
@@ -65,30 +60,22 @@
   </div>
 </div>
 </template>
-
+  <style style="display: block; white-space: pre; background-color: #ddd; border: 1px solid #ccc; border-radius: 5px; font-size: 2rem;" contenteditable>.outer {background: red; }</style>
 </head>
-<body style="clear: both; padding-top: 20px;">
+<body>
+
 <div class="name-tag">
-  <p class="role">Speaker</p>
   <p class="name">Estelle Weyl</p>
-</div>
-<div class="name-tag">
-  <p class="name">Ninian Wang</p>
-  <p class="role">CTO, Minted</p>
-</div>
-<div class="name-tag">
-  <p class="name">Tim Berners-Lee</p>
-  <p class="role">Web Developer</p>
+  <p class="role">Speaker</p>
 </div>
 
 <script>
-var el = document.querySelectorAll('.name-tag');
-var template = document.getElementById('nameTagTemplate');
-for(var i = 0; i < el.length; i++) {
-  var shadow = el[i].createShadowRoot();
-  var clone = document.importNode(template.content, true);
-  shadow.appendChild(clone);
-}
+var host = document.querySelector('.name-tag')
+var template = document.querySelector('#nameTagTemplate');
+var clone = document.importNode(template.content, true);
+clone.querySelector('content').innerHTML = host.innerHTML;
+host.innerHTML = '';
+host.appendChild(clone);
 </script>
 </body>
 </html>
