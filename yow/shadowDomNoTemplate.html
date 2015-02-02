@@ -2,15 +2,13 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-  <title>Name Tag: Static</title>
-</head>
-<body>
+  <title>Name Tag: using DOM</title>
   <style>
     .outer {
       border: 1px solid black;
-      background: rgb(222,122,91);
+      background: #2c57a9;
       width: 21rem;
-      font-size: 2.5rem;
+      font-size: 3.5rem;
       text-align: center;
       font-family: Rockwell, serif;
       color: white;
@@ -24,7 +22,7 @@
       color: #ccc;
       font-weight: normal;
     }
-    .tagline, .footer {
+    p, footer {
       font-size: 1rem;
       font-weight: normal;
       margin: -5px 0 10px 0; padding: 0;
@@ -42,22 +40,35 @@
       font-size: 2.3rem;
       margin-bottom: 1rem;
     }
-    .footer {
+    footer {
       margin: 10px 0 2rem;
     }
   </style>
-<div class="name-tag">
-  <div class="outer">
-    <div class="logo">ForwardJS<span>2014</span></div>
-    <div class="tagline">Web Technology Summit</div>
-    <div class="inner">
-      <div class="name">Estelle Weyl</div>
-      <div class="role">Speaker</div>
-    </div>
-    <div class="footer">Follow us on Twitter @forwardjs<br>
-      Follow the conversation using #ForwardJS
-    </div>
-  </div>
-</div>
+</head>
+<body>
+  <div class="name-tag">Estelle</div>
+  <script>
+    var host = document.querySelector('.name-tag');
+    var root = host.createShadowRoot();
+    root.resetStyleInheritance = true;
+    root.applyAuthorStyles = true;
+
+    var outer = document.createElement('div');
+    outer.classList.add('outer');
+
+    var logo = document.createElement('div');
+    logo.classList.add('logo');
+    logo.innerHTML = 'YOW!<span>2014</span>';
+
+    var person = document.createElement('div');
+    person.classList.add('name');
+    person.textContent = 'Estelle';
+
+    outer.appendChild(logo);
+    outer.appendChild(person);
+    root.appendChild(outer);
+  </script>
+</body>
+</script>
 </body>
 </html>

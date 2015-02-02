@@ -1,20 +1,20 @@
 <template id="nameTagTemplate">
   <style>
-    .outer {
+.outer {
       border: 1px solid black;
-      background: rgb(222,122,91);
+      background: #2c57a9;
       width: 21rem;
-      font-size: 2.5rem;
+      font-size: 3.5rem;
       text-align: center;
       font-family: Rockwell, serif;
       color: white;
       margin-bottom: 1rem;
     }
-    .logo {
+    header {
       font-weight: bold;
       padding: 10px 0 0 0;
     }
-    .logo span {
+    header span {
       color: #ccc;
       font-weight: normal;
     }
@@ -23,7 +23,7 @@
       font-weight: normal;
       margin: -5px 0 10px 0; padding: 0;
     }
-    .inner {
+    main {
       background: white;
       color: black;
       font-family: sans-serif;
@@ -31,7 +31,8 @@
       height: 12rem;
       padding-top: 0.2em;
     }
-    .name {
+    .name,
+    main:first-line {
       font-weight: bold;
       font-size: 2.3rem;
       margin-bottom: 1rem;
@@ -39,19 +40,55 @@
     footer {
       margin: 10px 0 2rem;
     }
-  </style>
+</style>
+
+
 <div class="outer">
-  <div class="logo">
-    ForwardJS<span>2014</span>
-  </div>
-  <div class="inner">
-    <content></content>
-  </div>
+  <header>YOW!<span>2014</span>
+    <p>Australia Software Developer Conference</p>
+  </header>
+  <main>
+  <content select=".name"></content>
+  <content select=".role"></content>
+  </main>
+  <footer>Follow us on Twitter @yow_oz<br>
+    Follow the conversation using #yow2014
+  </footer>
 </div>
 </template>
-
 <script>
-  (function() {
+  // the "importee", in this case the template
+  var importedDoc = document.currentScript.ownerDocument;
+
+  // the "importer", which has custom elements
+  var parentDoc = document;
+
+  parentDoc.body.appendChild(importedDoc.importNode(content, true));
+
+  // grab the contents of the #blog-post from this document
+  // and append it to the importing document.
+  //var template = importedDoc.querySelector('template');
+
+  var nameTag = Object.create(HTMLElement.prototype);
+
+nameTag.createdCallback = function() {
+   var template = importedDoc.getElementById('nameTagTemplate').content;
+   var clone = template.cloneNode(true);
+   var root = this.createShadowRoot();
+   root.appendChild(clone);
+ };
+
+document.registerElement('name-tag', {
+  prototype: nameTag
+});
+
+
+
+
+
+</script>
+<!--
+function() {
     var importDoc = document.currentScript.ownerDocument; // importee
 
     // Define and register <shadow-element>
@@ -70,5 +107,4 @@
     };
 
     document.registerElement('name-tag', {prototype: proto});
-  })();
-</script>
+  })(); -->

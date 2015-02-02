@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title></title>
+  <style>
+button-one {color: red;}
+  </style>
+</head>
+<body>
+  <my-button>My Button has callbacks</my-button>
+  <script>
+
+var MyButtonPrototype = Object.create(HTMLButtonElement);
+MyButtonPrototype.createdCallback = function () {
+  window.console.log('custom element was created');
+}
+MyButtonPrototype.attachedCallback = function (){
+  console.log('custom element was added');
+}
+MyButtonPrototype.detachedCallback = function () {
+  console.log('custom element was removed');
+}
+MyButtonPrototype.attributeChangedCallback = function (attr, oldA, newA)  {
+  console.log('attributes were altered');
+}
+var MyButton = document.registerElement('my-button', {
+  prototype: MyButtonPrototype
+});
+
+/*
+class theButton extends HTMLButtonElement {
+  createdCallback () {
+    console.log('custom element was created');
+  }
+  attachedCallback () {
+    console.log('custom element was added');
+  }
+  detachedCallback () {
+    console.log('custom element was removed');
+  }
+  attributeChangedCallback (attr, oldA, newA) {
+    console.log('attributes were altered');
+  }
+}
+document.registerElement('the-button', theButton);
+*/
+
+
+var OneButton =
+    Object.create(HTMLButtonElement.prototype);
+
+document.registerElement('button-one', {
+  prototype: OneButton,
+  extends: 'button'
+});
+
+
+var buttonA = document.createElement('my-button');
+buttonA.textContent = "button with proto";
+//buttonA.setAttribute('foo', 'bar');
+document.body.appendChild(buttonA);
+
+/*
+var buttonB = document.createElement('the-button');
+buttonB.textContent = "button with class";
+buttonB.setAttribute('foo', 'bar');
+document.body.appendChild(buttonB);
+*/
+
+var button = document.createElement('button-one');
+button.textContent = "some other stuff"
+document.body.appendChild(button);
+
+var question = document.createElement('p', 'button-one');
+question.textContent = "who am i?"
+document.body.appendChild(question);
+
+var yourButton = document.createElement('button', 'your-button');
+yourButton.textContent = "I am extended"
+document.body.appendChild(yourButton);
+
+
+  </script>
+  <p is="button-one">am I a button?</p>
+  <my-button>FooBar</my-button>
+  <the-button>The button</the-button>
+</body>
+</html>

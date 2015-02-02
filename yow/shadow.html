@@ -1,15 +1,16 @@
 <!doctype html>
 <html>
-<head style="display: block;">
+<head>
   <meta charset="utf-8"/>
   <title>Template: Single Iteration</title>
-  <template id="nameTagTemplate">
+</head>
+<body><template id="nameTagTemplate">
   <style>
     .outer {
       border: 1px solid black;
-      background: rgb(222,122,91);
+      background: #2c57a9;
       width: 21rem;
-      font-size: 2.5rem;
+      font-size: 3.5rem;
       text-align: center;
       font-family: Rockwell, serif;
       color: white;
@@ -48,21 +49,18 @@
   </style>
 <div class="name-tag">
   <div class="outer">
-    <header>ForwardJS<span>2014</span>
-      <p>Web Technology Summit</p>
+    <header>YOW!<span>2014</span>
+      <p>Australia Software Developer Conference</p>
     </header>
     <main>
       <content></content>
     </main>
-    <footer>Follow us on Twitter @forwardjs<br>
-      Follow the conversation using #ForwardJS
+    <footer>Follow us on Twitter @yow_oz<br>
+      Follow the conversation using #yow2014
     </footer>
   </div>
 </div>
 </template>
-  <style style="display: block; white-space: pre; background-color: #ddd; border: 1px solid #ccc; border-radius: 5px; font-size: 2rem;" contenteditable>.outer {background: red; }</style>
-</head>
-<body>
 
 <div class="name-tag">
   <p class="name">Estelle Weyl</p>
@@ -70,12 +68,12 @@
 </div>
 
 <script>
-var host = document.querySelector('.name-tag')
+var shadow = document.querySelector('.name-tag').createShadowRoot();
 var template = document.querySelector('#nameTagTemplate');
-var clone = document.importNode(template.content, true);
-clone.querySelector('content').innerHTML = host.innerHTML;
-host.innerHTML = '';
-host.appendChild(clone);
+//var clone = document.importNode(template.content, true);
+var clone = template.content.cloneNode(true);
+
+shadow.appendChild(clone);
 </script>
 </body>
 </html>
