@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Import a template</title>
+  <script src="import2.js"></script>
+  <link rel="import" href="nametagtemplate2.html">
+  <style>
+  /* unknown elements are unresolved */
+  :unresolved {
+    border: 1px solid red;
+    display: block;
+  }
+  </style>
+</head>
+<body>
+<name-tag>
+  <p class="name">Estelle Weyl</p>
+  <p class="role">Speaker</p>
+</name-tag>
+<name-tag>
+  <p class="name">Ninian Wang</p>
+  <p class="role">CTO, Minted</p>
+</name-tag>
+<name-tag>
+  <p class="name">Tim Berners-Lee</p>
+  <p class="role">Web Developer</p>
+</name-tag>
+ <script>
+      window.addEventListener('HTMLImportsLoaded', function() {
+        var link = document.querySelector('link[rel=import]');
+        var content = link.import.querySelector('#blog-post');
+        document.body.appendChild(document.importNode(content, true));
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>What happens to imported content</title>
+  <script src="import.js"></script>
+  <link rel="import" href="template_textmediajs.html" id="foo">
+</head>
+<body><p>A template has been imported that has an H1, image and an alert, and we added some javascript!</p>
+
+  <script>
+    var myLink = document.getElementById('foo');
+    var myTemplate = myLink.import.querySelector('template');
+    var clonedTemplate = document.importNode(myTemplate.content, true);
+    document.querySelector('body').appendChild(clonedTemplate);
+  </script>
+</body>
+</html>

@@ -1,14 +1,12 @@
-s<!doctype html>s
+<!doctype html>
 <html>
 <head>
   <meta charset="utf-8"/>
-  <title></title>
-</head>
-<body><template id="nameTagTemplate">
+  <title>Name Tag: using DOM</title>
   <style>
     .outer {
       border: 1px solid black;
-      background: url(../assets/wood.jpg) rgb(222,122,91);
+      background: rgb(222,122,91);
       width: 21rem;
       font-size: 2.5rem;
       text-align: center;
@@ -46,25 +44,31 @@ s<!doctype html>s
       margin: 10px 0 2rem;
     }
   </style>
-<div class="outer">
-  <div class="logo">
-    JSSummit<span>2014</span>
-  </div>
-  <div class="inner">
-    <content select=".firstName"></content>
-    <content select=".lastName"></content>
-  </div>
-</div>
-</template>
-<div class="name-tag">
-  <span class="lastName">Weyl</span>
-  <span class="firstName">Estelle</span>
-</div>
-<script>
+</head>
+<body>
+  <div class="name-tag">Estelle</div>
+  <script>
     var host = document.querySelector('.name-tag');
     var root = host.createShadowRoot();
-    var template = document.querySelector('#nameTagTemplate');
-    root.appendChild(template.content);
+    root.resetStyleInheritance = true;
+    root.applyAuthorStyles = true;
+
+    var outer = document.createElement('div');
+    outer.classList.add('outer');
+
+    var logo = document.createElement('div');
+    logo.classList.add('logo');
+    logo.innerHTML = 'ForwardJS<span>2014</span>';
+
+    var person = document.createElement('div');
+    person.classList.add('name');
+    person.textContent = 'Estelle';
+
+    outer.appendChild(logo);
+    outer.appendChild(person);
+    root.appendChild(outer);
+  </script>
+</body>
 </script>
 </body>
 </html>

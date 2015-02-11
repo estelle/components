@@ -2,27 +2,15 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-  <title>Custom Element</title>
+  <title>Template: Multiple Iterations</title>
 </head>
 <body>
-<name-tag>
-  <p class="name">Estelle Weyl</p>
-  <p class="role">Speaker</p>
-</name-tag>
-<name-tag>
-  <p class="name">Ninian Wang</p>
-  <p class="role">CTO, Minted</p>
-</name-tag>
-<name-tag>
-  <p class="name">Tim Berners-Lee</p>
-  <p class="role">Web Developer</p>
-</name-tag>
 
 <template id="nameTagTemplate">
   <style>
     .outer {
       border: 1px solid black;
-      background: url(../assets/wood.jpg) rgb(222,122,91);
+      background: rgb(222,122,91);
       width: 21rem;
       font-size: 2.5rem;
       text-align: center;
@@ -63,33 +51,41 @@
   </style>
 <div class="name-tag">
   <div class="outer">
-    <header>JSSummit<span>2014</span>
-      <p>Online JavaScript Conference</p>
+    <header>ForwardJS<span>2014</span>
+      <p>Web Technology Summit</p>
     </header>
     <main>
-    <content select=".name"></content>
-    <content select=".role"></content>
+      <content></content>
     </main>
-    <footer>Follow us on Twitter @JSSummit<br>
-      Follow the conversation using #JSSummit
+    <footer>Follow us on Twitter @forwardjs<br>
+      Follow the conversation using #ForwardJS
     </footer>
   </div>
 </div>
 </template>
 
-<script defer>
-var nameTag = Object.create(HTMLElement.prototype);
+<div class="name-tag">
+  <p class="role">Speaker</p>
+  <p class="name">Estelle Weyl</p>
+</div>
+<div class="name-tag">
+  <p class="name">Ninian Wang</p>
+  <p class="role">CTO, Minted</p>
+</div>
+<div class="name-tag">
+  <p class="name">Tim Berners-Lee</p>
+  <p class="role">Web Developer</p>
+</div>
 
-nameTag.createdCallback = function() {
-   var template = document.getElementById('nameTagTemplate').content;
-   var clone = template.cloneNode(true);
-   var root = this.createShadowRoot();
-   root.appendChild(clone);
- };
-
-document.registerElement('name-tag', {
-  prototype: nameTag
-});
+<script>
+var el = document.querySelectorAll('.name-tag');
+var template = document.getElementById('nameTagTemplate');
+for(var i = 0; i < el.length; i++) {
+  var shadow = el[i].createShadowRoot();
+  //var clone = document.importNode(template.content, true);
+var clone = template.content.cloneNode(true);
+  shadow.appendChild(clone);
+}
 </script>
 </body>
 </html>

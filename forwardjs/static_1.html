@@ -1,14 +1,14 @@
-s<!doctype html>s
+<!doctype html>
 <html>
 <head>
   <meta charset="utf-8"/>
-  <title></title>
+  <title>Name Tag: Static</title>
 </head>
-<body><template id="nameTagTemplate">
+<body>
   <style>
     .outer {
       border: 1px solid black;
-      background: url(../assets/wood.jpg) rgb(222,122,91);
+      background: rgb(222,122,91);
       width: 21rem;
       font-size: 2.5rem;
       text-align: center;
@@ -24,7 +24,7 @@ s<!doctype html>s
       color: #ccc;
       font-weight: normal;
     }
-    p, footer {
+    .tagline, .footer {
       font-size: 1rem;
       font-weight: normal;
       margin: -5px 0 10px 0; padding: 0;
@@ -42,29 +42,22 @@ s<!doctype html>s
       font-size: 2.3rem;
       margin-bottom: 1rem;
     }
-    footer {
+    .footer {
       margin: 10px 0 2rem;
     }
   </style>
-<div class="outer">
-  <div class="logo">
-    JSSummit<span>2014</span>
-  </div>
-  <div class="inner">
-    <content select=".firstName"></content>
-    <content select=".lastName"></content>
-  </div>
-</div>
-</template>
 <div class="name-tag">
-  <span class="lastName">Weyl</span>
-  <span class="firstName">Estelle</span>
+  <div class="outer">
+    <div class="logo">ForwardJS<span>2014</span></div>
+    <div class="tagline">Web Technology Summit</div>
+    <div class="inner">
+      <div class="name">Estelle Weyl</div>
+      <div class="role">Speaker</div>
+    </div>
+    <div class="footer">Follow us on Twitter @forwardjs<br>
+      Follow the conversation using #ForwardJS
+    </div>
+  </div>
 </div>
-<script>
-    var host = document.querySelector('.name-tag');
-    var root = host.createShadowRoot();
-    var template = document.querySelector('#nameTagTemplate');
-    root.appendChild(template.content);
-</script>
 </body>
 </html>

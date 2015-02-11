@@ -6,7 +6,7 @@
     <style>
     .outer {
       border: 1px solid black;
-      background: url(../assets/wood.jpg) rgb(222,122,91);
+      background: rgb(222,122,91);
       width: 21rem;
       font-size: 2.5rem;
       text-align: center;
@@ -50,31 +50,43 @@
   </style>
 </head>
 <body>
+  <div class="name-tag">
+    <div class="nm">Estelle Weyl</div>
+    <div class="rl">Speaker</div>
+  </div>
+  <div class="name-tag">
+    <div class="nm">Niniane Wang</div>
+    <div class="rl">CTO, Minted</div>
+  </div>
+  <div class="name-tag">
+    <div class="nm">Tim Berners-Lee</div>
+    <div class="rl">Web Developer</div>
+  </div>
 
 <script>
-var data = [
-    {name: 'Estelle Weyl', role: 'Speaker'},
-    {name: 'Niniane Wang', role: 'CTO, Minted'},
-    {name: 'Tim Berners-Lee', role: 'Web Developer'}
-  ];
+var Nametag = createNametag();
+createComponent('name-tag', Nametag);
 
-function createComponent() {
-  console.log(data.length)
-  var unit, clone, i = 0;
-  for (i = 0; data.length > i; i += 1) {
-
-    console.log('bar')
-    unit = data[i];
-    clone = createNametag();
-    console.log(clone);
-    clone.querySelector('.name').innerHTML = unit.name;
-    clone.querySelector('.role').innerHTML = unit.role;
-    document.body.appendChild(clone);
-  }
+function createComponent(identifier, tmpl) {
+  var units = document.querySelectorAll(
+    '.' + identifier);
+  [].forEach.call(
+    units, function(unit) {
+      var clone = tmpl.cloneNode(true);
+      unit.appendChild(clone);
+      if(unit.firstChild.data.length) {
+        unit.querySelector('.name').innerHTML = unit.firstElementChild.innerHTML;
+        unit.firstElementChild.remove();
+        unit.querySelector('.role').innerHTML = unit.firstElementChild.innerHTML;
+        unit.firstElementChild.remove();
+      }
+    });
 }
 
+
+
 function createNametag() {
-  var tmpl        = document.createElement('div'),
+  var tmpl        = document.createDocumentFragment(),
       outer       = document.createElement('div'),
       header      = document.createElement('header'),
       p           = document.createElement('p'),
@@ -83,14 +95,13 @@ function createNametag() {
       role        = document.createElement('p'),
       footer      = document.createElement('footer');
   // add classes
-  tmpl.classList.add('name-tag');
   outer.classList.add('outer');
   name.classList.add('name');
   role.classList.add('role')
   // add content
-  header.innerHTML = 'JSSummit<span>2014</span>';
-  p.textContent = "Online JavaScript Conference";
-  footer.innerHTML = 'Follow us on Twitter @JSSummit<br/>Follow the conversation using #JSSummit';
+  header.innerHTML = 'ForwardJS<span>2014</span>';
+  p.textContent = "Web Technology Summitss";
+  footer.innerHTML = 'Follow us on Twitter @forwardjs<br/>Follow the conversation using #ForwardJS';
   // put it all together
   outer.appendChild(header);
   outer.appendChild(p);
@@ -102,8 +113,6 @@ function createNametag() {
 
   return tmpl;
 }
-
-createComponent();
 
 </script>
 </body>

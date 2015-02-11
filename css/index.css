@@ -12,15 +12,15 @@ body {
   height: 100%;
   left: 0px;
   top: 0px;
-  background: #333333;
-  color: #ddd; }
+  background: #9b4b13;
+  color: #fff; }
 
 .slide.opposite .current {
   background-color: #fff !important;
   color: #333; }
 
 a {
-  color: #da0; }
+  color: #79F4CA; }
 
 cite {
   font-size: smaller;
@@ -30,7 +30,7 @@ cite {
   text-align: center;
   line-height: 80vh;
   font-size: 3rem;
-  color: #da0; }
+  color: #79F4CA; }
 
 .slide .content {
   max-height: 80vh;
@@ -152,7 +152,7 @@ a:hover {
   text-decoration: underline; }
 
 strong {
-  color: #ddaa00; }
+  color: #79F4CA; }
 
 .content {
   font-size: 2rem; }
@@ -291,8 +291,8 @@ pre b {
 pre em {
   font-weight: normal;
   font-style: normal;
-  color: #18a600;
-  text-shadow: #18a600 0 0 1px; }
+  color: #bada55;
+  text-shadow: #bada55 0 0 1px; }
 
 pre {
   max-height: 80vh;

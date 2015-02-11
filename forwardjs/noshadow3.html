@@ -1,16 +1,14 @@
 <!doctype html>
 <html>
-<head>
+<head style="display: block;">
   <meta charset="utf-8"/>
   <title>Template: Multiple Iterations</title>
-</head>
-<body>
-
-<template id="nameTagTemplate">
+  <template id="nameTagTemplate">
   <style>
+    body {background-color: red;}
     .outer {
       border: 1px solid black;
-      background: url(../assets/wood.jpg) rgb(222,122,91);
+      background: rgb(222,122,91);
       width: 21rem;
       font-size: 2.5rem;
       text-align: center;
@@ -51,18 +49,22 @@
   </style>
 <div class="name-tag">
   <div class="outer">
-    <header>JSSummit<span>2014</span>
-      <p>Online JavaScript Conference</p>
+    <header>ForwardJS<span>2014</span>
+      <p>Web Technology Summit</p>
     </header>
     <main>
       <content></content>
     </main>
-    <footer>Follow us on Twitter @JSSummit<br>
-      Follow the conversation using #JSSummit
+    <footer>Follow us on Twitter @forwardjs<br>
+      Follow the conversation using #ForwardJS
     </footer>
   </div>
 </div>
 </template>
+
+  <style style="display: block; white-space: pre; background-color: #ddd; border: 1px solid #ccc; border-radius: 5px; font-size: 2rem; float: left" contenteditable>.outer {background: red; }</style>
+</head>
+<body style="clear: both; padding-top: 20px;">
 
 <div class="name-tag">
   <p class="role">Speaker</p>
@@ -78,13 +80,14 @@
 </div>
 
 <script>
-var el = document.querySelectorAll('.name-tag');
+var hosts = document.querySelectorAll('.name-tag');
 var template = document.getElementById('nameTagTemplate');
-for(var i = 0; i < el.length; i++) {
-  var shadow = el[i].createShadowRoot();
-  //var clone = document.importNode(template.content, true);
-var clone = template.content.cloneNode(true);
-  shadow.appendChild(clone);
+for(var i = 0; i < hosts.length; i++) {
+  var clone = document.importNode(template.content, true);
+  clone.querySelector('content').innerHTML =
+      hosts[i].innerHTML;
+  hosts[i].parentNode.appendChild(clone);
+  hosts[i].remove();
 }
 </script>
 </body>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>my-button custom element</title>
+</head>
+<body>
+  <my-button>Static Button</button>
+  <script>
+var MyButtonPrototype = Object.create(HTMLButtonElement.prototype);
+MyButtonPrototype.createdCallback = function () {
+  console.log('custom element was created');
+}
+MyButtonPrototype.attachedCallback = function (){
+  console.log('custom element was added') ;
+}
+MyButtonPrototype.detachedCallback = function () {
+  console.log('custom element was removed');
+}
+MyButtonPrototype.attributeChangedCallback = function (attr, oldA, newA)  {
+  console.log('attributes were altered');
+}
+var MyButton = document.registerElement('my-button', {
+  prototype: MyButtonPrototype
+});
+
+var buttonA = document.createElement('my-button');
+buttonA.textContent = "created with JavaScript";
+buttonA.setAttribute('foo', 'bar');
+document.body.appendChild(buttonA);
+</script>
+</body>
+</html>

@@ -9,7 +9,7 @@ body {
   height: 100%;
   left: 0px;
   top: 0px;
-  background: #333333;
+  background: #9b4b13;
   color: #ddd; }
 
 .slide.opposite .current {
@@ -17,7 +17,7 @@ body {
   color: #333; }
 
 a {
-  color: #da0; }
+  color: #79F4CA; }
 
 cite {
   font-size: smaller;
@@ -74,14 +74,14 @@ pre, style {
 
 pre b {
   font-weight: normal;
-  color: #c61800;
-  text-shadow: #c61800 0 0 1px; }
+  color: #bada55;
+  text-shadow: #bada55 0 0 1px; }
 
 pre em {
   font-weight: normal;
   font-style: normal;
-  color: #18a600;
-  text-shadow: #18a600 0 0 1px; }
+  color: #bada55;
+  text-shadow: #bada55 0 0 1px; }
 
 pre {
   max-height: 80vh;

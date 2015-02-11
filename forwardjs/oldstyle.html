@@ -6,7 +6,7 @@
   <style>
     .outer {
       border: 1px solid black;
-      background: url(../assets/wood.jpg) rgb(222,122,91);
+      background: rgb(222,122,91);
       width: 21rem;
       font-size: 2.5rem;
       text-align: center;
@@ -71,11 +71,11 @@ function createNametag(n, r) {
   name.classList.add('name');
   role.classList.add('role')
   // add content
-  logo.innerHTML = 'JSSummit<span>2014</span>';
-  p.textContent = "Online JavaScript Conference";
+  logo.innerHTML = 'ForwardJS<span>2014</span>';
+  p.textContent = "Web Technology Summit";
   name.textContent = n;
   role.textContent = r;
-  footer.innerHTML = 'Follow us on Twitter @JSSummit<br/>Follow the conversation using #JSSummit';
+  footer.innerHTML = 'Follow us on Twitter @forwardjs<br/>Follow the conversation using #ForwardJS';
   // put it all together
   outer.appendChild(logo);
   outer.appendChild(p);
